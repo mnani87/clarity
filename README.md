@@ -22,8 +22,8 @@ The present is an alpha release (version 0.1) and the release file is clarity.py
 **Installation**
 
     Clone the Repository: Download or clone the project files from the repository:
-            git clone https://github.com/yourusername/clarity-notes.git
-            cd clarity-notes
+            git clone https://github.com/mnani87/clarity.git
+            cd clarity
 
     Set Up Virtual Environment: Create and activate a virtual environment:
             python3 -m venv clarity_notes_env
