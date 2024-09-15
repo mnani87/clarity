@@ -2,6 +2,8 @@
 
 Clarity Notes is a distraction-free text editor designed for writers and coders. It allows users to write in a simple and focused environment, providing both a rich text editing mode and a code editing mode.
 
+The present is an alpha release (version 0.1) and the release file is clarity.py.
+
 **Features**
 
     Distraction-Free Writing: Offers a simple, clean interface with minimal distractions.
