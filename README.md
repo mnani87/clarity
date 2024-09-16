@@ -9,6 +9,7 @@ The present is an alpha release (version 0.1) and the release file is clarity.py
     Distraction-Free Writing: Offers a simple, clean interface with minimal distractions.
     Dual Modes: Switch between Normal Mode (rich text) and Code Mode (plain text/code).
     Basic Formatting: Supports bold, italics, underline, bullet points, numbered lists, and tables.
+    Speech Recognition: Basic audio-to-text functionality.
     Dark Mode: Toggle between light and dark themes for a comfortable writing experience.
     File Support: Open and save files in various formats, including .txt, .odt, .odf, .pdf, .py, .js, and .html.
     Line and Paragraph Spacing: Customize line and paragraph spacing for a tailored writing experience.
@@ -72,6 +73,7 @@ The present is an alpha release (version 0.1) and the release file is clarity.py
 
     Error: ModuleNotFoundError: Ensure all dependencies are installed using pip install -r requirements.txt.
     Switching to Code Mode: Ensure you save your work before switching modes, as Code Mode will remove all rich text formatting.
+    Speech Recognition: Works best with audio files up to 60 seconds long. This is basic functionality only - no punctuations etc. 
 
 **License**
 
