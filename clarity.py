@@ -1,21 +1,19 @@
 # Clarity Notes - A Distraction-Free Text Editor
-# Copyright (C) 2024 MCN
-#
-# This program is free software: you can redistribute it and/or modify
+# Copyright (C) 2024 MCN## This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# See <https://www.gnu.org/licenses/>.
-
+# GNU General Public License for more details.## See <https://www.gnu.org/licenses/>.
 
 
 import sys
+import os
+import shutil
+import speech_recognition as sr
+from pydub import AudioSegment
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QTextEdit, QPushButton, QVBoxLayout, QWidget, QHBoxLayout,
     QComboBox, QFileDialog, QSpinBox, QInputDialog, QMessageBox
@@ -23,12 +21,11 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QFont, QTextCursor, QTextTableFormat, QKeySequence, QTextBlockFormat, QTextListFormat
 from PyQt5.QtCore import Qt
 from PyQt5.QtPrintSupport import QPrinter
-import os
 
 class ClarityNotes(QMainWindow):
     def __init__(self):
         super().__init__()
-
+        
         # Initialize mode
         self.is_code_mode = False  # False = Normal Mode, True = Code Mode
         self.is_modified = False  # Track if the document is modified
@@ -120,6 +117,10 @@ class ClarityNotes(QMainWindow):
         self.dark_mode_button.setCheckable(True)
         self.dark_mode_button.clicked.connect(self.toggle_dark_mode)
 
+        # Create the "Transcribe Audio" button
+        self.transcribe_button = QPushButton('Transcribe Audio')
+        self.transcribe_button.clicked.connect(self.transcribe_audio)
+
         # Set up stylesheets for dark and normal modes
         self.dark_stylesheet = "background-color: #2E2E2E; color: white;"
         self.normal_stylesheet = ""
@@ -147,6 +148,7 @@ class ClarityNotes(QMainWindow):
         toolbar_layout_2.addWidget(self.save_button)
         toolbar_layout_2.addWidget(self.open_button)  # Add the Open button
         toolbar_layout_2.addWidget(self.new_document_button)
+        toolbar_layout_2.addWidget(self.transcribe_button)  # Add the new button here
 
         # Set up the main layout
         layout = QVBoxLayout()
@@ -160,7 +162,7 @@ class ClarityNotes(QMainWindow):
         self.setCentralWidget(container)
 
         # Set up the main window
-        self.setWindowTitle('Clarity: v.0.1')
+        self.setWindowTitle('Clarity: v0.5')
         self.setGeometry(100, 100, 800, 600)
 
         # Track dark mode status
@@ -175,6 +177,45 @@ class ClarityNotes(QMainWindow):
         block_format.setBottomMargin(6)  # 6 points after paragraph
         cursor.setBlockFormat(block_format)
         self.editor.setTextCursor(cursor)
+
+    def transcribe_audio(self):
+        # Open a file dialog to select an audio file
+        file_path, _ = QFileDialog.getOpenFileName(
+            self, "Open Audio File", "", "Audio Files (*.wav *.aiff *.flac *.m4a *.mp3 *.aac *.ogg)"
+        )
+        if not file_path:
+            return  # Return if no file is selected
+
+        # Define storage directory
+        storage_dir = os.path.join(os.getcwd(), "saved_audio_files")
+        os.makedirs(storage_dir, exist_ok=True)  # Create the directory if it doesn't exist
+
+        # Copy the original file to storage directory
+        stored_audio_path = os.path.join(storage_dir, os.path.basename(file_path))
+        shutil.copy2(file_path, stored_audio_path)  # Copy the original file
+
+        recognizer = sr.Recognizer()
+
+        # Convert to .wav if necessary
+        temp_audio_path = stored_audio_path
+        if not stored_audio_path.endswith('.wav'):
+            audio = AudioSegment.from_file(stored_audio_path)
+            temp_audio_path = os.path.join(storage_dir, "temp_audio.wav")
+            audio.export(temp_audio_path, format='wav')
+
+        try:
+            # Use the audio file to transcribe
+            with sr.AudioFile(temp_audio_path) as source:
+                audio_data = recognizer.record(source)
+                text = recognizer.recognize_google(audio_data)
+                # Insert the transcribed text into the editor
+                self.editor.insertPlainText(text + '\n')
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Could not transcribe audio: {e}")
+        finally:
+            # Clean up the temporary file if it was created
+            if temp_audio_path != stored_audio_path and os.path.exists(temp_audio_path):
+                os.remove(temp_audio_path)
 
     def mark_as_modified(self):
         self.is_modified = True
