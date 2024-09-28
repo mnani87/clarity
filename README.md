@@ -1,85 +1,130 @@
-**Clarity Notes**
+1. Introduction
 
-Clarity Notes is a distraction-free text editor designed for writers and coders. It allows users to write in a simple and focused environment, providing both a rich text editing mode and a code editing mode.
+Clarity Notes is a minimalist text editor designed to provide essential word processing features within a clean and straightforward interface. It's ideal for users who need a lightweight application for creating and editing formatted documents without the complexity of full-featured word processors.
+2. Features
+Text Formatting
 
-The present is an alpha release (version 0.1) and the release file is clarity.py.
+    Bold, Italic, and Underline text styles.
+    Font Selection: Choose from a variety of fonts like Avenir, Arial, Times New Roman, and more.
+    Font Size Adjustment: Set font sizes ranging from 8 to 48 points.
 
-**Features**
+Paragraph Formatting
 
-    Distraction-Free Writing: Offers a simple, clean interface with minimal distractions.
-    Dual Modes: Switch between Normal Mode (rich text) and Code Mode (plain text/code).
-    Basic Formatting: Supports bold, italics, underline, bullet points, numbered lists, and tables.
-    Speech Recognition: Basic audio-to-text functionality.
-    Dark Mode: Toggle between light and dark themes for a comfortable writing experience.
-    File Support: Open and save files in various formats, including .txt, .odt, .odf, .pdf, .py, .js, and .html.
-    Line and Paragraph Spacing: Customize line and paragraph spacing for a tailored writing experience.
-    Cross-Platform: Works on macOS, Windows, and Linux (requires Python and PyQt5).
+    Alignment Options: Left align, center align, right align, and justify text.
+    Line Spacing: Adjust line spacing with presets like 1.0, 1.15, 1.5, and 2.0.
+    Paragraph Spacing: Set spacing before and after paragraphs.
 
-**Prerequisites**
+Lists and Tables
 
-    Python 3.x: Ensure that Python 3.x is installed on your system. You can download it from python.org.
-    Virtual Environment (recommended): It is recommended to use a virtual environment to manage dependencies.
+    Bullet Lists: Create unordered lists.
+    Numbered Lists: Create ordered lists.
+    Insert Tables: Add tables with customizable rows and columns.
+    Modify Tables: Add or remove rows and columns in existing tables.
 
-**Installation**
+File Operations
 
-    Clone the Repository: Download or clone the project files from the repository:
-            git clone https://github.com/mnani87/clarity.git
-            cd clarity
+    New Document: Start a new document.
+    Open Document: Open existing documents in HTML, TXT, or ODT formats.
+    Save Document: Save current documents in various formats.
+    Save As: Save documents with a different name or format.
+    Supported Formats: Save as HTML, TXT, ODT (OpenDocument Text), PDF, and Markdown (MD).
 
-    Set Up Virtual Environment: Create and activate a virtual environment:
-            python3 -m venv clarity_notes_env
-            source clarity_notes_env/bin/activate  # On macOS/Linux
-            clarity_notes_env\Scripts\activate     # On Windows
+Printing and Exporting
 
-    Install Dependencies: Install the required packages using requirements.txt:
-            pip install -r requirements.txt
+    Save as PDF: Export documents to PDF format.
 
-    Run Clarity Notes: Run the application:
-            python clarity.py
+User Interface
 
-**Usage**
+    Toolbars Organized in Two Rows:
+        First Row: Text formatting, alignment, list creation, font selection, and font size.
+        Second Row: Line and paragraph spacing, table actions, and file operations.
+    Status Bar: Displays messages like save confirmations and opened files.
 
-    Normal Mode: Use this mode for rich text editing, including formatting options like bold, italics, underline, bullet points, and numbered lists.
-    Code Mode: Switch to this mode for writing plain text or code (e.g., Python, JavaScript, HTML).
-    Dark Mode: Toggle dark mode for a more comfortable viewing experience in low-light environments.
-    File Operations: Open and save files in various formats.
-        Open: Supports .txt, .odt, .odf, .py, .js, .html.
-        Save: Save your work in .txt, .odt, .odf, or .pdf. Code Mode saves in .py, .js or .html.
+3. Use Cases
 
-**Keyboard Shortcuts**
+    Note-Taking: Ideal for students and professionals who need a simple tool for taking formatted notes.
+    Writing Drafts: Suitable for writers who prefer a distraction-free environment.
+    Simple Document Creation: Create letters, reports, and documents requiring basic formatting.
+    Markdown Export: Write in rich text and export to Markdown for web publishing.
 
-    Bold: Ctrl+B
-    Italic: Ctrl+I
-    Underline: Ctrl+U
-    Toggle Code Mode: Ctrl+M
-    Save: Ctrl+S
-    Open: Ctrl+O
-    New Document: Ctrl+N
+4. Keyboard Shortcuts
+Text Formatting
 
-**Important Notes**
+    Bold: Ctrl + B
+    Italic: Ctrl + I
+    Underline: Ctrl + U
 
-    Switching to Code Mode: Switching to Code Mode will strip away all rich text formatting.
-    Saving Changes: If you open a file and make changes, use "Save" to save changes to the same file. Use "Save As" to save to a new file.
+File Operations
 
-**Dependencies**
+    New Document: Ctrl + N
+    Open Document: Ctrl + O
+    Save Document: Ctrl + S
+    Save As: Ctrl + Shift + S
 
-    PyQt5
-    odfpy
-    PyInstaller (for creating standalone executables)
+Editing
 
-    All dependencies are listed in the requirements.txt file.
+    Standard text editing shortcuts (e.g., Ctrl + C for copy, Ctrl + V for paste) are supported.
 
-**Troubleshooting**
+5. Detailed Feature Guide
+Text Formatting
 
-    Error: ModuleNotFoundError: Ensure all dependencies are installed using pip install -r requirements.txt.
-    Switching to Code Mode: Ensure you save your work before switching modes, as Code Mode will remove all rich text formatting.
-    Speech Recognition: Works best with audio files up to 60 seconds long. This is basic functionality only - no punctuations etc. 
+    Applying Bold, Italic, and Underline:
+        Use the toolbar buttons or keyboard shortcuts to toggle text styles.
+        Selected text will be formatted accordingly.
 
-**License**
+    Font Selection and Size:
+        Choose your preferred font from the dropdown menu.
+        Adjust the font size using the spin box next to the font selector.
 
-    This project is licensed under the GPL-3 License.
+Paragraph Formatting
 
-**Contributing**
+    Alignment Options:
+        Align your text using the alignment buttons: Left, Center, Right, or Justify.
+        The current alignment is indicated by the highlighted button.
 
-    Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or improvements.
+    Line Spacing:
+        Adjust line spacing from the dropdown menu with options ranging from 0.8 to 2.0.
+        The default line spacing is set to 1.15.
+
+    Paragraph Spacing:
+        Set the spacing before and after paragraphs using the spin boxes labeled "Before" and "After".
+
+Lists and Tables
+
+    Creating Lists:
+        Insert bullet or numbered lists using the corresponding toolbar buttons.
+        Lists can be nested by using the Tab key to increase indentation.
+
+    Inserting Tables:
+        Add a table by specifying the number of rows and columns.
+        Modify tables later to add or remove rows and columns via the "Modify Table" option.
+
+File Operations
+
+    New Document:
+        Start a new document; you'll be prompted to save changes if there are unsaved edits.
+
+    Open Document:
+        Open existing documents in supported formats.
+        Note: Formatting may vary when opening files created in other applications.
+
+    Save Document:
+        Save your work in the desired format.
+        Use "Save As" to choose a different file name or format.
+
+    Supported Formats:
+        HTML: Preserves formatting and can be viewed in web browsers.
+        TXT: Plain text without formatting.
+        ODT: OpenDocument Text format compatible with LibreOffice and OpenOffice.
+        PDF: Export as a PDF document.
+        Markdown (MD): Export to Markdown syntax for web publishing.
+
+User Interface
+
+    Toolbars:
+        First Row: Contains text formatting, alignment, list creation, font selection, and font size.
+        Second Row: Contains line and paragraph spacing options, table actions, and file operations.
+
+    Status Bar:
+        Displays notifications such as "Saved: document.odt" or "Opened: notes.html".
 
