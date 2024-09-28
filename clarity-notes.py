@@ -1,268 +1,196 @@
-# Clarity Notes - A Distraction-Free Text Editor
-# Copyright (C) 2024 MCN
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# See <https://www.gnu.org/licenses/>.
-
 import sys
 import os
-import shutil
-import speech_recognition as sr
-from pydub import AudioSegment
-from odf.opendocument import load
-from odf.text import P
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QTextEdit, QPushButton, QVBoxLayout, QWidget, QHBoxLayout,
-    QComboBox, QFileDialog, QSpinBox, QInputDialog, QMessageBox, QLabel, QCheckBox
+    QApplication, QMainWindow, QTextEdit,
+    QComboBox, QFileDialog, QSpinBox, QInputDialog, QMessageBox, QLabel,
+    QAction, QToolBar
 )
-from PyQt5.QtGui import QFont, QTextCursor, QTextTableFormat, QKeySequence, QTextBlockFormat, QTextListFormat
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtGui import (
+    QFont, QTextCursor, QTextTableFormat, QKeySequence, QTextBlockFormat,
+    QTextListFormat, QTextDocumentWriter
+)
+from PyQt5.QtCore import Qt
 from PyQt5.QtPrintSupport import QPrinter
+from bs4 import BeautifulSoup  # For parsing HTML content
 
-class AudioTranscriptionThread(QThread):
-    transcription_finished = pyqtSignal(str)
-    transcription_failed = pyqtSignal(str)
-
-    def __init__(self, audio_path, parent=None):
-        super().__init__(parent)
-        self.audio_path = audio_path
-
-    def run(self):
-        recognizer = sr.Recognizer()
-        try:
-            # Convert to WAV if necessary
-            if not self.audio_path.lower().endswith('.wav'):
-                audio = AudioSegment.from_file(self.audio_path)
-                temp_audio_path = os.path.join(os.path.dirname(self.audio_path), "temp_audio.wav")
-                audio.export(temp_audio_path, format='wav')
-            else:
-                temp_audio_path = self.audio_path
-
-            with sr.AudioFile(temp_audio_path) as source:
-                audio_data = recognizer.record(source)
-                text = recognizer.recognize_google(audio_data)
-                self.transcription_finished.emit(text)
-        except Exception as e:
-            self.transcription_failed.emit(str(e))
-        finally:
-            # Clean up temporary file if it was created
-            if not self.audio_path.lower().endswith('.wav') and os.path.exists(temp_audio_path):
-                os.remove(temp_audio_path)
 
 class ClarityNotes(QMainWindow):
     def __init__(self):
         super().__init__()
-        
-        # Initialize mode and state
-        self.is_code_mode = False  # False = Normal Mode, True = Code Mode
+
+        # Initialize state
         self.is_modified = False  # Track if the document is modified
         self.current_file_path = None  # Track the path of the currently opened file
 
         # Create the main text editor with default font Avenir
         self.editor = QTextEdit()
         self.editor.setFont(QFont('Avenir', 12))
-        self.editor.cursorPositionChanged.connect(self.update_font_selection)  # Connect cursor movement to font update
+        self.editor.cursorPositionChanged.connect(self.update_format_selection)  # Update toolbar based on cursor
         self.editor.textChanged.connect(self.mark_as_modified)  # Track modifications
 
         # Set default line and paragraph spacing
         self.set_default_spacing()
 
-        # Create toolbar buttons
-        self.create_toolbar_buttons()
-
-        # Set up stylesheets for dark and normal modes
-        self.dark_stylesheet = """
-            QWidget {
-                background-color: #2E2E2E;
-                color: #FFFFFF;
-            }
-            QTextEdit {
-                background-color: #3C3F41;
-                color: #FFFFFF;
-            }
-            QPushButton {
-                background-color: #5C5C5C;
-                color: #FFFFFF;
-                border: none;
-                padding: 5px;
-            }
-            QPushButton:pressed {
-                background-color: #787878;
-            }
-            QComboBox {
-                background-color: #5C5C5C;
-                color: #FFFFFF;
-            }
-            QSpinBox {
-                background-color: #5C5C5C;
-                color: #FFFFFF;
-            }
-            QLabel {
-                color: #FFFFFF;
-            }
-        """
-        self.normal_stylesheet = ""
-
-        # Set up the toolbar layout
-        self.setup_toolbar_layout()
+        # Create actions and toolbars
+        self.create_actions()
+        self.create_toolbars()
 
         # Set up the main layout
-        self.setup_main_layout()
+        self.setCentralWidget(self.editor)
 
         # Set up the main window
-        self.setWindowTitle('Clarity: v0.5')
-        self.setGeometry(100, 100, 1000, 700)
+        self.setWindowTitle('Clarity: v1.3')
+        self.setGeometry(100, 100, 800, 600)
 
-        # Track dark mode status
-        self.is_dark_mode = False
+        # Set default alignment
+        self.set_default_alignment()
 
-        # Initialize audio transcription thread
-        self.transcription_thread = None
+    def create_actions(self):
+        """Create actions for the toolbar and menu."""
+        # Formatting Actions
+        self.bold_action = QAction('Bold', self)
+        self.bold_action.triggered.connect(self.make_bold)
+        self.bold_action.setShortcut(QKeySequence("Ctrl+B"))
+        self.bold_action.setCheckable(True)
 
-    def create_toolbar_buttons(self):
-        """Create and initialize toolbar buttons and widgets."""
-        # Formatting Buttons
-        self.bold_button = QPushButton('Bold')
-        self.bold_button.clicked.connect(self.make_bold)
-        self.bold_button.setShortcut(QKeySequence("Ctrl+B"))
+        self.italic_action = QAction('Italic', self)
+        self.italic_action.triggered.connect(self.make_italic)
+        self.italic_action.setShortcut(QKeySequence("Ctrl+I"))
+        self.italic_action.setCheckable(True)
 
-        self.italic_button = QPushButton('Italic')
-        self.italic_button.clicked.connect(self.make_italic)
-        self.italic_button.setShortcut(QKeySequence("Ctrl+I"))
+        self.underline_action = QAction('Underline', self)
+        self.underline_action.triggered.connect(self.make_underline)
+        self.underline_action.setShortcut(QKeySequence("Ctrl+U"))
+        self.underline_action.setCheckable(True)
 
-        self.underline_button = QPushButton('Underline')
-        self.underline_button.clicked.connect(self.make_underline)
-        self.underline_button.setShortcut(QKeySequence("Ctrl+U"))
+        # Alignment Actions
+        self.left_align_action = QAction('Left', self)
+        self.left_align_action.triggered.connect(self.align_left)
+        self.left_align_action.setCheckable(True)
 
-        # List Buttons
-        self.bullet_button = QPushButton('Bullets')
-        self.bullet_button.clicked.connect(self.insert_bullet_list)
+        self.center_align_action = QAction('Center', self)
+        self.center_align_action.triggered.connect(self.align_center)
+        self.center_align_action.setCheckable(True)
 
-        self.numbering_button = QPushButton('Numbering')
-        self.numbering_button.clicked.connect(self.insert_numbered_list)
+        self.right_align_action = QAction('Right', self)
+        self.right_align_action.triggered.connect(self.align_right)
+        self.right_align_action.setCheckable(True)
+
+        self.justify_action = QAction('Justify', self)
+        self.justify_action.triggered.connect(self.justify_text)
+        self.justify_action.setCheckable(True)
+
+        # List Actions
+        self.bullet_list_action = QAction('Bullets', self)
+        self.bullet_list_action.triggered.connect(self.insert_bullet_list)
+
+        self.number_list_action = QAction('Numbering', self)
+        self.number_list_action.triggered.connect(self.insert_numbered_list)
 
         # Font Selector
-        self.font_selector = QComboBox()
+        self.font_selector = QComboBox(self)
         self.font_selector.addItems([
-            'Avenir', 'Arial', 'Book Antiqua', 'Charter', 'Franklin Gothic', 
-            'Garamond', 'Gill Sans', 'Helvetica', 'Optima', 'Palatino', 
+            'Avenir', 'Arial', 'Book Antiqua', 'Charter', 'Franklin Gothic',
+            'Garamond', 'Gill Sans', 'Helvetica', 'Optima', 'Palatino',
             'Times New Roman'
         ])
         self.font_selector.currentTextChanged.connect(self.change_font)
 
-        # Font Size SpinBox
-        self.font_size_spinbox = QSpinBox()
-        self.font_size_spinbox.setRange(8, 48)
-        self.font_size_spinbox.setValue(12)
-        self.font_size_spinbox.valueChanged.connect(self.change_font_size)
+        # Font Size Selector
+        self.font_size_selector = QSpinBox(self)
+        self.font_size_selector.setRange(8, 48)
+        self.font_size_selector.setValue(12)
+        self.font_size_selector.valueChanged.connect(self.change_font_size)
 
-        # Line Spacing ComboBox
-        self.line_spacing_combo = QComboBox()
-        self.line_spacing_combo.addItems(['0.8', '0.9', '1', '1.15', '1.25', '1.3', '1.5', '2'])
-        self.line_spacing_combo.setCurrentText('1.15')  # Set default line spacing
-        self.line_spacing_combo.currentTextChanged.connect(self.set_line_spacing)
+        # Line Spacing Selector
+        self.line_spacing_selector = QComboBox(self)
+        self.line_spacing_selector.addItems(['0.8', '0.9', '1', '1.15', '1.25', '1.3', '1.5', '2'])
+        self.line_spacing_selector.setCurrentText('1.15')  # Set default line spacing
+        self.line_spacing_selector.currentTextChanged.connect(self.set_line_spacing)
 
-        # Paragraph Spacing SpinBoxes
-        self.paragraph_before_spinbox = QSpinBox()
-        self.paragraph_before_spinbox.setRange(0, 50)
-        self.paragraph_before_spinbox.setValue(6)  # Default value for paragraph spacing before
-        self.paragraph_before_spinbox.setPrefix("Before: ")
-        self.paragraph_before_spinbox.valueChanged.connect(self.set_paragraph_spacing)
+        # Paragraph Spacing Selectors
+        self.paragraph_before_selector = QSpinBox(self)
+        self.paragraph_before_selector.setRange(0, 50)
+        self.paragraph_before_selector.setValue(6)
+        self.paragraph_before_selector.setPrefix("Before: ")
+        self.paragraph_before_selector.valueChanged.connect(self.set_paragraph_spacing)
 
-        self.paragraph_after_spinbox = QSpinBox()
-        self.paragraph_after_spinbox.setRange(0, 50)
-        self.paragraph_after_spinbox.setValue(6)  # Default value for paragraph spacing after
-        self.paragraph_after_spinbox.setPrefix("After: ")
-        self.paragraph_after_spinbox.valueChanged.connect(self.set_paragraph_spacing)
+        self.paragraph_after_selector = QSpinBox(self)
+        self.paragraph_after_selector.setRange(0, 50)
+        self.paragraph_after_selector.setValue(6)
+        self.paragraph_after_selector.setPrefix("After: ")
+        self.paragraph_after_selector.valueChanged.connect(self.set_paragraph_spacing)
 
-        # Table Buttons
-        self.table_button = QPushButton('Insert Table')
-        self.table_button.clicked.connect(self.insert_table)
+        # Table Actions
+        self.insert_table_action = QAction('Insert Table', self)
+        self.insert_table_action.triggered.connect(self.insert_table)
 
-        self.modify_table_button = QPushButton('Modify Table')
-        self.modify_table_button.clicked.connect(self.modify_table)
+        self.modify_table_action = QAction('Modify Table', self)
+        self.modify_table_action.triggered.connect(self.modify_table)
 
-        # Mode Toggle Button
-        self.mode_toggle_button = QPushButton('Switch to Code Mode')
-        self.mode_toggle_button.clicked.connect(self.toggle_mode)
-        self.mode_toggle_button.setShortcut(QKeySequence("Ctrl+M"))
+        # File Actions
+        self.new_action = QAction('New', self)
+        self.new_action.triggered.connect(self.new_document)
+        self.new_action.setShortcut(QKeySequence("Ctrl+N"))
 
-        # Dark Mode Toggle Button
-        self.dark_mode_button = QPushButton('Dark Mode')
-        self.dark_mode_button.setCheckable(True)
-        self.dark_mode_button.clicked.connect(self.toggle_dark_mode)
+        self.open_action = QAction('Open', self)
+        self.open_action.triggered.connect(self.open_file)
+        self.open_action.setShortcut(QKeySequence("Ctrl+O"))
 
-        # Save, Open, New Document Buttons
-        self.save_button = QPushButton('Save')
-        self.save_button.clicked.connect(self.save_file)
-        self.save_button.setShortcut(QKeySequence("Ctrl+S"))
+        self.save_action = QAction('Save', self)
+        self.save_action.triggered.connect(self.save_file)
+        self.save_action.setShortcut(QKeySequence("Ctrl+S"))
 
-        self.open_button = QPushButton('Open')
-        self.open_button.clicked.connect(self.open_file)
-        self.open_button.setShortcut(QKeySequence("Ctrl+O"))
+        self.save_as_action = QAction('Save As', self)
+        self.save_as_action.triggered.connect(self.save_file_as)
+        self.save_as_action.setShortcut(QKeySequence("Ctrl+Shift+S"))
 
-        self.new_document_button = QPushButton('New Document')
-        self.new_document_button.clicked.connect(self.new_document)
-        self.new_document_button.setShortcut(QKeySequence("Ctrl+N"))
+    def create_toolbars(self):
+        """Create toolbars and add actions."""
+        # Format Toolbar
+        self.format_toolbar = QToolBar('Format')
+        self.addToolBar(Qt.TopToolBarArea, self.format_toolbar)
+        self.format_toolbar.setAllowedAreas(Qt.TopToolBarArea | Qt.BottomToolBarArea)
+        self.format_toolbar.setMovable(False)
 
-        # Transcribe Audio Button
-        self.transcribe_button = QPushButton('Transcribe Audio')
-        self.transcribe_button.clicked.connect(self.transcribe_audio)
+        self.format_toolbar.addAction(self.bold_action)
+        self.format_toolbar.addAction(self.italic_action)
+        self.format_toolbar.addAction(self.underline_action)
+        self.format_toolbar.addSeparator()
+        self.format_toolbar.addAction(self.left_align_action)
+        self.format_toolbar.addAction(self.center_align_action)
+        self.format_toolbar.addAction(self.right_align_action)
+        self.format_toolbar.addAction(self.justify_action)
+        self.format_toolbar.addSeparator()
+        self.format_toolbar.addAction(self.bullet_list_action)
+        self.format_toolbar.addAction(self.number_list_action)
+        self.format_toolbar.addSeparator()
+        self.format_toolbar.addWidget(QLabel("Font:"))
+        self.format_toolbar.addWidget(self.font_selector)
+        self.format_toolbar.addWidget(QLabel("Size:"))
+        self.format_toolbar.addWidget(self.font_size_selector)
 
-        # Status Label
-        self.status_label = QLabel("Ready")
-        self.status_label.setAlignment(Qt.AlignLeft)
+        # Insert a toolbar break to start a new row
+        self.addToolBarBreak(Qt.TopToolBarArea)
 
-    def setup_toolbar_layout(self):
-        """Arrange toolbar buttons into organized layouts."""
-        # First row of toolbar
-        self.toolbar_layout_1 = QHBoxLayout()
-        self.toolbar_layout_1.addWidget(self.bold_button)
-        self.toolbar_layout_1.addWidget(self.italic_button)
-        self.toolbar_layout_1.addWidget(self.underline_button)
-        self.toolbar_layout_1.addWidget(self.bullet_button)
-        self.toolbar_layout_1.addWidget(self.numbering_button)
-        self.toolbar_layout_1.addWidget(QLabel("Font:"))
-        self.toolbar_layout_1.addWidget(self.font_selector)
-        self.toolbar_layout_1.addWidget(QLabel("Size:"))
-        self.toolbar_layout_1.addWidget(self.font_size_spinbox)
-        self.toolbar_layout_1.addWidget(QLabel("Line Spacing:"))
-        self.toolbar_layout_1.addWidget(self.line_spacing_combo)
-        self.toolbar_layout_1.addWidget(self.paragraph_before_spinbox)
-        self.toolbar_layout_1.addWidget(self.paragraph_after_spinbox)
-        self.toolbar_layout_1.addWidget(self.table_button)
-        self.toolbar_layout_1.addWidget(self.modify_table_button)
+        # Additional Toolbar
+        self.additional_toolbar = QToolBar('Additional')
+        self.addToolBar(Qt.TopToolBarArea, self.additional_toolbar)
+        self.additional_toolbar.setAllowedAreas(Qt.TopToolBarArea | Qt.BottomToolBarArea)
+        self.additional_toolbar.setMovable(False)
 
-        # Second row of toolbar
-        self.toolbar_layout_2 = QHBoxLayout()
-        self.toolbar_layout_2.addWidget(self.mode_toggle_button)
-        self.toolbar_layout_2.addWidget(self.dark_mode_button)
-        self.toolbar_layout_2.addWidget(self.save_button)
-        self.toolbar_layout_2.addWidget(self.open_button)
-        self.toolbar_layout_2.addWidget(self.new_document_button)
-        self.toolbar_layout_2.addWidget(self.transcribe_button)
-
-    def setup_main_layout(self):
-        """Set up the main application layout including toolbars and editor."""
-        # Create vertical layout for toolbars and editor
-        main_layout = QVBoxLayout()
-        main_layout.addLayout(self.toolbar_layout_1)
-        main_layout.addLayout(self.toolbar_layout_2)
-        main_layout.addWidget(self.editor)
-
-        # Create a central widget and set the layout
-        central_widget = QWidget()
-        central_widget.setLayout(main_layout)
-        self.setCentralWidget(central_widget)
+        self.additional_toolbar.addWidget(QLabel("Line Spacing:"))
+        self.additional_toolbar.addWidget(self.line_spacing_selector)
+        self.additional_toolbar.addWidget(self.paragraph_before_selector)
+        self.additional_toolbar.addWidget(self.paragraph_after_selector)
+        self.additional_toolbar.addSeparator()
+        self.additional_toolbar.addAction(self.insert_table_action)
+        self.additional_toolbar.addAction(self.modify_table_action)
+        self.additional_toolbar.addSeparator()
+        self.additional_toolbar.addAction(self.new_action)
+        self.additional_toolbar.addAction(self.open_action)
+        self.additional_toolbar.addAction(self.save_action)
+        self.additional_toolbar.addAction(self.save_as_action)
 
     def set_default_spacing(self):
         """Apply default line and paragraph spacing to the entire document."""
@@ -272,7 +200,15 @@ class ClarityNotes(QMainWindow):
         block_format.setLineHeight(115, QTextBlockFormat.ProportionalHeight)  # 1.15 line spacing
         block_format.setTopMargin(6)  # 6 points before paragraph
         block_format.setBottomMargin(6)  # 6 points after paragraph
-        block_format.setAlignment(Qt.AlignLeft)
+        cursor.mergeBlockFormat(block_format)
+        self.editor.setTextCursor(cursor)
+
+    def set_default_alignment(self):
+        """Set the default text alignment to justified."""
+        cursor = self.editor.textCursor()
+        cursor.select(QTextCursor.Document)
+        block_format = QTextBlockFormat()
+        block_format.setAlignment(Qt.AlignJustify)
         cursor.mergeBlockFormat(block_format)
         self.editor.setTextCursor(cursor)
 
@@ -280,297 +216,252 @@ class ClarityNotes(QMainWindow):
         """Mark the document as modified."""
         self.is_modified = True
 
-    def toggle_mode(self):
-        """Toggle between Normal Mode and Code Mode."""
-        if not self.is_code_mode:
-            # Show a warning message box before switching to Code Mode
-            reply = QMessageBox.warning(
-                self, 'Switch to Code Mode',
-                'Switching to Code Mode will cause all formatting to be lost. Do you want to continue?',
-                QMessageBox.Yes | QMessageBox.No, QMessageBox.No
-            )
-            if reply == QMessageBox.No:
-                return  # Do not switch modes if the user chooses 'No'
-
-        # Toggle mode
-        self.is_code_mode = not self.is_code_mode
-
-        if self.is_code_mode:
-            # Switch to Code Mode
-            cursor = self.editor.textCursor()
-            cursor.select(QTextCursor.Document)
-            plain_text = cursor.selection().toPlainText()  # Extract plain text
-            self.editor.clear()
-            self.editor.setAcceptRichText(False)  # Disable rich text
-            self.editor.setPlainText(plain_text)  # Set plain text without formatting
-            self.editor.setFont(QFont('Courier', 12))  # Use a monospaced font for code
-            self.mode_toggle_button.setText('Switch to Normal Mode')
-
-            # Disable rich text options
-            self.bold_button.setDisabled(True)
-            self.italic_button.setDisabled(True)
-            self.underline_button.setDisabled(True)
-            self.bullet_button.setDisabled(True)
-            self.numbering_button.setDisabled(True)
-            self.font_selector.setDisabled(True)
-            self.font_size_spinbox.setDisabled(True)
-            self.line_spacing_combo.setDisabled(True)
-            self.paragraph_before_spinbox.setDisabled(True)
-            self.paragraph_after_spinbox.setDisabled(True)
-            self.table_button.setDisabled(True)
-            self.modify_table_button.setDisabled(True)
-            self.transcribe_button.setDisabled(True)  # Disable transcribe in Code Mode
-        else:
-            # Switch to Normal Mode
-            self.editor.setAcceptRichText(True)  # Enable rich text
-            self.editor.setFont(QFont('Avenir', 12))  # Reset to default font and size
-            self.mode_toggle_button.setText('Switch to Code Mode')
-
-            # Enable rich text options
-            self.bold_button.setDisabled(False)
-            self.italic_button.setDisabled(False)
-            self.underline_button.setDisabled(False)
-            self.bullet_button.setDisabled(False)
-            self.numbering_button.setDisabled(False)
-            self.font_selector.setDisabled(False)
-            self.font_size_spinbox.setDisabled(False)
-            self.line_spacing_combo.setDisabled(False)
-            self.paragraph_before_spinbox.setDisabled(False)
-            self.paragraph_after_spinbox.setDisabled(False)
-            self.table_button.setDisabled(False)
-            self.modify_table_button.setDisabled(False)
-            self.transcribe_button.setDisabled(False)  # Enable transcribe in Normal Mode
-
     def make_bold(self):
         """Toggle bold formatting."""
-        if not self.is_code_mode:
-            fmt = self.editor.currentCharFormat()
-            if fmt.fontWeight() == QFont.Bold:
-                fmt.setFontWeight(QFont.Normal)
-            else:
-                fmt.setFontWeight(QFont.Bold)
-            self.editor.setCurrentCharFormat(fmt)
+        fmt = self.editor.currentCharFormat()
+        fmt.setFontWeight(QFont.Bold if not fmt.fontWeight() == QFont.Bold else QFont.Normal)
+        self.editor.setCurrentCharFormat(fmt)
+        self.bold_action.setChecked(fmt.fontWeight() == QFont.Bold)
+        self.editor.setFocus()
 
     def make_italic(self):
         """Toggle italic formatting."""
-        if not self.is_code_mode:
-            fmt = self.editor.currentCharFormat()
-            fmt.setFontItalic(not fmt.fontItalic())
-            self.editor.setCurrentCharFormat(fmt)
+        fmt = self.editor.currentCharFormat()
+        fmt.setFontItalic(not fmt.fontItalic())
+        self.editor.setCurrentCharFormat(fmt)
+        self.italic_action.setChecked(fmt.fontItalic())
+        self.editor.setFocus()
 
     def make_underline(self):
         """Toggle underline formatting."""
-        if not self.is_code_mode:
-            fmt = self.editor.currentCharFormat()
-            fmt.setFontUnderline(not fmt.fontUnderline())
-            self.editor.setCurrentCharFormat(fmt)
+        fmt = self.editor.currentCharFormat()
+        fmt.setFontUnderline(not fmt.fontUnderline())
+        self.editor.setCurrentCharFormat(fmt)
+        self.underline_action.setChecked(fmt.fontUnderline())
+        self.editor.setFocus()
+
+    def align_left(self):
+        """Align text to the left."""
+        self.set_alignment(Qt.AlignLeft)
+        self.update_alignment_buttons()
+        self.editor.setFocus()
+
+    def align_center(self):
+        """Center align text."""
+        self.set_alignment(Qt.AlignCenter)
+        self.update_alignment_buttons()
+        self.editor.setFocus()
+
+    def align_right(self):
+        """Align text to the right."""
+        self.set_alignment(Qt.AlignRight)
+        self.update_alignment_buttons()
+        self.editor.setFocus()
+
+    def justify_text(self):
+        """Justify text."""
+        self.set_alignment(Qt.AlignJustify)
+        self.update_alignment_buttons()
+        self.editor.setFocus()
+
+    def set_alignment(self, alignment):
+        """Set the alignment for the current paragraph."""
+        cursor = self.editor.textCursor()
+        block_format = cursor.blockFormat()
+        block_format.setAlignment(alignment)
+        cursor.setBlockFormat(block_format)
+        self.editor.setTextCursor(cursor)
+
+    def update_alignment_buttons(self):
+        """Update the checked state of alignment actions."""
+        alignment = self.editor.textCursor().blockFormat().alignment()
+        self.left_align_action.setChecked(alignment == Qt.AlignLeft)
+        self.center_align_action.setChecked(alignment == Qt.AlignCenter)
+        self.right_align_action.setChecked(alignment == Qt.AlignRight)
+        self.justify_action.setChecked(alignment == Qt.AlignJustify)
 
     def insert_bullet_list(self):
         """Insert a bulleted list."""
-        if not self.is_code_mode:
-            cursor = self.editor.textCursor()
-            cursor.beginEditBlock()
-            list_format = QTextListFormat()
-            list_format.setStyle(QTextListFormat.ListDisc)  # Bullet list
-            cursor.createList(list_format)
-            cursor.endEditBlock()
+        cursor = self.editor.textCursor()
+        cursor.beginEditBlock()
+        list_format = QTextListFormat()
+        list_format.setStyle(QTextListFormat.ListDisc)  # Bullet list
+        cursor.createList(list_format)
+        cursor.endEditBlock()
+        self.editor.setFocus()
 
     def insert_numbered_list(self):
         """Insert a numbered list."""
-        if not self.is_code_mode:
-            cursor = self.editor.textCursor()
-            cursor.beginEditBlock()
-            list_format = QTextListFormat()
-            list_format.setStyle(QTextListFormat.ListDecimal)  # Numbered list
-            cursor.createList(list_format)
-            cursor.endEditBlock()
+        cursor = self.editor.textCursor()
+        cursor.beginEditBlock()
+        list_format = QTextListFormat()
+        list_format.setStyle(QTextListFormat.ListDecimal)  # Numbered list
+        cursor.createList(list_format)
+        cursor.endEditBlock()
+        self.editor.setFocus()
 
     def change_font(self, font_name):
         """Change the font family."""
-        if not self.is_code_mode:
-            self.editor.setFontFamily(font_name)
+        fmt = self.editor.currentCharFormat()
+        fmt.setFontFamily(font_name)
+        self.editor.setCurrentCharFormat(fmt)
+        self.editor.setFocus()
 
     def change_font_size(self, size):
         """Change the font size."""
-        if not self.is_code_mode:
-            self.editor.setFontPointSize(size)
+        fmt = self.editor.currentCharFormat()
+        fmt.setFontPointSize(size)
+        self.editor.setCurrentCharFormat(fmt)
+        self.editor.setFocus()
 
     def set_line_spacing(self, spacing_value):
         """Set the line spacing."""
-        if not self.is_code_mode:
-            try:
-                spacing = float(spacing_value) * 100
-                cursor = self.editor.textCursor()
-                block_format = QTextBlockFormat()
-                block_format.setLineHeight(spacing, QTextBlockFormat.ProportionalHeight)
-                cursor.setBlockFormat(block_format)
-                self.editor.setTextCursor(cursor)
-            except ValueError:
-                QMessageBox.warning(self, "Invalid Input", "Please enter a valid line spacing value.")
+        try:
+            spacing = float(spacing_value) * 100
+            cursor = self.editor.textCursor()
+            block_format = cursor.blockFormat()
+            block_format.setLineHeight(spacing, QTextBlockFormat.ProportionalHeight)
+            cursor.setBlockFormat(block_format)
+            self.editor.setTextCursor(cursor)
+            self.editor.setFocus()
+        except ValueError:
+            QMessageBox.warning(self, "Invalid Input", "Please enter a valid line spacing value.")
 
     def set_paragraph_spacing(self):
         """Set the paragraph spacing before and after."""
-        if not self.is_code_mode:
-            cursor = self.editor.textCursor()
-            block_format = QTextBlockFormat()
-            block_format.setTopMargin(self.paragraph_before_spinbox.value())
-            block_format.setBottomMargin(self.paragraph_after_spinbox.value())
-            cursor.setBlockFormat(block_format)
-            self.editor.setTextCursor(cursor)
+        cursor = self.editor.textCursor()
+        block_format = cursor.blockFormat()
+        block_format.setTopMargin(self.paragraph_before_selector.value())
+        block_format.setBottomMargin(self.paragraph_after_selector.value())
+        cursor.setBlockFormat(block_format)
+        self.editor.setTextCursor(cursor)
+        self.editor.setFocus()
 
     def insert_table(self):
         """Insert a table with user-specified rows and columns."""
-        if not self.is_code_mode:
-            # Ask the user for rows and columns
-            rows, ok1 = QInputDialog.getInt(self, 'Insert Table', 'Number of rows:', 2, 1, 100)
-            if not ok1:
-                return
-            columns, ok2 = QInputDialog.getInt(self, 'Insert Table', 'Number of columns:', 2, 1, 100)
-            if not ok2:
-                return
-            cursor = self.editor.textCursor()
-            fmt = QTextTableFormat()
-            fmt.setBorder(1)
-            fmt.setCellPadding(5)  # Set padding for better visibility
-            fmt.setCellSpacing(2)  # Set spacing between cells
-            cursor.insertTable(rows, columns, fmt)
+        # Ask the user for rows and columns
+        rows, ok1 = QInputDialog.getInt(self, 'Insert Table', 'Number of rows:', 2, 1, 100)
+        if not ok1:
+            return
+        columns, ok2 = QInputDialog.getInt(self, 'Insert Table', 'Number of columns:', 2, 1, 100)
+        if not ok2:
+            return
+        cursor = self.editor.textCursor()
+        fmt = QTextTableFormat()
+        fmt.setBorder(1)
+        fmt.setCellPadding(5)  # Set padding for better visibility
+        fmt.setCellSpacing(2)  # Set spacing between cells
+        cursor.insertTable(rows, columns, fmt)
+        self.editor.setFocus()
 
     def modify_table(self):
         """Modify the current table by adding or removing rows and columns."""
-        if not self.is_code_mode:
-            cursor = self.editor.textCursor()
-            table = cursor.currentTable()
-            if table is None:
-                QMessageBox.warning(self, 'No Table Found', 'No table found at the current cursor position.')
-                return
+        cursor = self.editor.textCursor()
+        table = cursor.currentTable()
+        if table is None:
+            QMessageBox.warning(self, 'No Table Found', 'No table found at the current cursor position.')
+            return
 
-            # Ask for the number of rows to add or remove
-            rows_to_modify, ok1 = QInputDialog.getInt(
-                self, 'Modify Table', 'Number of rows to add (+) or remove (-):', 0, -table.rows(), 100
-            )
-            if ok1 and rows_to_modify != 0:
-                if rows_to_modify > 0:
-                    table.appendRows(rows_to_modify)
-                elif rows_to_modify < 0:
-                    rows_to_remove = min(abs(rows_to_modify), table.rows())
-                    table.removeRows(table.rows() - rows_to_remove, rows_to_remove)
+        # Ask for the number of rows to add or remove
+        rows_to_modify, ok1 = QInputDialog.getInt(
+            self, 'Modify Table', 'Number of rows to add (+) or remove (-):', 0, -table.rows(), 100
+        )
+        if ok1 and rows_to_modify != 0:
+            if rows_to_modify > 0:
+                table.appendRows(rows_to_modify)
+            elif rows_to_modify < 0:
+                rows_to_remove = min(abs(rows_to_modify), table.rows())
+                table.removeRows(table.rows() - rows_to_remove, rows_to_remove)
 
-            # Ask for the number of columns to add or remove
-            columns_to_modify, ok2 = QInputDialog.getInt(
-                self, 'Modify Table', 'Number of columns to add (+) or remove (-):', 0, -table.columns(), 100
-            )
-            if ok2 and columns_to_modify != 0:
-                if columns_to_modify > 0:
-                    table.appendColumns(columns_to_modify)
-                elif columns_to_modify < 0:
-                    cols_to_remove = min(abs(columns_to_modify), table.columns())
-                    table.removeColumns(table.columns() - cols_to_remove, cols_to_remove)
+        # Ask for the number of columns to add or remove
+        columns_to_modify, ok2 = QInputDialog.getInt(
+            self, 'Modify Table', 'Number of columns to add (+) or remove (-):', 0, -table.columns(), 100
+        )
+        if ok2 and columns_to_modify != 0:
+            if columns_to_modify > 0:
+                table.appendColumns(columns_to_modify)
+            elif columns_to_modify < 0:
+                cols_to_remove = min(abs(columns_to_modify), table.columns())
+                table.removeColumns(table.columns() - cols_to_remove, cols_to_remove)
+        self.editor.setFocus()
 
     def save_file(self):
         """Save the current document. If it's a new document, prompt 'Save As'."""
-        if self.current_file_path and self.is_modified:
+        if self.current_file_path:
             try:
-                if self.current_file_path.lower().endswith('.odt'):
-                    self.save_as_odt(self.current_file_path)
-                elif self.current_file_path.lower().endswith('.odf'):
-                    self.save_as_odf(self.current_file_path)
-                elif self.current_file_path.lower().endswith('.pdf'):
-                    self.save_as_pdf(self.current_file_path)
-                elif self.is_code_mode and self.current_file_path.lower().endswith(('.py', '.js', '.html')):
-                    self.save_as_txt(self.current_file_path)
-                else:
-                    self.save_as_txt(self.current_file_path)
+                self.save_content(self.current_file_path)
                 self.is_modified = False  # Mark as not modified after saving
-                self.status_label.setText(f"Saved: {os.path.basename(self.current_file_path)}")
+                self.statusBar().showMessage(f"Saved: {os.path.basename(self.current_file_path)}")
+                return True
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to save file: {str(e)}")
+                return False
         else:
             # Otherwise, save as a new file
-            self.save_file_as()
+            return self.save_file_as()
 
     def save_file_as(self):
         """Save the document as a new file with selected format."""
-        # Adjust save options based on the current mode
-        if self.is_code_mode:
-            save_options = ['py', 'js', 'html', 'txt']
-        else:
-            save_options = ['txt', 'odt', 'odf', 'pdf']
-        
         # Ask user to select file type
+        save_options = ['html', 'md', 'txt', 'pdf', 'odt']
+
         file_type, ok = QInputDialog.getItem(
             self, 'Save As', 'Select file type:', save_options, 0, False
         )
         if not ok:
-            return
-        
+            return False  # User cancelled
+
         # Define file filter based on selected file type
         filters = {
-            'py': "Python Files (*.py)",
-            'js': "JavaScript Files (*.js)",
             'html': "HTML Files (*.html)",
+            'md': "Markdown Files (*.md)",
             'txt': "Text Files (*.txt)",
-            'odt': "OpenDocument Text (*.odt)",
-            'odf': "OpenDocument Format (*.odf)",
-            'pdf': "PDF Files (*.pdf)"
+            'pdf': "PDF Files (*.pdf)",
+            'odt': "ODF Text Files (*.odt)"
         }
         filter_selected = filters.get(file_type, "All Files (*)")
-        
+
         # Open a file dialog to select save location
         file_name, _ = QFileDialog.getSaveFileName(
-            self, "Save File", f"document.{file_type}", filter_selected, options=QFileDialog.Options()
+            self, "Save File As", f"document.{file_type}", filter_selected, options=QFileDialog.Options()
         )
-        
+
         if file_name:
             # Automatically append the correct extension if not provided
             if not file_name.lower().endswith(f'.{file_type}'):
                 file_name += f'.{file_type}'
-            
+
             try:
-                if file_name.lower().endswith('.odt'):
-                    self.save_as_odt(file_name)
-                elif file_name.lower().endswith('.odf'):
-                    self.save_as_odf(file_name)
-                elif file_name.lower().endswith('.pdf'):
-                    self.save_as_pdf(file_name)
-                else:
-                    self.save_as_txt(file_name)
+                self.save_content(file_name)
                 self.current_file_path = file_name  # Store the current file path
                 self.is_modified = False  # Mark as not modified after saving
-                self.status_label.setText(f"Saved: {os.path.basename(file_name)}")
+                self.statusBar().showMessage(f"Saved: {os.path.basename(file_name)}")
+                return True
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to save file: {str(e)}")
+                return False
+        else:
+            return False  # User cancelled
 
-    def save_as_txt(self, file_name):
-        """Save the document as a plain text (.txt) file."""
-        content = self.editor.toPlainText()
-        with open(file_name, 'w', encoding='utf-8') as f:
-            f.write(content)
-
-    def save_as_odt(self, file_name):
-        """Save the document as an OpenDocument Text (.odt) file."""
-        try:
-            from odf.text import P
-            from odf.opendocument import OpenDocumentText
-
-            doc = OpenDocumentText()
-            text_content = self.editor.toHtml()
-            # Simple conversion from HTML to ODT
-            # Note: For full fidelity, consider using a more robust converter
-            # Here, we'll insert the plain text as paragraphs
-            for line in text_content.split('\n'):
-                p = P(text=line)
-                doc.text.addElement(p)
-            doc.save(file_name)
-        except ImportError:
-            QMessageBox.critical(self, "Dependency Error", "odfpy is not installed. Please install it to save as .odt.")
-            return
-        except Exception as e:
-            raise e
-
-    def save_as_odf(self, file_name):
-        """Save the document as an OpenDocument Format (.odf) file."""
-        # For simplicity, saving as .odf similar to .odt
-        self.save_as_odt(file_name)
+    def save_content(self, file_name):
+        """Save the content to the specified file."""
+        if file_name.lower().endswith('.pdf'):
+            self.save_as_pdf(file_name)
+        elif file_name.lower().endswith('.html'):
+            content = self.editor.document().toHtml()
+            with open(file_name, 'w', encoding='utf-8') as f:
+                f.write(content)
+        elif file_name.lower().endswith('.md'):
+            html_content = self.editor.document().toHtml()
+            markdown_content = self.convert_html_to_markdown(html_content)
+            with open(file_name, 'w', encoding='utf-8') as f:
+                f.write(markdown_content)
+        elif file_name.lower().endswith('.odt'):
+            self.save_as_odt(file_name)
+        else:  # Save as plain text
+            content = self.editor.toPlainText()
+            with open(file_name, 'w', encoding='utf-8') as f:
+                f.write(content)
 
     def save_as_pdf(self, file_name):
         """Save the document as a PDF (.pdf) file."""
@@ -579,18 +470,28 @@ class ClarityNotes(QMainWindow):
         printer.setOutputFileName(file_name)
         self.editor.document().print_(printer)
 
+    def save_as_odt(self, file_name):
+        """Save the document as an ODT file using QTextDocumentWriter."""
+        try:
+            writer = QTextDocumentWriter(file_name, b'ODF')
+            success = writer.write(self.editor.document())
+            if not success:
+                raise IOError("Failed to write ODT file.")
+        except Exception as e:
+            raise e
+
     def open_file(self):
         """Open an existing file."""
         # Define supported formats
-        supported_formats = "Text Files (*.txt);;Python Files (*.py);;JavaScript Files (*.js);;HTML Files (*.html);;OpenDocument Text (*.odt);;OpenDocument Format (*.odf);;PDF Files (*.pdf);;All Files (*)"
-        
+        supported_formats = "HTML Files (*.html);;Text Files (*.txt);;ODF Text Files (*.odt);;All Files (*)"
+
         # Open a file dialog to select a file to open
         file_name, _ = QFileDialog.getOpenFileName(
             self, "Open File", "", supported_formats, options=QFileDialog.Options()
         )
         if not file_name:
             return  # Return if no file is selected
-        
+
         # Check for unsaved changes
         if self.is_modified:
             reply = QMessageBox.question(
@@ -606,55 +507,26 @@ class ClarityNotes(QMainWindow):
 
         # Determine the file type and read the content
         try:
-            if file_name.lower().endswith(('.py', '.js', '.html', '.txt')):
+            if file_name.lower().endswith('.html'):
                 with open(file_name, 'r', encoding='utf-8') as file:
                     content = file.read()
-                    # If it's a code file, switch to code mode and load the content
-                    if file_name.lower().endswith(('.py', '.js', '.html')):
-                        if not self.is_code_mode:
-                            self.toggle_mode()  # Switch to Code Mode
-                    else:
-                        if self.is_code_mode:
-                            self.toggle_mode()  # Switch to Normal Mode
-                    self.editor.setPlainText(content)  # Use plain text for these files
-            elif file_name.lower().endswith(('.odt', '.odf')):
-                # Handle opening .odt and .odf files
-                try:
-                    doc = load(file_name)
-                    content = ""
-                    for element in doc.getElementsByType(P):
-                        content += str(element) + '\n'
-                    if self.is_code_mode:
-                        self.toggle_mode()  # Switch to Normal Mode
-                    self.editor.setPlainText(content)  # Set to plain text as a placeholder
-                except Exception as e:
-                    QMessageBox.critical(self, "Error", f"Failed to parse OpenDocument file: {str(e)}")
-                    return
-            elif file_name.lower().endswith('.pdf'):
-                # For PDF, attempt to extract text using a library like PyPDF2
-                try:
-                    import PyPDF2
-                    with open(file_name, 'rb') as file:
-                        reader = PyPDF2.PdfReader(file)
-                        content = ""
-                        for page in reader.pages:
-                            content += page.extract_text() + '\n'
-                    if self.is_code_mode:
-                        self.toggle_mode()  # Switch to Normal Mode
+                    self.editor.setHtml(content)
+            elif file_name.lower().endswith('.odt'):
+                reader = QTextDocumentWriter()
+                document = self.editor.document()
+                document.clear()
+                reader = QTextDocumentWriter(file_name)
+                reader.setFormat(b'ODF')
+                if not reader.read(document):
+                    raise IOError("Failed to read ODT file.")
+            else:  # Assume plain text
+                with open(file_name, 'r', encoding='utf-8') as file:
+                    content = file.read()
                     self.editor.setPlainText(content)
-                except ImportError:
-                    QMessageBox.critical(self, "Dependency Error", "PyPDF2 is not installed. Please install it to open PDF files.")
-                    return
-                except Exception as e:
-                    QMessageBox.critical(self, "Error", f"Failed to extract text from PDF: {str(e)}")
-                    return
-            else:
-                QMessageBox.warning(self, "Unsupported Format", "This file format is not currently supported for opening.")
-                return
 
             self.current_file_path = file_name  # Store the path of the currently opened file
             self.is_modified = False  # Mark as not modified initially
-            self.status_label.setText(f"Opened: {os.path.basename(file_name)}")
+            self.statusBar().showMessage(f"Opened: {os.path.basename(file_name)}")
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred while opening the file: {str(e)}")
 
@@ -677,84 +549,49 @@ class ClarityNotes(QMainWindow):
         self.editor.clear()
         self.current_file_path = None  # Reset the current file path
         self.is_modified = False  # Reset modified status
-        self.status_label.setText("New document created.")
-        # Reset to Normal Mode if in Code Mode
-        if self.is_code_mode:
-            self.toggle_mode()
+        self.statusBar().showMessage("New document created.")
 
-    def toggle_dark_mode(self):
-        """Toggle between Dark Mode and Normal Mode."""
-        self.is_dark_mode = not self.is_dark_mode
-        self.setStyleSheet(self.dark_stylesheet if self.is_dark_mode else self.normal_stylesheet)
-        self.editor.setStyleSheet(self.dark_stylesheet if self.is_dark_mode else self.normal_stylesheet)
-        mode = "Dark Mode" if self.is_dark_mode else "Light Mode"
-        self.status_label.setText(f"Switched to {mode}.")
+        # Reset formatting to defaults
+        self.set_default_alignment()
+        self.set_default_spacing()
 
-    def transcribe_audio(self):
-        """Handle audio transcription process."""
-        # Open a file dialog to select an audio file
-        file_path, _ = QFileDialog.getOpenFileName(
-            self, "Open Audio File", "", "Audio Files (*.wav *.aiff *.flac *.m4a *.mp3 *.aac *.ogg)", options=QFileDialog.Options()
-        )
-        if not file_path:
-            return  # Return if no file is selected
-
-        # Define storage directory
-        storage_dir = os.path.join(os.getcwd(), "saved_audio_files")
-        os.makedirs(storage_dir, exist_ok=True)  # Create the directory if it doesn't exist
-
-        # Copy the original file to storage directory
-        stored_audio_path = os.path.join(storage_dir, os.path.basename(file_path))
+    def update_format_selection(self):
+        """Update the format toolbar based on the current cursor position."""
         try:
-            shutil.copy2(file_path, stored_audio_path)  # Copy the original file
+            cursor = self.editor.textCursor()
+            char_format = cursor.charFormat()
+            block_format = cursor.blockFormat()
+
+            # Update font family
+            current_font_family = char_format.fontFamily()
+            if current_font_family:
+                index = self.font_selector.findText(current_font_family)
+                if index >= 0:
+                    self.font_selector.blockSignals(True)
+                    self.font_selector.setCurrentIndex(index)
+                    self.font_selector.blockSignals(False)
+
+            # Update font size
+            current_font_size = char_format.fontPointSize()
+            if current_font_size > 0:
+                self.font_size_selector.blockSignals(True)
+                self.font_size_selector.setValue(int(current_font_size))
+                self.font_size_selector.blockSignals(False)
+
+            # Update alignment buttons
+            alignment = block_format.alignment()
+            self.left_align_action.setChecked(alignment == Qt.AlignLeft)
+            self.center_align_action.setChecked(alignment == Qt.AlignCenter)
+            self.right_align_action.setChecked(alignment == Qt.AlignRight)
+            self.justify_action.setChecked(alignment == Qt.AlignJustify)
+
+            # Update bold, italic, underline buttons
+            self.bold_action.setChecked(char_format.fontWeight() == QFont.Bold)
+            self.italic_action.setChecked(char_format.fontItalic())
+            self.underline_action.setChecked(char_format.fontUnderline())
+
         except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to copy audio file: {str(e)}")
-            return
-
-        # Start transcription in a separate thread to keep UI responsive
-        self.transcription_thread = AudioTranscriptionThread(stored_audio_path)
-        self.transcription_thread.transcription_finished.connect(self.handle_transcription_success)
-        self.transcription_thread.transcription_failed.connect(self.handle_transcription_failure)
-        self.transcription_thread.start()
-        self.status_label.setText("Transcribing audio...")
-
-    def handle_transcription_success(self, text):
-        """Handle successful transcription."""
-        self.editor.insertPlainText(text + '\n')
-        self.is_modified = True
-        self.status_label.setText("Audio transcription completed.")
-
-    def handle_transcription_failure(self, error_message):
-        """Handle transcription failure."""
-        QMessageBox.critical(self, "Transcription Error", f"Could not transcribe audio: {error_message}")
-        self.status_label.setText("Transcription failed.")
-
-    def update_font_selection(self):
-        """Update the font selector and size spinbox based on the current cursor position."""
-        if not self.is_code_mode:
-            try:
-                cursor = self.editor.textCursor()
-                char_format = cursor.charFormat()
-                
-                # Get the current font family and size
-                current_font_family = char_format.fontFamily()
-                current_font_size = char_format.fontPointSize()
-                
-                # Update the font selector
-                if current_font_family:
-                    index = self.font_selector.findText(current_font_family)
-                    if index >= 0:
-                        self.font_selector.blockSignals(True)
-                        self.font_selector.setCurrentIndex(index)
-                        self.font_selector.blockSignals(False)
-                
-                # Update the font size spinbox
-                if current_font_size > 0:
-                    self.font_size_spinbox.blockSignals(True)
-                    self.font_size_spinbox.setValue(int(current_font_size))
-                    self.font_size_spinbox.blockSignals(False)
-            except Exception as e:
-                QMessageBox.critical(self, "Font Selection Error", f"Failed to update font selection: {e}")
+            QMessageBox.critical(self, "Format Selection Error", f"Failed to update format selection: {e}")
 
     def closeEvent(self, event):
         """Prompt the user to save before exiting."""
@@ -773,12 +610,58 @@ class ClarityNotes(QMainWindow):
                 return
         event.accept()
 
+    def convert_html_to_markdown(self, html_content):
+        """Convert HTML content to Markdown syntax."""
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Handle bold tags
+        for bold_tag in soup.find_all(['b', 'strong']):
+            bold_tag.string = f'**{bold_tag.text}**'
+
+        # Handle italic tags
+        for italic_tag in soup.find_all(['i', 'em']):
+            italic_tag.string = f'*{italic_tag.text}*'
+
+        # Handle underline tags (Markdown doesn't support underline, so we'll use HTML tags)
+        for underline_tag in soup.find_all('u'):
+            underline_tag.string = f'<u>{underline_tag.text}</u>'
+
+        # Handle headings
+        for level in range(1, 7):
+            for header in soup.find_all(f'h{level}'):
+                header.string = f'{"#" * level} {header.text}'
+
+        # Handle paragraphs
+        for p_tag in soup.find_all('p'):
+            p_tag.string = f'{p_tag.text}\n'
+
+        # Handle lists
+        for ul_tag in soup.find_all('ul'):
+            for li in ul_tag.find_all('li'):
+                li.string = f'* {li.text}'
+
+        for ol_tag in soup.find_all('ol'):
+            index = 1
+            for li in ol_tag.find_all('li'):
+                li.string = f'{index}. {li.text}'
+                index += 1
+
+        # Extract text
+        markdown_text = soup.get_text(separator='\n')
+
+        # Clean up extra whitespace
+        markdown_text = '\n'.join([line.strip() for line in markdown_text.strip().splitlines() if line.strip()])
+
+        return markdown_text
+
+
 def main():
     """Initialize and run the Clarity Notes application."""
     app = QApplication(sys.argv)
     window = ClarityNotes()
     window.show()
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()
