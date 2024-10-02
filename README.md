@@ -1,130 +1,153 @@
-1. Introduction
+# Clarity One
 
-Clarity Editor is a minimalist text editor designed to provide essential word processing features within a clean and straightforward interface. It's ideal for users who need a lightweight application for creating and editing formatted documents without the complexity of full-featured word processors.
-2. Features
-Text Formatting
+## Introduction
 
-    Bold, Italic, and Underline text styles.
-    Font Selection: Choose from a variety of fonts like Avenir, Arial, Times New Roman, and more.
-    Font Size Adjustment: Set font sizes ranging from 8 to 48 points.
+**ClarityOne** is a project focussed on develioping small but useful apps. The goal is to have clear and simple apps, which do one thing well. 
 
-Paragraph Formatting
+***This is still a work-in-progress, but there are basic working prototypes of various apps available.***
 
-    Alignment Options: Left align, center align, right align, and justify text.
-    Line Spacing: Adjust line spacing with presets like 1.0, 1.15, 1.5, and 2.0.
-    Paragraph Spacing: Set spacing before and after paragraphs.
+These apps are presently designed for macOS. Though called v1, this is still very much a prototype; and the goal is to have polished versions releasing as v2 by the end of this year. 
 
-Lists and Tables
+There is no immediate plan to develop Linux- or Windows-compatible versions, but interested users can take a stab at this if they wish. 
 
-    Bullet Lists: Create unordered lists.
-    Numbered Lists: Create ordered lists.
-    Insert Tables: Add tables with customizable rows and columns.
-    Modify Tables: Add or remove rows and columns in existing tables.
+A brief description of each app is as follows:
 
-File Operations
+**Clarity Wiki** is a minimalist personal knowledge base and note-taking application designed to provide a seamless note management experience. Built on the philosophy of "do one thing well," it enables users to create and manage notes in markdown format while offering a live preview of the markdown content. The app supports a multi-wiki system, allowing users to categorize notes into different wikis for better organization. Users can easily format text using bold and italic shortcuts and navigate internal note links using double brackets (e.g., [[note]]). Clarity Wiki also includes a powerful tag management system, allowing users to filter and organize notes based on tags. Notes can be exported in HTML or PDF formats with customizable styles. Backlinks between notes are automatically detected and displayed, enabling users to track connections within their knowledge base. The app is designed with simplicity in mind, featuring a clean interface and easy-to-use toolbar for core note-taking actions like creating, editing, and searching notes.
 
-    New Document: Start a new document.
-    Open Document: Open existing documents in HTML, TXT, or ODT formats.
-    Save Document: Save current documents in various formats.
-    Save As: Save documents with a different name or format.
-    Supported Formats: Save as HTML, TXT, ODT (OpenDocument Text), PDF, and Markdown (MD).
+**Clarity Explorer** is a file management system for Mac users that organizes files by project views, regardless of where the files are physically stored. It is designed to simplify file organization by allowing users to create multiple projects and associate files from different locations with each project. Users can manage their projects and add files without requiring the files to be moved, ensuring a non-intrusive and flexible organization method. The app offers tag-based file filtering, making it easy to categorize and find files. Users can also search for files within specific projects or across all projects simultaneously. Files are displayed in a list view, with the option to preview various file formats like text, PDFs, DOCX, and images within the app. Double-clicking a file opens it in the default application. Clarity Explorer supports adding, editing, and managing tags for files, and it also allows for missing file management by offering options to locate or remove missing files from the project. The user interface is clean and intuitive, featuring keyboard shortcuts for common actions. Designed for simplicity and efficiency, the app provides a powerful way to manage files organized by projects.
 
-Printing and Exporting
+**Clarity Editor** is a distraction-free text editor for Mac, designed to provide a clean and efficient writing environment with essential formatting tools. It features a minimalist interface that allows users to focus on their writing without unnecessary distractions. The app includes basic formatting options like bold, italic, underline, alignment, bullet and numbered lists, and table insertion, all accessible through a simple toolbar. Users can easily change the font, font size, line spacing, and paragraph spacing to customize their writing experience. Clarity Editor supports saving documents in multiple formats, including HTML, Markdown, plain text, PDF, and ODT, ensuring compatibility with different workflows. The editor automatically tracks modifications, prompting users to save changes before closing or creating new documents. It also offers keyboard shortcuts for frequently used actions, improving efficiency. The app is built with ease of use in mind, catering to writers, students, and professionals who require a no-frills text editor with just enough formatting power to meet their needs. Its lightweight design and straightforward functionality make Clarity Editor an ideal tool for those who value simplicity in their writing process.
 
-    Save as PDF: Export documents to PDF format.
+**Clarity Clips** is a distraction-free clipboard manager for Mac designed to help users organize and manage clipboard content efficiently. The app automatically records clipboard entries, allowing users to view, search, and manage past clipboard items. It includes functionality to add tags to specific entries, enabling easier categorization and retrieval of content. Users can copy previous entries back to the clipboard or delete items they no longer need. The app also supports exporting the clipboard history to a file for backup or external use. With a clean, intuitive interface, Clarity Clips helps users keep track of their clipboard without unnecessary complexity. The app runs in the background, accessible via the system tray, and provides keyboard shortcuts for quick access. It handles various content types, including text, HTML, PDFs, and Word documents, extracting plain text where possible. The app features a warning system when the clipboard history approaches a user-defined limit, ensuring that users can maintain control over their saved entries. Overall, Clarity Clips is designed to simplify clipboard management while maintaining a focus on clarity and ease of use.
 
-User Interface
+**Clarity Calendar** is a minimalist, distraction-free calendar application for Mac users, designed to help manage daily events and tasks efficiently. The app features an intuitive interface, allowing users to add, edit, or delete events and tasks, with a focus on simplicity and usability. Events can include reminders, and tasks can be given deadlines and priority levels to ensure timely completion. The calendar widget highlights days with scheduled events, giving a clear overview of upcoming commitments. Clarity Calendar supports desktop notifications for reminders, ensuring users never miss important events. The app also includes import and export functionality, allowing users to back up or transfer their event and task data easily in JSON format. With the option to manage both tasks and events from separate tabs, Clarity Calendar provides users with an organized and clean experience. The app also incorporates keyboard shortcuts for quick actions, such as adding events or tasks, and a system tray feature that checks for reminders every minute. Overall, Clarity Calendar aims to provide a seamless experience for managing daily tasks and events while maintaining a simple, distraction-free environment.
 
-    Toolbars Organized in Two Rows:
-        First Row: Text formatting, alignment, list creation, font selection, and font size.
-        Second Row: Line and paragraph spacing, table actions, and file operations.
-    Status Bar: Displays messages like save confirmations and opened files.
+## Installation
 
-3. Use Cases
+Bundled .app versions are available to download: go to https://mnani87.github.io/mnanihome/clarityone.html
 
-    Note-Taking: Ideal for students and professionals who need a simple tool for taking formatted notes.
-    Writing Drafts: Suitable for writers who prefer a distraction-free environment.
-    Simple Document Creation: Create letters, reports, and documents requiring basic formatting.
-    Markdown Export: Write in rich text and export to Markdown for web publishing.
+For building from source, you can clone the repository. Each app is contained in a single python script. There is a 'requirements' text file for each app.
 
-4. Keyboard Shortcuts
-Text Formatting
+## Usage
 
-    Bold: Ctrl + B
-    Italic: Ctrl + I
-    Underline: Ctrl + U
+Detailed user guides for each app are available: see https://mnani87.github.io/mnanihome/clarityone.html but for a brief overview, read on...
 
-File Operations
+*Clarity Wiki*
 
-    New Document: Ctrl + N
-    Open Document: Ctrl + O
-    Save Document: Ctrl + S
-    Save As: Ctrl + Shift + S
+Launch the App: Run the app by navigating to the clarity_wiki directory and executing the following:
+        - python clarity_wiki.py
 
-Editing
+Creating and Managing Notes:
+        - Create a new note by clicking the "New Note" button or using the keyboard shortcut Cmd+N.
+        - Write in Markdown format, and the app will provide a live preview of the note in a split pane.
+        - Use [[note]] syntax to link to other notes within your knowledge base.
 
-    Standard text editing shortcuts (e.g., Ctrl + C for copy, Ctrl + V for paste) are supported.
+Organizing Notes:
+        - Assign tags to your notes to filter and categorize them easily.
+        - Notes are organized by wikis, allowing you to maintain multiple knowledge bases.
 
-5. Detailed Feature Guide
-Text Formatting
+Exporting Notes:
+        -Export notes to HTML or PDF by clicking the "Export" button in the toolbar.
 
-    Applying Bold, Italic, and Underline:
-        Use the toolbar buttons or keyboard shortcuts to toggle text styles.
-        Selected text will be formatted accordingly.
+*Clarity Explorer*
 
-    Font Selection and Size:
-        Choose your preferred font from the dropdown menu.
-        Adjust the font size using the spin box next to the font selector.
+Launching the App: Start Clarity Explorer by running:
+        - python clarity_explorer.py
 
-Paragraph Formatting
+Adding Projects and Files:
+        - Create a new project by clicking "New Project."
+        - Add files from various locations to your projects by dragging them into the interface.
+        - Files remain in their original location but are organized within your projects.
 
-    Alignment Options:
-        Align your text using the alignment buttons: Left, Center, Right, or Justify.
-        The current alignment is indicated by the highlighted button.
+Tagging and Searching:
+        - Use the tag management system to organize files within projects.
+        - Search for files by project or across all projects using the search bar.
 
-    Line Spacing:
-        Adjust line spacing from the dropdown menu with options ranging from 0.8 to 2.0.
-        The default line spacing is set to 1.15.
+*Clarity Editor*
 
-    Paragraph Spacing:
-        Set the spacing before and after paragraphs using the spin boxes labeled "Before" and "After".
+Opening the App: Run Clarity Editor with:
+        - python clarity_editor.py
 
-Lists and Tables
+Writing and Formatting:
+        - Focus on your writing in a distraction-free environment.
+        - Use the toolbar or keyboard shortcuts (Cmd+B for bold, Cmd+I for italics, etc.) to format text.
+        - Save documents in different formats such as HTML, Markdown, PDF, and plain text. 
 
-    Creating Lists:
-        Insert bullet or numbered lists using the corresponding toolbar buttons.
-        Lists can be nested by using the Tab key to increase indentation.
+Document Management:
+        - Use Cmd+S to save your document.
+        - Open existing documents by selecting the "Open" option in the file menu or using the shortcut Cmd+O.
 
-    Inserting Tables:
-        Add a table by specifying the number of rows and columns.
-        Modify tables later to add or remove rows and columns via the "Modify Table" option.
+*Clarity Clips*
 
-File Operations
+Starting the App: Launch Clarity Clips by running:
+    - python clarity_clip.py
 
-    New Document:
-        Start a new document; you'll be prompted to save changes if there are unsaved edits.
+Clipboard Management:
+        - Clarity Clips automatically stores clipboard history. Every time you do a Cmd+C, Clip captures it and saves it.
+        - Use the app to search, view, and tag clipboard entries.
+        - Copy a past clipboard entry back to the clipboard by selecting it and clicking "Copy."
 
-    Open Document:
-        Open existing documents in supported formats.
-        Note: Formatting may vary when opening files created in other applications.
+Exporting Clipboard History:
+        - Export the entire clipboard history to a file for backup or future use by selecting the "Export" option.
 
-    Save Document:
-        Save your work in the desired format.
-        Use "Save As" to choose a different file name or format.
+*Clarity Calendar*
 
-    Supported Formats:
-        HTML: Preserves formatting and can be viewed in web browsers.
-        TXT: Plain text without formatting.
-        ODT: OpenDocument Text format compatible with LibreOffice and OpenOffice.
-        PDF: Export as a PDF document.
-        Markdown (MD): Export to Markdown syntax for web publishing.
+Launching the Calendar: Start the calendar by running:
+        - python clarity_calendar.py
 
-User Interface
+Managing Events and Tasks:
+    - Use the toolbar to add events or tasks. Keyboard shortcuts are also available.
+    - Set reminders for events and add priority levels for tasks.
 
-    Toolbars:
-        First Row: Contains text formatting, alignment, list creation, font selection, and font size.
-        Second Row: Contains line and paragraph spacing options, table actions, and file operations.
+View and Organize:
+    - The calendar highlights dates with events, and tasks are organized by priority.
+    - Check reminders with desktop notifications to ensure you stay on track.
 
-    Status Bar:
-        Displays notifications such as "Saved: document.odt" or "Opened: notes.html".
+## Roadmap for future development 
+
+Planned future enhancements for ClarityOne include:
+
+*General Improvements:*
+        - Add dark mode across all apps
+        - Optimize performance with large datasets (e.g., large wikis, clipboard histories)
+        - Provide better support for file recovery and missing file management 
+        - Integrate the apps more (while ensuring users have the choice of whether to integrate or to use as standalone apps)
+
+*Clarity Wiki:*
+        - Integrate version history for notes
+        - Implement a graph view to visualize connections between notes
+
+*Clarity Explorer:*
+        - Add support for drag-and-drop functionality
+        - Implement batch tagging and editing of multiple files at once
+        - Improve preview functionality
+
+*Clarity Editor:*
+        - Expand Markdown support to include tables, footnotes, and math formulas
+        - Provide real-time collaboration features
+        - Add support for .rtf, .docx
+
+*Clarity Clips:*
+        Add clipboard syncing across multiple devices
+        Introduce an option for suggested auto-tagging based on content analysis
+
+*Clarity Calendar:*
+        - Implement recurring events and tasks
+        - Provide support for syncing with other calendar services and exporting in compatible formats
+
+## Contributions for further development
+
+We welcome contributions to ClarityOne! Here’s how you can help:
+
+*Bug Reports:* If you encounter a bug, please open an issue on our GitHub repository, including detailed steps to reproduce the problem.
+
+*Feature Requests:* If you have an idea for a new feature, feel free to submit it as a feature request. Please ensure that your suggestion aligns with the minimalist philosophy of ClarityOne.
+
+*Code Contributions:* Fork the repository, create a new branch for your changes, and submit a pull request with a clear description of your contribution. Ensure your code adheres to the project's coding standards and is well-documented.
+
+*Testing:* Help test the beta releases and provide feedback on performance, bugs, and usability.
+
+## License
+
+ClarityOne is licensed under the ***GNU General Public License v3.0***. You are free to use, modify, and redistribute the software under the terms of this license. The full license can be read here: https://www.gnu.org/licenses/gpl-3.0.html
 
