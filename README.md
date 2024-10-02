@@ -1,6 +1,6 @@
 1. Introduction
 
-Clarity Notes is a minimalist text editor designed to provide essential word processing features within a clean and straightforward interface. It's ideal for users who need a lightweight application for creating and editing formatted documents without the complexity of full-featured word processors.
+Clarity Editor is a minimalist text editor designed to provide essential word processing features within a clean and straightforward interface. It's ideal for users who need a lightweight application for creating and editing formatted documents without the complexity of full-featured word processors.
 2. Features
 Text Formatting
 
