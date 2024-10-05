@@ -1,0 +1,413 @@
+<html><head>
+            <style>
+                body {
+                    font-family: 'Charter', 'Palatino', serif;
+                    padding: 20px;
+                    background-color: white;
+                    color: black;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #1E90FF;
+                }
+                pre {
+                    background-color: #f0f0f0;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                code {
+                    background-color: #f0f0f0;
+                    padding: 2px 4px;
+                    border-radius: 3px;
+                    font-family: 'Courier New', Courier, monospace;
+                }
+                a {
+                    color: #FF4500;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            </head><body><hr />
+<p>tags:
+- clarity-apps</p>
+<hr />
+<h1 id="clarity-calendar-user-guide">Clarity Calendar User Guide</h1>
+<p>Welcome to Clarity Calendar, a simple and intuitive calendar and to-do list application designed to help you manage your events and tasks efficiently. This user guide will walk you through the features, functionalities, and usage of Clarity Calendar, ensuring you make the most out of the application.</p>
+<hr />
+<h2 id="table-of-contents"><strong>Table of Contents</strong></h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#system-requirements">System Requirements</a></li>
+<li><a href="#downloading-clarity-calendar">Downloading Clarity Calendar</a></li>
+<li><a href="#installing-on-macos">Installing on macOS</a></li>
+</ul>
+</li>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#launching-the-application">Launching the Application</a></li>
+<li><a href="#main-interface-overview">Main Interface Overview</a></li>
+</ul>
+</li>
+<li><a href="#calendar-features">Calendar Features</a><ul>
+<li><a href="#viewing-the-calendar">Viewing the Calendar</a></li>
+<li><a href="#adding-events">Adding Events</a></li>
+<li><a href="#editing-and-deleting-events">Editing and Deleting Events</a></li>
+<li><a href="#event-reminders">Event Reminders</a></li>
+</ul>
+</li>
+<li><a href="#to-do-list-features">To-Do List Features</a><ul>
+<li><a href="#adding-tasks">Adding Tasks</a></li>
+<li><a href="#editing-and-deleting-tasks">Editing and Deleting Tasks</a></li>
+</ul>
+</li>
+<li><a href="#event-and-task-management">Event and Task Management</a><ul>
+<li><a href="#context-menus">Context Menus</a></li>
+<li><a href="#searching-and-filtering">Searching and Filtering</a></li>
+</ul>
+</li>
+<li><a href="#importing-and-exporting-data">Importing and Exporting Data</a></li>
+<li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+<li><a href="#tips-and-best-practices">Tips and Best Practices</a></li>
+<li><a href="#known-limitations">Known Limitations</a></li>
+<li><a href="#support-and-feedback">Support and Feedback</a></li>
+</ol>
+<hr />
+<h2 id="introduction"><strong>Introduction</strong></h2>
+<p>Clarity Calendar is a desktop application developed using Python and PyQt5. It combines a calendar with an event scheduler and a to-do list manager, providing a unified platform for organizing your schedule and tasks.</p>
+<h3 id="key-features"><strong>Key Features</strong></h3>
+<ul>
+<li><strong>Calendar View</strong>: Visual calendar to navigate through dates.</li>
+<li><strong>Event Management</strong>: Add, edit, and delete events with details like title, date, time, description, priority, and reminders.</li>
+<li><strong>To-Do List Management</strong>: Add, edit, and delete tasks with optional deadlines and priorities.</li>
+<li><strong>Reminders</strong>: Set reminders for events to receive desktop notifications.</li>
+<li><strong>Data Persistence</strong>: Automatically saves your events and tasks locally.</li>
+<li><strong>Import/Export</strong>: Import and export your data in JSON format.</li>
+<li><strong>Keyboard Shortcuts</strong>: Quick access to features using keyboard shortcuts.</li>
+</ul>
+<hr />
+<h2 id="installation"><strong>Installation</strong></h2>
+<h3 id="system-requirements"><strong>System Requirements</strong></h3>
+<ul>
+<li><strong>Operating System</strong>: macOS (10.13 High Sierra or later recommended)</li>
+<li><strong>Processor</strong>: Intel-based Mac or Apple Silicon (with Rosetta 2)</li>
+<li><strong>Python and Dependencies</strong>: Not required for the bundled application</li>
+<li><strong>Disk Space</strong>: Approximately 50MB free space. The app size is around 28MB.</li>
+</ul>
+<h3 id="downloading-clarity-calendar"><strong>Downloading Clarity Calendar</strong></h3>
+<p>Clarity Calendar is available as a bundled macOS application (<code>.app</code>) compressed into a ZIP file.</p>
+<ol>
+<li>
+<p><strong>Download the ZIP File</strong></p>
+<ul>
+<li>Access the download link provided for Clarity Calendar.</li>
+<li>Click on the link to download the <code>ClarityCalendar.zip</code> file to your Mac.</li>
+</ul>
+</li>
+</ol>
+<h3 id="installing-on-macos"><strong>Installing on macOS</strong></h3>
+<p>Since Clarity Calendar is <em>not code-signed or notarized</em>, you may encounter security warnings when attempting to run the application. Follow the steps below to install and run the app safely.</p>
+<h4 id="step-1-unzip-the-downloaded-file"><strong>Step 1: Unzip the Downloaded File</strong></h4>
+<ul>
+<li>Locate the downloaded <code>ClarityCalendar.zip</code> file, typically in your <strong>Downloads</strong> folder.</li>
+<li>Double-click the ZIP file to extract the <code>ClarityCalendar.app</code> application bundle.</li>
+</ul>
+<h4 id="step-2-move-the-application-to-the-applications-folder-optional"><strong>Step 2: Move the Application to the Applications Folder (Optional)</strong></h4>
+<ul>
+<li>For easy access, drag and drop the <code>ClarityCalendar.app</code> into your <strong>Applications</strong> folder.</li>
+</ul>
+<h4 id="step-3-opening-the-application"><strong>Step 3: Opening the Application</strong></h4>
+<p>When you try to open the app for the first time, macOS may prevent it from opening because it is from an unidentified developer. To open the app:</p>
+<ol>
+<li>
+<p><strong>Use Control-Click to Open</strong></p>
+<ul>
+<li>Navigate to the location of <code>ClarityCalendar.app</code> (Applications folder or where you extracted it).</li>
+<li><strong>Control-click</strong> (or right-click) on <code>ClarityCalendar.app</code>.</li>
+<li>Select <strong>"Open"</strong> from the context menu.</li>
+<li>
+<p><strong>Confirm Opening the App</strong></p>
+</li>
+<li>
+<p>A warning dialog will appear stating that the app is from an unidentified developer.</p>
+</li>
+<li>Click <strong>"Open"</strong> to confirm you want to run the application.</li>
+</ul>
+<p><img alt="Unidentified Developer Warning" src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/macos-mojave-security-open-app-from-unidentified-developer.jpg" /></p>
+</li>
+</ol>
+<h4 id="alternative-method-adjust-security-settings"><strong>Alternative Method: Adjust Security Settings</strong></h4>
+<p>If Control-clicking does not work, you can adjust your security settings:</p>
+<ol>
+<li>
+<p><strong>Open System Preferences</strong></p>
+<ul>
+<li>Click on the <strong>Apple menu</strong> () in the top-left corner.</li>
+<li>Select <strong>"System Preferences"</strong>.</li>
+<li>
+<p><strong>Go to Security &amp; Privacy</strong></p>
+</li>
+<li>
+<p>Click on <strong>"Security &amp; Privacy"</strong>.</p>
+</li>
+<li>
+<p><strong>Allow Apps from Unidentified Developers</strong></p>
+</li>
+<li>
+<p>In the <strong>"General"</strong> tab, you may see a message indicating that <code>ClarityCalendar.app</code> was blocked.</p>
+</li>
+<li>Click the <strong>"Open Anyway"</strong> button next to this message.</li>
+<li>You may be prompted again to confirm. Click <strong>"Open"</strong>.</li>
+</ul>
+<p><img alt="Security &amp; Privacy Settings" src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/macos-mojave-security-allow-apps-downloads.jpg" /></p>
+</li>
+</ol>
+<p><strong>Note</strong>: Adjusting these settings allows you to open Clarity Calendar but maintains your Mac's security for other applications.</p>
+<h4 id="important-security-information"><strong>Important Security Information</strong></h4>
+<ul>
+<li><strong>Unidentified Developer Warning</strong>: This warning appears because the app is not code-signed or notarized by Apple.</li>
+<li><strong>Safe to Open</strong>: If you trust the source from which you downloaded Clarity Calendar, it is safe to open the app.</li>
+<li><strong>Future Openings</strong>: After following these steps, you won't need to repeat them. You can open Clarity Calendar like any other app.</li>
+</ul>
+<hr />
+<h2 id="getting-started"><strong>Getting Started</strong></h2>
+<h3 id="launching-the-application"><strong>Launching the Application</strong></h3>
+<p>After installing, you can launch Clarity Calendar by:</p>
+<ul>
+<li><strong>From Applications Folder</strong>: Double-click <code>ClarityCalendar.app</code> in your <strong>Applications</strong> folder.</li>
+<li><strong>From Spotlight Search</strong>:<ul>
+<li>Press <strong>Command (⌘) + Spacebar</strong> to open Spotlight.</li>
+<li>Type <strong>"Clarity Calendar"</strong> and press <strong>Enter</strong>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="main-interface-overview"><strong>Main Interface Overview</strong></h3>
+<p>The interface is divided into two primary sections:</p>
+<ol>
+<li><strong>Left Panel</strong>: Contains the calendar and toolbar.</li>
+<li><strong>Right Panel</strong>: Contains tabs for <strong>Events</strong> and <strong>To-Do List</strong>.</li>
+</ol>
+<h4 id="left-panel"><strong>Left Panel</strong></h4>
+<ul>
+<li><strong>Toolbar</strong>: Buttons to add new events and tasks.</li>
+<li><strong>Calendar Widget</strong>: Interactive calendar to navigate dates and view events.</li>
+</ul>
+<h4 id="right-panel"><strong>Right Panel</strong></h4>
+<ul>
+<li><strong>Events Tab</strong>: Lists all events.</li>
+<li><strong>To-Do List Tab</strong>: Lists all tasks.</li>
+</ul>
+<hr />
+<h2 id="calendar-features"><strong>Calendar Features</strong></h2>
+<h3 id="viewing-the-calendar"><strong>Viewing the Calendar</strong></h3>
+<ul>
+<li><strong>Navigation</strong>: Use the calendar to select dates.</li>
+<li><strong>Highlighted Dates</strong>: Dates with scheduled events are highlighted in light blue.</li>
+<li><strong>Current Date</strong>: The current date is marked.</li>
+<li><strong>Viewing Events on a Date</strong>: Click on a date to view events scheduled for that day. A dialog will display the events.</li>
+</ul>
+<h3 id="adding-events"><strong>Adding Events</strong></h3>
+<h4 id="method-1-using-the-add-event-button"><strong>Method 1: Using the "Add Event" Button</strong></h4>
+<ol>
+<li>Click the <strong>"Add Event"</strong> button in the toolbar.</li>
+<li>The <strong>Add Event</strong> dialog appears.</li>
+</ol>
+<h4 id="method-2-right-click-on-the-calendar"><strong>Method 2: Right-Click on the Calendar</strong></h4>
+<ol>
+<li>Go to and then right-click on a date in the calendar.</li>
+<li>Select <strong>"Add Event to Selected Date"</strong> from the context menu.</li>
+<li>The <strong>Add Event</strong> dialog appears with the date preselected.</li>
+</ol>
+<h4 id="add-event-dialog-fields"><strong>Add Event Dialog Fields</strong></h4>
+<ul>
+<li><strong>Title</strong>: Enter the event title. <em>(Required)</em></li>
+<li><strong>Date</strong>: Select the event date.</li>
+<li><strong>Time</strong>: Use the time picker to set the event time.</li>
+<li><strong>Description</strong>: Provide additional details about the event.</li>
+<li><strong>Priority</strong>: Choose from <strong>High</strong>, <strong>Medium</strong>, or <strong>Low</strong>.</li>
+<li><strong>Recurrence</strong>: Select how often the event recurs:<ul>
+<li><strong>None</strong></li>
+<li><strong>Daily</strong></li>
+<li><strong>Weekly</strong></li>
+<li><strong>Monthly</strong></li>
+</ul>
+</li>
+<li><strong>Reminders</strong>: Add multiple reminders.<ul>
+<li>Click <strong>"Add Reminder"</strong>.</li>
+<li>
+<p>Enter the reminder time in **HH</p>
+<p><strong>format (e.g., 09:30).
+    - Reminders will appear in the list.
+    - </strong>Deleting Reminders<strong>: Right-click on a reminder and select </strong>"Delete Reminder"**.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>The Reminder functionality is not yet fully implemented, but we should have that running in the next version!</em></strong></p>
+<h4 id="saving-the-event"><strong>Saving the Event</strong></h4>
+<ul>
+<li>Click <strong>"Save"</strong> to add the event.</li>
+<li>A confirmation message will appear in the status bar.</li>
+</ul>
+<h3 id="editing-and-deleting-events"><strong>Editing and Deleting Events</strong></h3>
+<h4 id="editing-an-event"><strong>Editing an Event</strong></h4>
+<ol>
+<li>Navigate to the <strong>Events</strong> tab.</li>
+<li>Right-click on the event you wish to edit.</li>
+<li>Select <strong>"Edit Event"</strong> from the context menu.</li>
+<li>Make the desired changes in the dialog.</li>
+<li>Click <strong>"Save"</strong> to apply changes.</li>
+</ol>
+<h4 id="deleting-an-event"><strong>Deleting an Event</strong></h4>
+<ol>
+<li>Navigate to the <strong>Events</strong> tab.</li>
+<li>Right-click on the event you wish to delete.</li>
+<li>Select <strong>"Delete Event"</strong> from the context menu.</li>
+<li>Confirm deletion when prompted.</li>
+</ol>
+<h3 id="event-reminders"><strong>Event Reminders</strong></h3>
+<ul>
+<li><strong>Setting Reminders</strong>: Add reminders in the <strong>Add/Edit Event</strong> dialog.</li>
+<li><strong>Receiving Notifications</strong>: At the specified reminder times, a desktop notification will appear with the event title.</li>
+<li><strong>Note</strong>: The application must be running to receive reminders.</li>
+</ul>
+<h4 id="the-reminder-functionality-is-not-yet-fully-implemented-but-we-should-have-that-running-in-the-next-version"><strong><em>The Reminder functionality is not yet fully implemented, but we should have that running in the next version!</em></strong></h4>
+<hr />
+<h2 id="to-do-list-features"><strong>To-Do List Features</strong></h2>
+<h3 id="adding-tasks"><strong>Adding Tasks</strong></h3>
+<ol>
+<li>Click the <strong>"Add Task"</strong> button in the toolbar.</li>
+<li>The <strong>Add Task</strong> dialog appears.</li>
+</ol>
+<h4 id="add-task-dialog-fields"><strong>Add Task Dialog Fields</strong></h4>
+<ul>
+<li><strong>Title</strong>: Enter the task title. <em>(Required)</em></li>
+<li><strong>Set Deadline</strong>: Optionally set a deadline.<ul>
+<li>Check the <strong>"Set Deadline"</strong> box.</li>
+<li>Select the deadline date.</li>
+</ul>
+</li>
+<li><strong>Priority</strong>: Choose from <strong>High</strong>, <strong>Medium</strong>, or <strong>Low</strong>.</li>
+<li><strong>Completed</strong>: Check if the task is already completed.</li>
+</ul>
+<h4 id="saving-the-task"><strong>Saving the Task</strong></h4>
+<ul>
+<li>Click <strong>"Save"</strong> to add the task.</li>
+<li>A confirmation message will appear in the status bar.</li>
+</ul>
+<h3 id="editing-and-deleting-tasks"><strong>Editing and Deleting Tasks</strong></h3>
+<h4 id="editing-a-task"><strong>Editing a Task</strong></h4>
+<ol>
+<li>Navigate to the <strong>To-Do List</strong> tab.</li>
+<li>Right-click on the task you wish to edit.</li>
+<li>Select <strong>"Edit Task"</strong> from the context menu.</li>
+<li>Make the desired changes in the dialog.</li>
+<li>Click <strong>"Save"</strong> to apply changes.</li>
+</ol>
+<h4 id="deleting-a-task"><strong>Deleting a Task</strong></h4>
+<ol>
+<li>Navigate to the <strong>To-Do List</strong> tab.</li>
+<li>Right-click on the task you wish to delete.</li>
+<li>Select <strong>"Delete Task"</strong> from the context menu.</li>
+<li>Confirm deletion when prompted.</li>
+</ol>
+<hr />
+<h2 id="event-and-task-management"><strong>Event and Task Management</strong></h2>
+<h3 id="context-menus"><strong>Context Menus</strong></h3>
+<ul>
+<li><strong>Events</strong>:<ul>
+<li>Right-click on an event in the <strong>Events</strong> tab to access options:<ul>
+<li><strong>Edit Event</strong></li>
+<li><strong>Delete Event</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Tasks</strong>:<ul>
+<li>Right-click on a task in the <strong>To-Do List</strong> tab to access options:<ul>
+<li><strong>Edit Task</strong></li>
+<li><strong>Delete Task</strong></li>
+<li><strong>Mark as Completed</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="searching-and-filtering"><strong>Searching and Filtering</strong></h3>
+<ul>
+<li><strong>Events</strong>:<ul>
+<li>Use the search bar at the top of the <strong>Events</strong> tab.</li>
+<li>Type keywords to filter events.</li>
+</ul>
+</li>
+<li><strong>Tasks</strong>:<ul>
+<li>Use the search bar at the top of the <strong>To-Do List</strong> tab.</li>
+<li>Type keywords to filter tasks.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="importing-and-exporting-data"><strong>Importing and Exporting Data</strong></h2>
+<h3 id="exporting-data"><strong>Exporting Data</strong></h3>
+<ol>
+<li>Go to the <strong>File</strong> menu in the menu bar.</li>
+<li>Select <strong>"Export Data"</strong>.</li>
+<li>Choose a location to save the JSON file.</li>
+<li>Click <strong>"Save"</strong>.</li>
+<li>A confirmation message will appear upon successful export.</li>
+</ol>
+<h3 id="importing-data"><strong>Importing Data</strong></h3>
+<ol>
+<li>Go to the <strong>File</strong> menu in the menu bar.</li>
+<li>Select <strong>"Import Data"</strong>.</li>
+<li>Browse to the JSON file containing your data.</li>
+<li>Click <strong>"Open"</strong>.</li>
+<li>Confirm data import when prompted.</li>
+<li>The application will refresh with the imported data.</li>
+</ol>
+<hr />
+<h2 id="keyboard-shortcuts"><strong>Keyboard Shortcuts</strong></h2>
+<p>Clarity Calendar supports several keyboard shortcuts to enhance productivity:</p>
+<ul>
+<li><strong>Add Event</strong><ul>
+<li><strong>Ctrl + E</strong></li>
+</ul>
+</li>
+<li><strong>Add Task</strong><ul>
+<li><strong>Ctrl + T</strong></li>
+</ul>
+</li>
+<li><strong>Reset Calendar View to Today's Date</strong><ul>
+<li><strong>Ctrl + G</strong></li>
+</ul>
+</li>
+<li><strong>Delete Selected Item</strong><ul>
+<li><strong>Ctrl + D</strong></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="tips-and-best-practices"><strong>Tips and Best Practices</strong></h2>
+<ul>
+<li><strong>Data Persistence</strong>: Your events and tasks are saved automatically. No need to manually save your data.</li>
+<li><strong>Set Multiple Reminders</strong>: Use the reminder feature to set multiple notifications for important events.</li>
+<li><strong>Prioritize</strong>: Assign priorities to your events and tasks to help manage your time effectively.</li>
+<li><strong>Mark Tasks as Completed</strong>: Keep track of your progress by marking tasks as completed.</li>
+<li><strong>Export Regularly</strong>: Keep backups of your data by exporting it periodically.</li>
+<li><strong>Stay Organized</strong>: Regularly review and update your events and tasks to keep your schedule current.</li>
+</ul>
+<hr />
+<h2 id="known-limitations"><strong>Known Limitations</strong></h2>
+<ul>
+<li><strong>Recurring Events Logic</strong>: While you can select recurrence for events, the application currently does not automatically generate future occurrences. Recurring event functionality is limited.</li>
+<li><strong>Reminders for Tasks</strong>: Reminders can only be set for events, not tasks.</li>
+<li><strong>Visual Indication on Calendar</strong>: Clicking on a date shows events in a dialog, but events are not displayed directly on the calendar.</li>
+<li><strong>No Undo Option</strong>: Deletion of events and tasks is permanent once confirmed.</li>
+<li><strong>Time Zone Awareness</strong>: The application does not handle time zones explicitly. All times are assumed to be in your local time zone.</li>
+<li><strong>Limited Exception Handling</strong>: Errors may occur if unexpected inputs are provided.</li>
+</ul>
+<hr />
+<h2 id="support-and-feedback"><strong>Support and Feedback</strong></h2>
+<p>If you encounter any issues or have suggestions for improving Clarity Calendar, please reach out to the development team via the contact information provided with your download link or visit the community forums where the application is distributed.</p>
+<hr />
+<p>Thank you for choosing Clarity Calendar to manage your schedule and tasks. We hope this user guide helps you navigate and utilize the application's features effectively. Happy scheduling!</p></body></html>

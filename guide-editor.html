@@ -1,0 +1,343 @@
+<html><head>
+            <style>
+                body {
+                    font-family: 'Charter', 'Palatino', serif;
+                    padding: 20px;
+                    background-color: white;
+                    color: black;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #1E90FF;
+                }
+                pre {
+                    background-color: #f0f0f0;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                code {
+                    background-color: #f0f0f0;
+                    padding: 2px 4px;
+                    border-radius: 3px;
+                    font-family: 'Courier New', Courier, monospace;
+                }
+                a {
+                    color: #FF4500;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            </head><body><hr />
+<p>tags:
+- clarity-apps</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p><strong>Version:</strong> 1.3</p>
+<p>Welcome to <strong>Clarity Editor</strong>, a rich text editor designed to provide a straightforward and efficient writing experience. This guide will walk you through all the features available in Clarity Editor, including text formatting, paragraph styling, list creation, table management, and file operations. Keyboard shortcuts are provided to enhance your productivity.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="installing-clarity-editor-on-macos">Installing Clarity Editor on macOS</h3>
+<p>Clarity Notes is available as a downloadable .app bundle compressed in a .zip file. Follow the steps below to install and launch the application on your Mac. Please note that since the app is not code-signed or notarized, you may receive security warnings when attempting to open it.</p>
+<h4 id="steps-to-install-and-launch-clarity-editor">Steps to Install and Launch Clarity Editor:</h4>
+<ol>
+<li>
+<p>Download the Application:</p>
+</li>
+<li>
+<p>Obtain the ClarityEditor.zip file from the provided download link.</p>
+</li>
+<li>
+<p>Extract the Application:</p>
+</li>
+<li>
+<p>Locate the downloaded ClarityEditor.zip file, typically found in your Downloads folder.</p>
+</li>
+<li>
+<p>Double-click the .zip file to extract it. This will create the ClarityEditor.app bundle.</p>
+</li>
+<li>
+<p>Move the Application to Applications Folder (Optional):</p>
+</li>
+<li>
+<p>For easier access, you may move ClarityEditor.app to your Applications folder:
+  Drag and drop the ClarityEditor.app into the Applications folder in Finder.</p>
+</li>
+<li>
+<p>Launching Clarity Editor for the First Time:</p>
+</li>
+<li>
+<p>Since the app is not code-signed or notarized, macOS may prevent it from opening directly. Follow these steps to open it:
+  a. Using Finder:</p>
+</li>
+<li>
+<ul>
+<li>Open Finder and navigate to the location of ClarityEditor.app (either in Downloads or Applications).</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Control-click (or right-click) on ClarityEditor.app.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Select Open from the context menu.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>A warning dialog will appear stating that the app is from an unidentified developer.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Click Open to confirm that you want to open the application.
+      b. Adjusting Security Settings (Alternative Method):</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>If the above method does not work, you can adjust your security settings:
+      Open System Preferences and click on Security &amp; Privacy.
+      In the General tab, you may see a message about ClarityNotes.app being blocked.
+      Click the Open Anyway button next to this message.
+      Confirm by clicking Open in the subsequent dialog.</li>
+</ul>
+</li>
+<li>
+<p>Subsequent Launches:</p>
+</li>
+<li>
+<p>After the initial launch, you can open Clarity Editor normally by double-clicking the app icon.</p>
+</li>
+</ol>
+<h4 id="important-notes">Important Notes:</h4>
+<ul>
+<li>Security Considerations:
+  Because the app is not code-signed or notarized, macOS cannot verify its integrity. Only proceed if you trust the source of the application.
+  Always exercise caution when running applications from unidentified developers.</li>
+<li>System Requirements:
+  macOS Version: Clarity Editor requires macOS 10.13 High Sierra or later.
+  Python and Dependencies: All necessary components are bundled within the app; you do not need to install Python or additional packages.</li>
+</ul>
+<h2 id="user-interface-overview">User Interface Overview</h2>
+<p>Clarity Editor features a clean and intuitive interface divided into the following components:</p>
+<ul>
+<li>Main Text Editor: The central area where you type and edit your document.</li>
+<li>Format Toolbar: Located at the top, contains text formatting options.</li>
+<li>Additional Toolbar: Below the Format Toolbar, provides paragraph styling, table management, and file operations.</li>
+<li>Status Bar: At the bottom, displays messages about actions performed.</li>
+</ul>
+<h2 id="text-formatting">Text Formatting</h2>
+<h3 id="bold">Bold</h3>
+<ul>
+<li>Purpose: Make selected text bold.</li>
+<li>How to Use:
+  Select the text you want to bold.
+  Click the Bold button on the Format Toolbar.
+  Shortcut: Press Ctrl + B (or Command + B on macOS) to toggle bold formatting.</li>
+</ul>
+<h3 id="italic">Italic</h3>
+<ul>
+<li>Purpose: Italicize selected text.</li>
+<li>How to Use:
+  Select the text you want to italicize.
+  Click the Italic button on the Format Toolbar.
+  Shortcut: Press Ctrl + I (or Command + I on macOS) to toggle italic formatting.</li>
+</ul>
+<h3 id="underline">Underline</h3>
+<ul>
+<li>Purpose: Underline selected text.</li>
+<li>How to Use:
+  Select the text you want to underline.
+  Click the Underline button on the Format Toolbar.
+  Shortcut: Press Ctrl + U (or Command + U on macOS) to toggle underline formatting.</li>
+</ul>
+<h3 id="left-align">Left Align</h3>
+<ul>
+<li>Purpose: Align text to the left margin.</li>
+<li>How to Use:
+  Place the cursor in the paragraph or select multiple paragraphs.
+  Click the Left button on the Format Toolbar.</li>
+</ul>
+<h3 id="center-align">Center Align</h3>
+<ul>
+<li>Purpose: Center text horizontally.</li>
+<li>How to Use:
+  Place the cursor in the paragraph or select multiple paragraphs.
+  Click the Center button on the Format Toolbar.</li>
+</ul>
+<h3 id="right-align">Right Align</h3>
+<ul>
+<li>Purpose: Align text to the right margin.</li>
+<li>How to Use:
+  Place the cursor in the paragraph or select multiple paragraphs.
+  Click the Right button on the Format Toolbar.</li>
+</ul>
+<h3 id="justify">Justify</h3>
+<ul>
+<li>Purpose: Distribute text evenly between the left and right margins.</li>
+<li>How to Use:
+  Place the cursor in the paragraph or select multiple paragraphs.
+  Click the Justify button on the Format Toolbar.</li>
+</ul>
+<h2 id="font-and-size-selection">Font and Size Selection</h2>
+<h3 id="changing-font">Changing Font</h3>
+<ul>
+<li>Purpose: Change the typeface of your text.</li>
+<li>Available Fonts: Avenir, Arial, Book Antiqua, Charter, Franklin Gothic, Garamond, Gill Sans, Helvetica, Optima, Palatino, Times New Roman.</li>
+<li>How to Use:
+  Select the text you wish to change.
+  Choose a font from the Font Selector dropdown on the Format Toolbar.</li>
+</ul>
+<h3 id="adjusting-font-size">Adjusting Font Size</h3>
+<ul>
+<li>Purpose: Change the size of your text.</li>
+<li>How to Use:
+  Select the text you wish to resize.
+  Use the Font Size Selector (spinner) on the Format Toolbar to choose a size between 8 and 48 points.</li>
+</ul>
+<h3 id="line-spacing">Line Spacing</h3>
+<ul>
+<li>Purpose: Adjust the spacing between lines within a paragraph.</li>
+<li>Options: 0.8, 0.9, 1, 1.15, 1.25, 1.3, 1.5, 2 (Default is 1.15).</li>
+<li>How to Use:
+  Place the cursor in the paragraph or select the text you want to adjust.
+  Choose a value from the Line Spacing Selector on the Additional Toolbar.</li>
+</ul>
+<h3 id="paragraph-spacing">Paragraph Spacing</h3>
+<ul>
+<li>Purpose: Adjust the spacing before and after paragraphs.</li>
+<li>How to Use:
+  Place the cursor in the paragraph or select the text you want to adjust.
+  Use the Paragraph Before Selector and Paragraph After Selector (both are spinners with values from 0 to 50 points) on the Additional Toolbar.
+  Before: Sets the space above the paragraph.
+  After: Sets the space below the paragraph.</li>
+</ul>
+<h2 id="lists-and-tables">Lists and Tables</h2>
+<h3 id="bulleted-lists">Bulleted Lists</h3>
+<ul>
+<li>Purpose: Create a list with bullet points.</li>
+<li>How to Use:
+  Place the cursor where you want to start the list.
+  Click the Bullets button on the Format Toolbar.
+  Type your list items, pressing Enter after each item.</li>
+</ul>
+<h3 id="numbered-lists">Numbered Lists</h3>
+<ul>
+<li>Purpose: Create a list with numbered items.</li>
+<li>How to Use:
+  Place the cursor where you want to start the list.
+  Click the Numbering button on the Format Toolbar.
+  Type your list items, pressing Enter after each item.</li>
+</ul>
+<h3 id="inserting-a-table">Inserting a Table</h3>
+<ul>
+<li>Purpose: Add a table to organize data.</li>
+<li>How to Use:
+  Click the Insert Table button on the Additional Toolbar.
+  A dialog will appear asking for the number of rows and columns.
+  Enter the desired number of rows and columns (between 1 and 100).
+  Click OK to insert the table at the cursor's location.</li>
+</ul>
+<h3 id="modifying-a-table">Modifying a Table</h3>
+<ul>
+<li>Purpose: Add or remove rows and columns in an existing table.</li>
+<li>How to Use:
+  Place the cursor inside the table you want to modify.
+  Click the Modify Table button on the Additional Toolbar.
+  A dialog will appear:
+  Enter the number of rows to add (positive number) or remove (negative number).
+  Enter the number of columns to add or remove in the same way.
+  Click OK to apply the changes.
+  Note: You cannot remove more rows or columns than the table currently has.</li>
+</ul>
+<h2 id="file-operations">File Operations</h2>
+<h3 id="new-document">New Document</h3>
+<ul>
+<li>Purpose: Create a new, blank document.</li>
+<li>How to Use:
+  Click the New button on the Additional Toolbar or press Ctrl + N (or Command + N on macOS).
+  If you have unsaved changes, you will be prompted to save before proceeding.</li>
+</ul>
+<h3 id="open-file">Open File</h3>
+<ul>
+<li>Purpose: Open an existing document.</li>
+<li>Supported Formats: HTML (.html), Text (.txt), ODF Text (.odt).</li>
+<li>How to Use:
+  Click the Open button on the Additional Toolbar or press Ctrl + O (or Command + O on macOS).
+  Select the file you wish to open from the file dialog.
+  If you have unsaved changes, you will be prompted to save before opening a new file.</li>
+</ul>
+<h3 id="save-file">Save File</h3>
+<ul>
+<li>Purpose: Save the current document.</li>
+<li>How to Use:
+  Click the Save button on the Additional Toolbar or press Ctrl + S (or Command + S on macOS).
+  If it's a new document, you will be prompted to choose a file name and format (see Save As).
+  If the document has been saved before, it will overwrite the existing file.</li>
+</ul>
+<h3 id="save-as">Save As</h3>
+<ul>
+<li>Purpose: Save the current document under a new name or format.</li>
+<li>Supported Formats: HTML (.html), Markdown (.md), Text (.txt), PDF (.pdf), ODF Text (.odt).</li>
+<li>How to Use:
+  Click the Save As button on the Additional Toolbar or press Ctrl + Shift + S (or Command + Shift + S on macOS).
+  A dialog will prompt you to select the desired file format.
+  Choose the format and click OK.
+  In the file dialog, specify the file name and location.
+  Click Save to save the document.</li>
+</ul>
+<h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+<p>Enhance your efficiency with the following shortcuts:</p>
+<ul>
+<li>Bold: Ctrl + B (Windows) / Command + B (macOS)</li>
+<li>Italic: Ctrl + I / Command + I</li>
+<li>Underline: Ctrl + U / Command + U</li>
+<li>New Document: Ctrl + N / Command + N</li>
+<li>Open File: Ctrl + O / Command + O</li>
+<li>Save File: Ctrl + S / Command + S</li>
+<li>Save As: Ctrl + Shift + S / Command + Shift + S</li>
+</ul>
+<h2 id="tips-and-tricks">Tips and Tricks</h2>
+<ul>
+<li>Selecting Text: Double-click to select a word, triple-click to select a paragraph.</li>
+<li>Undo/Redo: While not explicitly provided, you can use standard shortcuts (Ctrl + Z / Command + Z for Undo and Ctrl + Y / Command + Y for Redo) if supported by your system.</li>
+<li>Adjusting Multiple Paragraphs: To apply formatting to multiple paragraphs, select all the text you wish to format before using the toolbar options.</li>
+<li>Navigating Tables: Use the Tab key to move to the next cell and Shift + Tab to move to the previous cell.</li>
+<li>Focus on Editor: If toolbar actions seem unresponsive, click back into the editor area to ensure it is focused.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="security-warning-on-launch">Security Warning on Launch</h3>
+<ul>
+<li>Issue: macOS displays a warning that ClarityEditor.app cannot be opened because it is from an unidentified developer.</li>
+<li>Solution: Follow the steps in Launching Clarity Editor for the First Time to open the app safely.</li>
+</ul>
+<h3 id="unsaved-changes-prompt">Unsaved Changes Prompt</h3>
+<ul>
+<li>Issue: You're prompted to save unsaved changes when creating a new document or opening a file.</li>
+<li>Solution: Choose Yes to save your changes, No to discard them, or Cancel to return to the document.</li>
+</ul>
+<h3 id="file-not-opening">File Not Opening</h3>
+<ul>
+<li>Issue: Unable to open a file.</li>
+<li>Possible Causes:
+  Unsupported file format.
+  File is corrupted.</li>
+<li>Solution: Ensure the file is in one of the supported formats and is not corrupted.</li>
+</ul>
+<h3 id="formatting-not-applied">Formatting Not Applied</h3>
+<ul>
+<li>Issue: Text formatting doesn't seem to apply.</li>
+<li>Solution: Ensure you've selected the text or placed the cursor appropriately before applying formatting.</li>
+</ul>
+<h3 id="table-modification-errors">Table Modification Errors</h3>
+<ul>
+<li>Issue: Unable to remove rows or columns from a table.</li>
+<li>Possible Cause: Attempting to remove more rows or columns than exist.</li>
+<li>Solution: Only remove up to the number of existing rows or columns.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Clarity Editor aims to provide a focused and efficient environment for creating rich text documents. With its straightforward interface and essential features, you can concentrate on your writing without unnecessary distractions.
+Thank you for choosing Clarity Editor!</p>
+<p>For any feedback or assistance, feel free to reach out!</p></body></html>

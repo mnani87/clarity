@@ -1,0 +1,449 @@
+<html><head>
+            <style>
+                body {
+                    font-family: 'Charter', 'Palatino', serif;
+                    padding: 20px;
+                    background-color: white;
+                    color: black;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #1E90FF;
+                }
+                pre {
+                    background-color: #f0f0f0;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                code {
+                    background-color: #f0f0f0;
+                    padding: 2px 4px;
+                    border-radius: 3px;
+                    font-family: 'Courier New', Courier, monospace;
+                }
+                a {
+                    color: #FF4500;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            </head><body><hr />
+<p>tags:
+- clarity-apps</p>
+<hr />
+<h1 id="clarity-clips-user-guide">Clarity Clips User Guide</h1>
+<p>Welcome to <strong>Clarity Clips</strong>, a powerful clipboard manager designed to enhance your productivity by keeping track of your clipboard history. This guide will help you understand how to install, launch, and utilize all the features Clarity Clips offers, including keyboard shortcuts, to make the most out of your clipboard management experience.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#system-requirements">System Requirements</a></li>
+<li><a href="#download-and-installation">Download and Installation</a></li>
+<li><a href="#first-launch">First Launch</a></li>
+</ul>
+</li>
+<li><a href="#main-features">Main Features</a><ul>
+<li><a href="#clipboard-monitoring">Clipboard Monitoring</a></li>
+<li><a href="#clipboard-history-table">Clipboard History Table</a></li>
+<li><a href="#search-functionality">Search Functionality</a></li>
+<li><a href="#copying-entries">Copying Entries</a></li>
+<li><a href="#tagging-entries">Tagging Entries</a></li>
+<li><a href="#deleting-entries">Deleting Entries</a></li>
+<li><a href="#exporting-history">Exporting History</a></li>
+<li><a href="#clearing-history">Clearing History</a></li>
+<li><a href="#system-tray-integration">System Tray Integration</a></li>
+</ul>
+</li>
+<li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+<li><a href="#settings-and-configuration">Settings and Configuration</a></li>
+<li><a href="#handling-different-content-types">Handling Different Content Types</a></li>
+<li><a href="#notifications-and-warnings">Notifications and Warnings</a></li>
+<li><a href="#logging-and-error-handling">Logging and Error Handling</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#frequently-asked-questions-faqs">Frequently Asked Questions (FAQs)</a></li>
+</ol>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Clarity Clips is a clipboard manager that keeps a history of your clipboard content, allowing you to access, search, and manage previous clipboard entries with ease. Whether you're a developer, writer, or anyone who frequently copies and pastes content, Clarity Clips helps you streamline your workflow by providing quick access to your clipboard history. </p>
+<p>Why is this different from a simple 'copy' and 'paste' function with the Cmd+C and Cmd+V? Well, let us say you are a lawyer with 10 tabs open, each with a different case. You want to select text from a case and put it into a master file. And the same case may have different passages that you need. Or you are a researcher with 10 PDF articles open, and you want to make notes easily. If you just use the copy and paste functionality, you must copy each item and then paste that item, then copy the next item and paste that one, and so on. But with Clarity Clips, just keep doing your copy actions, without worrying about the pastes - you won't lose out the first copy just because you made the second copy action... After you have done all your 100 (well, up to 500 with Clarity Clips!) copy actions, you will see all the copied content safely stored in Clarity Clips. And then you can tag each entry, search for content within your copied entries, export all your copies, copy back each entry, basically do what you want to...</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="system-requirements">System Requirements</h3>
+<ul>
+<li><strong>Operating System:</strong> macOS 10.13 High Sierra or later</li>
+<li><strong>Processor:</strong> Intel-based Mac</li>
+<li><strong>Disk Space:</strong> At least 50 MB of free space</li>
+<li><strong>Internet Connection:</strong> Required for downloading the application</li>
+</ul>
+<h3 id="download-and-installation">Download and Installation</h3>
+<p>Clarity Clips is distributed as a macOS application bundle compressed in a ZIP file. Since the application is not code-signed or notarized, additional steps are required to install and run it.</p>
+<p><strong>Important:</strong> macOS security features may prevent the app from running because it is not code-signed or notarized. Please follow the instructions carefully to install and launch the application.</p>
+<h4 id="steps-to-download-and-install">Steps to Download and Install:</h4>
+<ol>
+<li>
+<p><strong>Download the ZIP File:</strong></p>
+<ul>
+<li>Obtain the Clarity Clips ZIP file from the official download link provided by the developer.</li>
+<li>
+<p><strong>Locate the Downloaded ZIP File:</strong></p>
+</li>
+<li>
+<p>By default, it should be in your <strong>Downloads</strong> folder.</p>
+</li>
+<li>
+<p><strong>Extract the ZIP File:</strong></p>
+</li>
+<li>
+<p>Double-click the ZIP file to extract it.</p>
+</li>
+<li>You should now see the <strong>Clarity Clips.app</strong> application bundle.</li>
+<li>
+<p><strong>Move the Application to the Applications Folder:</strong></p>
+</li>
+<li>
+<p>Drag and drop <strong>Clarity Clips.app</strong> into your <strong>Applications</strong> folder for easy access.</p>
+</li>
+<li>Alternatively, you can run it from the extracted location, but storing it in the Applications folder is recommended.</li>
+</ul>
+</li>
+</ol>
+<h3 id="first-launch">First Launch</h3>
+<p>Since Clarity Clips is not code-signed or notarized, macOS will prevent it from opening by default due to security settings. You need to manually allow the application to run.</p>
+<h4 id="steps-to-open-clarity-clips-for-the-first-time">Steps to Open Clarity Clips for the First Time:</h4>
+<ol>
+<li>
+<p><strong>Attempt to Open the Application:</strong></p>
+<ul>
+<li>Go to your <strong>Applications</strong> folder.</li>
+<li>Double-click <strong>Clarity Clips.app</strong>.</li>
+<li>
+<p><strong>macOS Security Warning:</strong></p>
+</li>
+<li>
+<p>You will see a message saying:</p>
+<p>"Clarity Clips.app" cannot be opened because the developer cannot be verified.</p>
+</li>
+<li>
+<p>Click <strong>"Cancel"</strong>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Open via System Preferences:</strong></p>
+<ul>
+<li>
+<p>Open <strong>System Preferences</strong> by clicking the Apple menu  and selecting <strong>"System Preferences..."</strong>.</p>
+</li>
+<li>
+<p>Click on <strong>"Security &amp; Privacy"</strong>.</p>
+</li>
+<li>
+<p>In the <strong>"General"</strong> tab, you will see a message:</p>
+<p>"Clarity Clips.app" was blocked from use because it is not from an identified developer.</p>
+</li>
+<li>
+<p>Click the <strong>"Open Anyway"</strong> button.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Confirm Opening the Application:</strong></p>
+<ul>
+<li>
+<p>A new prompt will appear:</p>
+<p>macOS cannot verify the developer of "Clarity Clips.app". Are you sure you want to open it?</p>
+</li>
+<li>
+<p>Click <strong>"Open"</strong>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Grant Necessary Permissions:</strong></p>
+<ul>
+<li>Clarity Clips requires access to monitor your clipboard.</li>
+<li>If prompted, grant the application the necessary permissions.</li>
+<li>You may need to enter your administrator password to allow changes.</li>
+<li>
+<p><strong>Application Launches:</strong></p>
+</li>
+<li>
+<p>Clarity Clips should now open and appear in your Dock.</p>
+</li>
+<li>The main window will display, and the application is ready to use.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Note:</strong> You only need to perform these steps the first time you open Clarity Clips. Subsequent launches will not require this process.</p>
+<h4 id="alternative-method-using-control-click">Alternative Method Using Control-Click:</h4>
+<p>If you prefer, you can use the following method to open the application without navigating through System Preferences.</p>
+<ol>
+<li>
+<p><strong>Control-Click the Application:</strong></p>
+<ul>
+<li>Go to your <strong>Applications</strong> folder.</li>
+<li>Hold down the <strong>Control</strong> key and click on <strong>Clarity Clips.app</strong>.</li>
+<li>Select <strong>"Open"</strong> from the context menu.</li>
+<li>
+<p><strong>Confirm Opening the Application:</strong></p>
+</li>
+<li>
+<p>A prompt will appear similar to the one above.</p>
+</li>
+<li>Click <strong>"Open"</strong> to proceed.</li>
+</ul>
+</li>
+</ol>
+<h2 id="main-features">Main Features</h2>
+<h3 id="clipboard-monitoring">Clipboard Monitoring</h3>
+<p>Clarity Clips continuously monitors your system clipboard for any changes. Whenever you copy new content, the application automatically records it in the clipboard history unless it's a duplicate of the most recent entry. For best use, make sure Clarity Clips runs at login - either configure your system to run it at login, or simply open the app (and then you can minimise the app window without any worry): the app does its work in the background...</p>
+<p><strong>Supported Content Types:</strong></p>
+<ul>
+<li>Plain text</li>
+<li>HTML content (extracts plain text)</li>
+<li>File paths to:<ul>
+<li>PDF documents</li>
+<li>Word documents (<code>.docx</code>)</li>
+<li>Excel files (<code>.xlsx</code>)
+The app will store the plain text from all these formats.</li>
+</ul>
+</li>
+</ul>
+<h3 id="clipboard-history-table">Clipboard History Table</h3>
+<p>The main window displays a table containing your clipboard history with the following columns:</p>
+<ol>
+<li><strong>Timestamp:</strong> The date and time when the content was copied.</li>
+<li><strong>Content Preview:</strong> A truncated preview of the clipboard content (up to 100 characters).</li>
+<li><strong>Tags:</strong> Any tags associated with the entry.</li>
+</ol>
+<p><strong>Table Features:</strong></p>
+<ul>
+<li><strong>Row Selection:</strong> Click on a row to select it for actions like copying or deleting.</li>
+<li><strong>Sorting:</strong> Click on the column headers to sort the entries.</li>
+<li><strong>Resizing:</strong> Columns automatically resize to fit content.</li>
+</ul>
+<h3 id="search-functionality">Search Functionality</h3>
+<p>At the top of the main window, there's a search bar allowing you to filter entries based on keywords or tags.</p>
+<ul>
+<li><strong>How to Use:</strong><ul>
+<li>Enter any keyword or tag in the search bar.</li>
+<li>The table updates in real-time to show only matching entries.</li>
+<li>Search is case-insensitive and looks for matches in all columns.</li>
+</ul>
+</li>
+</ul>
+<h3 id="copying-entries">Copying Entries</h3>
+<p>You can copy the full content of any clipboard entry back to your clipboard.</p>
+<ul>
+<li><strong>Steps:</strong><ol>
+<li>Select the desired entry in the table.</li>
+<li>Click the <strong>"Copy Selected"</strong> button.<ul>
+<li><strong>Shortcut:</strong> Press <code>Command+C</code> (⌘+C).</li>
+</ul>
+</li>
+<li>A confirmation message appears indicating the content has been copied.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Note:</strong> The application temporarily ignores clipboard changes initiated by itself to prevent duplication.</p>
+<h3 id="tagging-entries">Tagging Entries</h3>
+<p>Add tags to your clipboard entries for better organization and easier searching.</p>
+<ul>
+<li><strong>Steps:</strong><ol>
+<li>Select the desired entry in the table.</li>
+<li>Click the <strong>"Add Tag"</strong> button.<ul>
+<li><strong>Shortcut:</strong> Press <code>Command+T</code> (⌘+T).</li>
+<li><strong>Alternative:</strong> Double-click on the entry in the table.</li>
+</ul>
+</li>
+<li>An input dialog appears.</li>
+<li>Enter one or more tags, separated by commas.</li>
+<li>Click <strong>"OK"</strong> to save the tags.</li>
+<li>The tags are added to the entry and displayed in the Tags column.</li>
+</ol>
+</li>
+</ul>
+<h3 id="deleting-entries">Deleting Entries</h3>
+<p>Remove unwanted entries from your clipboard history.</p>
+<ul>
+<li><strong>Steps:</strong><ol>
+<li>Select the entry you wish to delete.</li>
+<li>Click the <strong>"Delete Selected"</strong> button.<ul>
+<li><strong>Shortcut:</strong> Press <code>Command+D</code> (⌘+D).</li>
+</ul>
+</li>
+<li>A confirmation dialog appears.</li>
+<li>Click <strong>"Yes"</strong> to confirm deletion.</li>
+<li>The entry is removed from the history.</li>
+</ol>
+</li>
+</ul>
+<h3 id="exporting-history">Exporting History</h3>
+<p>You can export your entire clipboard history to a text file for backup or archival purposes.</p>
+<ul>
+<li><strong>Steps:</strong><ol>
+<li>Click the <strong>"Export History"</strong> button.<ul>
+<li><strong>Shortcut:</strong> Press <code>Command+E</code> (⌘+E).</li>
+</ul>
+</li>
+<li>A save file dialog appears.</li>
+<li>Choose the location and filename for the export.</li>
+<li>Click <strong>"Save"</strong>.</li>
+<li>A confirmation message appears upon successful export.</li>
+</ol>
+</li>
+</ul>
+<h3 id="clearing-history">Clearing History</h3>
+<p>Clear all entries from your clipboard history.</p>
+<ul>
+<li><strong>Steps:</strong><ol>
+<li>Click the <strong>"Clear History"</strong> button.</li>
+<li>A confirmation dialog appears.</li>
+<li>Click <strong>"Yes"</strong> to confirm.</li>
+<li>All entries are removed, and the table is cleared.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Note:</strong> This action is irreversible unless you have exported your history.</p>
+<h3 id="system-tray-integration">System Tray Integration</h3>
+<p>Clarity Clips minimizes to the system tray, allowing it to run in the background without occupying space on your Dock.</p>
+<ul>
+<li>
+<p><strong>Tray Icon Features:</strong></p>
+<ul>
+<li><strong>Tooltip:</strong> Hover over the tray icon to see "Clarity Clips."</li>
+<li><strong>Context Menu:</strong> Right-click the tray icon to access options:<ul>
+<li><strong>Restore:</strong> Brings the main window back into view.</li>
+<li><strong>Clear History:</strong> Clears the clipboard history.</li>
+<li><strong>Exit:</strong> Closes the application.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tray Icon Interaction:</strong></p>
+</li>
+<li>
+<p><strong>Single Click:</strong> Restores the application window.</p>
+</li>
+<li><strong>Notifications:</strong> Displays messages when the application is minimized.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> When you close the main window, the application minimizes to the tray instead of exiting.</p>
+<h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+<p>Enhance your productivity by using the following keyboard shortcuts:</p>
+<ul>
+<li><strong>Copy Selected Entry:</strong> <code>Command+C</code> (⌘+C)</li>
+<li><strong>Add Tag to Entry:</strong> <code>Command+T</code> (⌘+T)</li>
+<li><strong>Delete Selected Entry:</strong> <code>Command+D</code> (⌘+D)</li>
+<li><strong>Export History:</strong> <code>Command+E</code> (⌘+E)</li>
+<li><strong>Refresh History Table:</strong> <code>Command+R</code> (⌘+R)</li>
+</ul>
+<p><strong>Usage Tips:</strong></p>
+<ul>
+<li>Ensure the main window is focused to use the shortcuts.</li>
+<li>Shortcuts can be used in combination with mouse actions for efficiency.</li>
+<li>On non-Mac keyboards, the <code>Command</code> key is often represented as the <code>⌘</code> symbol.</li>
+</ul>
+<h2 id="settings-and-configuration">Settings and Configuration</h2>
+<h3 id="maximum-entries">Maximum Entries</h3>
+<p>Clarity Clips maintains up to <strong>500 entries</strong> in your clipboard history.</p>
+<ul>
+<li><strong>Warning Threshold:</strong> At <strong>450 entries</strong>, a warning message appears suggesting you export your history.</li>
+<li><strong>Automatic Trimming:</strong> Once the limit is reached, older entries are deleted to make room for new ones.</li>
+</ul>
+<h3 id="file-storage">File Storage</h3>
+<ul>
+<li>
+<p><strong>History File Location:</strong></p>
+<p><code>~/Library/Application Support/ClarityClips/clipboard_history_with_tags.txt</code></p>
+</li>
+<li>
+<p><strong>Log File Location:</strong></p>
+<p><code>~/Library/Logs/ClarityClips/clipboard_manager.log</code></p>
+</li>
+</ul>
+<p><strong>Note:</strong> These directories are created automatically if they do not exist.</p>
+<h2 id="handling-different-content-types">Handling Different Content Types</h2>
+<p>Clarity Clips intelligently processes different types of content:</p>
+<ul>
+<li><strong>Plain Text:</strong> Stored as-is.</li>
+<li><strong>HTML Content:</strong><ul>
+<li>Extracts and stores the plain text.</li>
+</ul>
+</li>
+<li><strong>File Paths:</strong><ul>
+<li>Recognizes file paths copied to the clipboard.</li>
+<li>Supports text extraction from:<ul>
+<li><strong>PDF Files:</strong> Uses PyPDF2 to extract text.</li>
+<li><strong>Word Documents (<code>.docx</code>):</strong> Uses python-docx to extract text.</li>
+<li><strong>Excel Files (<code>.xlsx</code>):</strong> Uses openpyxl to extract text.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Important:</strong></p>
+<ul>
+<li>If text extraction fails, the file path itself is stored.</li>
+<li>The application does not process images or other non-text content.</li>
+</ul>
+<h2 id="notifications-and-warnings">Notifications and Warnings</h2>
+<ul>
+<li>
+<p><strong>Clipboard Change Detection:</strong></p>
+<ul>
+<li>Logs clipboard changes.</li>
+<li>Displays minimal notifications to avoid disruptions.</li>
+<li>
+<p><strong>History Limit Warning:</strong></p>
+</li>
+<li>
+<p>When nearing the maximum entry limit, a warning prompts you to export your history.</p>
+</li>
+<li>This warning is displayed only once per session.</li>
+</ul>
+</li>
+</ul>
+<h2 id="logging-and-error-handling">Logging and Error Handling</h2>
+<ul>
+<li>
+<p><strong>Logging:</strong></p>
+<ul>
+<li>All significant actions and errors are logged to help with troubleshooting.</li>
+<li>Logs include timestamps and error details.</li>
+<li>
+<p><strong>Error Handling:</strong></p>
+</li>
+<li>
+<p>The application gracefully handles exceptions.</p>
+</li>
+<li>User-friendly error messages are displayed when issues occur (e.g., failing to read or write the history file).</li>
+</ul>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Clarity Clips aims to simplify your clipboard management by providing a straightforward and efficient tool to track and manage your clipboard history. By familiarizing yourself with its features and shortcuts, you can significantly enhance your productivity.</p>
+<hr />
+<h2 id="frequently-asked-questions-faqs">Frequently Asked Questions (FAQs)</h2>
+<p><strong>Q1: Does Clarity Clips record sensitive information like passwords?</strong></p>
+<p><strong>A:</strong> Clarity Clips records all clipboard content, including sensitive information. Be cautious when copying confidential data. You can delete specific entries or clear the entire history if needed.</p>
+<p><strong>Q2: How can I prevent the application from closing when I click the close button?</strong></p>
+<p><strong>A:</strong> By default, closing the main window minimizes Clarity Clips to the system tray. To fully exit the application, right-click the tray icon and select <strong>"Exit"</strong>.</p>
+<p><strong>Q3: Can I customize the maximum number of entries stored?</strong></p>
+<p><strong>A:</strong> In the current version, the maximum number of entries is fixed at 500. Future updates may include customizable settings.</p>
+<p><strong>Q4: Why am I seeing duplicate entries in my history?</strong></p>
+<p><strong>A:</strong> Clarity Clips checks for duplicates against the most recent entry only. If you copy the same content after copying different content in between, it will be recorded again.</p>
+<p><strong>Q5: The application isn't extracting text from some PDFs. What can I do?</strong></p>
+<p><strong>A:</strong> Text extraction depends on the PDF's content and structure. Some PDFs may not allow text extraction or may contain scanned images of text. In such cases, the file path is stored instead.</p>
+<p><strong>Q6: I'm not receiving any notifications. Is this normal?</strong></p>
+<p><strong>A:</strong> Clarity Clips minimizes notifications to avoid distractions. It shows critical alerts like the history limit warning or confirmation messages for actions like copying or deleting entries.</p>
+<p><strong>Q7: How do I update Clarity Clips to the latest version?</strong></p>
+<p><strong>A:</strong> Since Clarity Clips is distributed as a standalone application, you need to download the latest version from the official source and replace your existing application.</p>
+<p><strong>Q8: I received a warning about the application not being verified. Is it safe to proceed?</strong></p>
+<p><strong>A:</strong> Yes, Clarity Clips is safe to use. The warning appears because the application is not code-signed or notarized. Follow the instructions in the <a href="#first-launch">First Launch</a> section to open the application.</p>
+<p><strong>Q9: Can I run Clarity Clips on Windows or Linux?</strong></p>
+<p><strong>A:</strong> The current version is designed for macOS due to directory paths and system tray implementation. Modifications are required to run it on other operating systems.</p>
+<hr />
+<p><strong>Thank you for choosing Clarity Clips!</strong></p>
+<p>If you have further questions or need assistance, please reach out to me!</p></body></html>

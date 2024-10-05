@@ -1,0 +1,407 @@
+<html><head>
+            <style>
+                body {
+                    font-family: 'Charter', 'Palatino', serif;
+                    padding: 20px;
+                    background-color: white;
+                    color: black;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #1E90FF;
+                }
+                pre {
+                    background-color: #f0f0f0;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                code {
+                    background-color: #f0f0f0;
+                    padding: 2px 4px;
+                    border-radius: 3px;
+                    font-family: 'Courier New', Courier, monospace;
+                }
+                a {
+                    color: #FF4500;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            </head><body><hr />
+<p>tags:
+- clarity-apps</p>
+<hr />
+<h1 id="clarity-explorer-user-guide">Clarity Explorer User Guide</h1>
+<p><strong>Version:</strong> 1.0<br />
+<strong>Platform:</strong> macOS<br />
+<strong>Developed with:</strong> Python 3, PyQt5</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Clarity Explorer is a desktop application designed to help you organize your files into projects, assign tags for easy categorization, and preview various file types directly within the app. This guide will walk you through the features and usability of Clarity Explorer, including keyboard shortcuts to enhance your productivity.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-getting-started">Getting Started</a><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#launching-the-application">Launching the Application</a></li>
+</ul>
+</li>
+<li><a href="#2-user-interface-overview">User Interface Overview</a></li>
+<li><a href="#3-projects-management">Projects Management</a><ul>
+<li><a href="#adding-a-new-project">Adding a New Project</a></li>
+<li><a href="#deleting-a-project">Deleting a Project</a></li>
+</ul>
+</li>
+<li><a href="#4-file-management">File Management</a><ul>
+<li><a href="#adding-files-to-a-project">Adding Files to a Project</a></li>
+<li><a href="#deleting-a-file-from-a-project">Deleting a File from a Project</a></li>
+</ul>
+</li>
+<li><a href="#5-tag-management">Tag Management</a><ul>
+<li><a href="#adding-or-editing-tags-for-a-file">Adding or Editing Tags for a File</a></li>
+</ul>
+</li>
+<li><a href="#6-searching-files">Searching Files</a><ul>
+<li><a href="#search-within-a-project">Search Within a Project</a></li>
+<li><a href="#search-across-all-projects">Search Across All Projects</a></li>
+</ul>
+</li>
+<li><a href="#7-previewing-files">Previewing Files</a><ul>
+<li><a href="#supported-file-types">Supported File Types</a></li>
+</ul>
+</li>
+<li><a href="#8-opening-files-with-default-applications">Opening Files with Default Applications</a></li>
+<li><a href="#9-keyboard-shortcuts">Keyboard Shortcuts</a></li>
+<li><a href="#10-handling-missing-files">Handling Missing Files</a></li>
+<li><a href="#11-additional-tips">Additional Tips</a></li>
+<li><a href="#12-troubleshooting">Troubleshooting</a></li>
+<li><a href="#13-conclusion">Conclusion</a></li>
+<li><a href="#14-contact-and-support">Contact and Support</a></li>
+<li><a href="#15-acknowledgments">Acknowledgments</a></li>
+</ol>
+<hr />
+<h2 id="1-getting-started">1. Getting Started</h2>
+<h3 id="installation">Installation</h3>
+<p>Clarity Explorer is available as a macOS application bundled into a <code>.app</code> file and compressed into a ZIP archive for easy distribution. Please note that since the app is not code-signed or notarized, you may need to adjust your security settings to allow it to run.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>
+<p><strong>Download the ZIP File:</strong></p>
+<ul>
+<li>Obtain the Clarity Explorer ZIP file from the provided download link.</li>
+<li>
+<p><strong>Extract the Application:</strong></p>
+</li>
+<li>
+<p>Locate the downloaded ZIP file, usually in your <strong>Downloads</strong> folder.</p>
+</li>
+<li>Double-click the ZIP file to extract it. This will create the <code>ClarityExplorer.app</code> file.</li>
+<li>
+<p><strong>Move the Application to the Applications Folder (Optional but Recommended):</strong></p>
+</li>
+<li>
+<p>Drag and drop the <code>ClarityExplorer.app</code> into your <strong>Applications</strong> folder for easy access.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="launching-the-application">Launching the Application</h3>
+<p>Since the application is not code-signed or notarized, attempting to open it may result in a security warning. Follow these steps to launch Clarity Explorer:</p>
+<ol>
+<li>
+<p><strong>First Attempt to Open the App:</strong></p>
+<ul>
+<li>
+<p>Double-click <code>ClarityExplorer.app</code> to open it.</p>
+</li>
+<li>
+<p>A dialog will appear stating:</p>
+<p>"ClarityExplorer.app" can't be opened because it is from an unidentified developer.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Bypass the Security Warning:</strong></p>
+<ul>
+<li>
+<p>Click <strong>OK</strong> to dismiss the dialog.</p>
+</li>
+<li>
+<p>Open <strong>System Preferences</strong> by clicking on the Apple menu (<code></code>) and selecting <strong>System Preferences</strong>.</p>
+</li>
+<li>
+<p>Navigate to <strong>Security &amp; Privacy</strong>.</p>
+</li>
+<li>
+<p>In the <strong>General</strong> tab, you will see a message at the bottom:</p>
+<p>"ClarityExplorer.app" was blocked from opening because it is not from an identified developer.</p>
+</li>
+<li>
+<p>Click the <strong>Open Anyway</strong> button next to this message.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Confirm Opening the App:</strong></p>
+<ul>
+<li>
+<p>A new dialog will appear:</p>
+<p>"macOS cannot verify the developer of 'ClarityExplorer.app'. Are you sure you want to open it?"</p>
+</li>
+<li>
+<p>Click <strong>Open</strong> to launch the application.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Subsequent Launches:</strong></p>
+<ul>
+<li>After this initial process, you can open Clarity Explorer normally by double-clicking the app icon.</li>
+</ul>
+</li>
+</ol>
+<h3 id="alternative-method-to-open-the-app">Alternative Method to Open the App</h3>
+<p>If you prefer using the context menu:</p>
+<ol>
+<li>
+<p><strong>Right-Click Method:</strong></p>
+<ul>
+<li>Control-click (or right-click) on <code>ClarityExplorer.app</code>.</li>
+<li>Select <strong>Open</strong> from the context menu.</li>
+<li>A dialog will appear similar to the previous one.</li>
+</ul>
+</li>
+<li>
+<p><strong>Confirm Opening:</strong></p>
+<ul>
+<li>Click <strong>Open</strong> to launch the application.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="2-user-interface-overview">2. User Interface Overview</h2>
+<p>When you launch Clarity Explorer, the main window is divided into three primary sections:</p>
+<ul>
+<li><strong>Left Sidebar (Projects List):</strong> Displays all your projects.</li>
+<li><strong>Center Panel (Files List):</strong> Shows files in the selected project.</li>
+<li><strong>Right Panel (Preview Area):</strong> Previews the content of the selected file.</li>
+</ul>
+<p>Additionally, there are buttons and search bars for various actions:</p>
+<ul>
+<li>
+<p><strong>Buttons:</strong></p>
+<ul>
+<li><strong>Add Project</strong></li>
+<li><strong>Add File to Project</strong></li>
+<li><strong>Manage Tags for File</strong></li>
+<li><strong>Delete Project</strong></li>
+<li>
+<h2 id="delete-file"><strong>Delete File</strong></h2>
+</li>
+<li>
+<p><strong>Search Bars:</strong></p>
+</li>
+<li>
+<p><strong>Project Search Bar:</strong> Searches files within the current project.</p>
+</li>
+<li><strong>Explorer Search Bar:</strong> Searches files across all projects.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="3-projects-management">3. Projects Management</h2>
+<h3 id="adding-a-new-project">Adding a New Project</h3>
+<ol>
+<li>Click the <strong>Add Project</strong> button located at the bottom of the left sidebar.</li>
+<li>An input dialog will appear prompting you to enter a project name.</li>
+<li>Type in the desired project name and click <strong>OK</strong>.</li>
+<li>The new project will appear in the Projects List.</li>
+</ol>
+<h3 id="deleting-a-project">Deleting a Project</h3>
+<ol>
+<li>Select the project you wish to delete from the Projects List.</li>
+<li>Click the <strong>Delete Project</strong> button.</li>
+<li>A confirmation dialog will appear.</li>
+<li>Click <strong>Yes</strong> to confirm deletion.</li>
+</ol>
+<p><strong>Note:</strong> Deleting a project will remove it from Clarity Explorer but will not delete any files from your computer.</p>
+<hr />
+<h2 id="4-file-management">4. File Management</h2>
+<h3 id="adding-files-to-a-project">Adding Files to a Project</h3>
+<ol>
+<li>Ensure you have a project selected in the Projects List.</li>
+<li>Click the <strong>Add File to Project</strong> button.</li>
+<li>A file dialog will open.</li>
+<li>Select one or more files you wish to add to the project and click <strong>Open</strong>.</li>
+<li>The selected files will appear in the Files List associated with the project.</li>
+</ol>
+<h3 id="deleting-a-file-from-a-project">Deleting a File from a Project</h3>
+<ol>
+<li>Select the file you wish to remove from the Files List.</li>
+<li>Click the <strong>Delete File</strong> button.</li>
+<li>A confirmation dialog will appear.</li>
+<li>Click <strong>Yes</strong> to confirm removal.</li>
+</ol>
+<p><strong>Note:</strong> This action removes the file from the project in Clarity Explorer but does not delete the file from your computer.</p>
+<hr />
+<h2 id="5-tag-management">5. Tag Management</h2>
+<h3 id="adding-or-editing-tags-for-a-file">Adding or Editing Tags for a File</h3>
+<ol>
+<li>Select a file in the Files List.</li>
+<li>Click the <strong>Manage Tags for File</strong> button.</li>
+<li>An input dialog will appear showing the current tags associated with the file.</li>
+<li>Add new tags or edit existing ones by typing them into the input field, separated by commas.<ul>
+<li>Example: <code>report, finance, Q3</code></li>
+</ul>
+</li>
+<li>Click <strong>OK</strong> to save the changes.</li>
+<li>The file's display name in the Files List will update to reflect the new tags.</li>
+</ol>
+<hr />
+<h2 id="6-searching-files">6. Searching Files</h2>
+<h3 id="search-within-a-project">Search Within a Project</h3>
+<ol>
+<li>Use the <strong>Project Search Bar</strong> located above the Files List.</li>
+<li>Type your search query.<ul>
+<li>The search is case-insensitive and matches against file names and tags.</li>
+</ul>
+</li>
+<li>The Files List will update in real-time to show only the files that match your query.</li>
+</ol>
+<h3 id="search-across-all-projects">Search Across All Projects</h3>
+<ol>
+<li>Use the <strong>Explorer Search Bar</strong> located below the Project Search Bar.</li>
+<li>Type your search query.</li>
+<li>The Files List will display files from all projects that match your query.</li>
+</ol>
+<hr />
+<h2 id="7-previewing-files">7. Previewing Files</h2>
+<p>Clarity Explorer allows you to preview certain file types directly within the application.</p>
+<h3 id="supported-file-types">Supported File Types</h3>
+<ul>
+<li><strong>Plain Text Files:</strong> <code>.txt</code>, <code>.md</code></li>
+<li><strong>PDF Files:</strong> <code>.pdf</code></li>
+<li><strong>HTML Files:</strong> <code>.html</code></li>
+<li><strong>Microsoft Word Documents:</strong> <code>.docx</code></li>
+<li><strong>OpenDocument Text Files:</strong> <code>.odt</code>, <code>.odf</code></li>
+<li><strong>Image Files:</strong> <code>.jpg</code>, <code>.png</code>, <code>.gif</code></li>
+</ul>
+<h3 id="how-to-preview-a-file">How to Preview a File</h3>
+<ol>
+<li>Select a file from the Files List.</li>
+<li>The content will automatically display in the Preview Area.<ul>
+<li>For text-based files, the content will appear as text.</li>
+<li>For images, the image will be displayed.</li>
+<li>For unsupported file types, a message will indicate that preview is not available.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="8-opening-files-with-default-applications">8. Opening Files with Default Applications</h2>
+<p>To open a file using the default application associated with its file type:</p>
+<ol>
+<li>Double-click on the file in the Files List.</li>
+<li>The file will open using the default program on your macOS system.<ul>
+<li>For example, a <code>.pdf</code> file might open in Preview, and a <code>.docx</code> file might open in Microsoft Word.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="9-keyboard-shortcuts">9. Keyboard Shortcuts</h2>
+<p>Clarity Explorer supports the following keyboard shortcuts to enhance usability:</p>
+<ul>
+<li><strong>Add New Project:</strong> <code>⌘ + N</code> (Command + N)</li>
+<li><strong>Focus on Project Search Bar:</strong> <code>⌘ + F</code> (Command + F)</li>
+<li><strong>Focus on Explorer Search Bar:</strong> <code>⌘ + Shift + F</code> (Command + Shift + F)</li>
+</ul>
+<hr />
+<h2 id="10-handling-missing-files">10. Handling Missing Files</h2>
+<p>If a file cannot be found at its recorded location (e.g., it was moved or deleted), Clarity Explorer will prompt you when you attempt to preview or open the file.</p>
+<h3 id="steps-to-resolve-missing-files">Steps to Resolve Missing Files</h3>
+<ol>
+<li>
+<p><strong>Warning Message:</strong></p>
+<ul>
+<li>A dialog will inform you that the file is missing.</li>
+<li>
+<p><strong>Options:</strong></p>
+</li>
+<li>
+<p><strong>Locate:</strong> Allows you to find the file at its new location.</p>
+<ul>
+<li>Click <strong>Locate</strong>.</li>
+<li>A file dialog will open. Navigate to the file's new location and select it.</li>
+<li>Clarity Explorer will update the file path accordingly.</li>
+</ul>
+</li>
+<li><strong>Remove from Project:</strong> Removes the file from the project.<ul>
+<li>Click <strong>Remove from Project</strong>.</li>
+<li>The file will be removed from the Files List.</li>
+</ul>
+</li>
+<li><strong>Cancel:</strong> Cancels the action.<ul>
+<li>Click <strong>Cancel</strong> to return without making changes.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="11-additional-tips">11. Additional Tips</h2>
+<ul>
+<li><strong>Consistent Tagging:</strong> Use consistent tags to improve searchability.</li>
+<li><strong>Project Organization:</strong> Group related files into projects for better organization.</li>
+<li><strong>Regular Backups:</strong> Since project data is stored in a JSON file, consider backing up your data periodically.</li>
+<li><strong>File Management:</strong> Keep files in their original locations to avoid missing file issues.</li>
+</ul>
+<hr />
+<h2 id="12-troubleshooting">12. Troubleshooting</h2>
+<h3 id="application-not-launching">Application Not Launching</h3>
+<ul>
+<li><strong>Issue:</strong> The application does not start or crashes immediately.</li>
+<li><strong>Solution:</strong><ul>
+<li>Ensure the application was extracted properly from the ZIP file.</li>
+<li>Confirm that you have followed the steps to bypass the security warning for unidentified developers.</li>
+<li>Check for any error messages and consult the <strong>Contact and Support</strong> section if necessary.</li>
+</ul>
+</li>
+</ul>
+<h3 id="file-not-previewing-correctly">File Not Previewing Correctly</h3>
+<ul>
+<li><strong>Issue:</strong> The file content does not display in the Preview Area.</li>
+<li><strong>Solution:</strong><ul>
+<li>Ensure the file is of a supported type.</li>
+<li>Verify that the file exists at the specified location.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cannot-open-file-with-default-application">Cannot Open File with Default Application</h3>
+<ul>
+<li><strong>Issue:</strong> Double-clicking a file does not open it.</li>
+<li><strong>Solution:</strong><ul>
+<li>Confirm that the file type has an associated default application.</li>
+<li>Check for any error messages that may appear.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="13-conclusion">13. Conclusion</h2>
+<p>Clarity Explorer is designed to simplify the organization and management of your files through projects and tagging. By leveraging the application's features, you can efficiently categorize, search, and access your files.</p>
+<p>For optimal use:</p>
+<ul>
+<li>Utilize tags to enhance search capabilities.</li>
+<li>Keep your files organized within projects.</li>
+<li>Regularly update the application and dependencies.</li>
+<li>Ensure you trust the source before bypassing security warnings.</li>
+</ul>
+<hr />
+<p><strong>Note:</strong> The projects and files data are stored in a JSON file located at:</p>
+<p><code>~/Library/Application Support/ClarityExplorer/projects.json</code></p>
+<p>Do not modify this file manually to prevent data corruption.</p>
+<hr />
+<h2 id="14-contact-and-support">14. Contact and Support</h2>
+<p>For further assistance or to report issues, please reach out to me or consult the application's repository/documentation.</p>
+<hr />
+<h2 id="15-acknowledgments">15. Acknowledgments</h2>
+<p>Thank you for choosing Clarity Explorer to manage your projects and files. We hope this tool enhances your productivity and organization.</p></body></html>

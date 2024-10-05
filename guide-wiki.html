@@ -1,0 +1,392 @@
+<html><head>
+            <style>
+                body {
+                    font-family: 'Charter', 'Palatino', serif;
+                    padding: 20px;
+                    background-color: white;
+                    color: black;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #1E90FF;
+                }
+                pre {
+                    background-color: #f0f0f0;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                code {
+                    background-color: #f0f0f0;
+                    padding: 2px 4px;
+                    border-radius: 3px;
+                    font-family: 'Courier New', Courier, monospace;
+                }
+                a {
+                    color: #FF4500;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            </head><body><hr />
+<p>tags:
+- clarity-apps</p>
+<hr />
+<h1 id="clarity-wiki-user-guide">Clarity Wiki User Guide</h1>
+<p>Welcome to <strong>Clarity Wiki v1</strong>, your streamlined solution for organizing notes, managing multiple wikis, and enhancing your productivity through a user-friendly interface. This guide will walk you through the installation process, explore the application's features, highlight essential keyboard shortcuts, and provide practical usage tips.</p>
+<p>Essentially, Clarity Wiki helps you organise your notes into different 'wikis'. You might have a subject of study, which you need multiple but related notes on. Your subject can be a new wiki, and you can make notes on various topics in that wiki. You can take your notes in text and markdown, using the markdown syntax features; and you can link to ohter notes in your wiki by simply typing the [[related-note-name]] - if that note exists, you can simply click on the link to open it up. This is useful for keeping notes on multiple points. For instance, as a lawyer, you might want to make notes regarding a certain issue: you might then keep a central note for organising everything, and separate notes based on witnesses, or documents, or other authorities etc., relevant to the issue. With the [[link]] functionality, you can quickly draw links between multiple moving parts...</p>
+<hr />
+<h2 id="1-installation-guide"><strong>1. Installation Guide</strong></h2>
+<h3 id="a-downloading-clarity-wiki"><strong>a. Downloading Clarity Wiki</strong></h3>
+<p><strong>Obtain the Application Bundle:</strong></p>
+<pre class="codehilite"><code>- Download the latest **Clarity Wiki v1** `.zip` file from the official distribution source or the provided download link.
+</code></pre>
+
+<p><strong>Extract the <code>.zip</code> File:</strong></p>
+<pre class="codehilite"><code>- Locate the downloaded `.zip` file in your `Downloads` folder.
+- Double-click the `.zip` file to extract its contents. This will create a `Clarity Wiki.app` bundle.
+</code></pre>
+
+<p><strong>Move to Applications Folder:</strong></p>
+<pre class="codehilite"><code>- Drag and drop the `Clarity Wiki.app` into your `Applications` folder for easy access and to ensure proper system integration.
+</code></pre>
+
+<h3 id="b-bypassing-macos-gatekeeper"><strong>b. Bypassing macOS Gatekeeper</strong></h3>
+<p>macOS includes a security feature called <strong>Gatekeeper</strong> that restricts the installation of applications from unidentified developers. To run <strong>Clarity Wiki v1</strong>, you may need to bypass Gatekeeper as follows:</p>
+<p><strong>Attempt to Open Clarity Wiki:</strong></p>
+<pre class="codehilite"><code>- Navigate to the `Applications` folder.
+- Double-click on `Clarity Wiki.app` to launch the application.
+</code></pre>
+
+<p><strong>Encounter Gatekeeper Warning:</strong></p>
+<pre class="codehilite"><code>- If you receive a warning stating that the app cannot be opened because it is from an unidentified developer, proceed to the next steps.
+</code></pre>
+
+<p><strong>Access Security Settings:</strong></p>
+<pre class="codehilite"><code>- Open **System Preferences** by clicking on the Apple logo in the top-left corner and selecting `System Preferences`.
+- Click on `Security &amp; Privacy`.
+- In the `General` tab, locate the message about `Clarity Wiki.app` being blocked.
+</code></pre>
+
+<p><strong>Allow the App to Open:</strong></p>
+<pre class="codehilite"><code>- Click the `Open Anyway` button next to the warning message.
+- A confirmation dialog will appear; click `Open` to grant permission.
+- **Clarity Wiki** will now launch and be accessible in the future without additional prompts.
+</code></pre>
+
+<p><strong>Note:</strong> Only bypass Gatekeeper for applications you trust. Ensure that you have downloaded <strong>Clarity Wiki v1</strong> from a reputable source to maintain system security.</p>
+<hr />
+<h2 id="2-application-features"><strong>2. Application Features</strong></h2>
+<p><strong>Clarity Wiki v1</strong> is designed to provide a seamless experience for managing your notes and wikis. Below is an overview of its key features:</p>
+<h3 id="a-multi-wiki-management"><strong>a. Multi-Wiki Management</strong></h3>
+<ul>
+<li>
+<p><strong>Multiple Wikis Support:</strong></p>
+<ul>
+<li>Create and manage multiple wikis, allowing you to organize notes based on different projects, topics, or categories.</li>
+</ul>
+</li>
+<li>
+<p><strong>Default 'Miscellaneous' Wiki:</strong></p>
+<ul>
+<li>Notes not assigned to a specific wiki are automatically categorized under the <code>miscellaneous</code> wiki.</li>
+</ul>
+</li>
+</ul>
+<h3 id="b-note-creation-and-editing"><strong>b. Note Creation and Editing</strong></h3>
+<ul>
+<li>
+<p><strong>Rich Text Editor:</strong>    </p>
+<ul>
+<li>Utilize a powerful text editor with Markdown support for formatting your notes.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tags Integration:</strong>    </p>
+<ul>
+<li>Assign tags to notes for easy categorization and retrieval. Tags can be added or edited through the tags input field.</li>
+</ul>
+</li>
+<li>
+<p><strong>Markdown Footnotes:</strong></p>
+<ul>
+<li>Enhance your notes with footnotes to provide additional context, references, or explanations without cluttering the main content.</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-syntax-highlighting"><strong>c. Syntax Highlighting</strong></h3>
+<ul>
+<li><strong>Minimalistic Monochrome Theme:</strong><ul>
+<li>Enjoy a clean and distraction-free writing environment with subtle syntax highlighting for Markdown elements such as bold, italic, strikethrough, and headers.</li>
+</ul>
+</li>
+</ul>
+<h3 id="d-live-preview"><strong>d. Live Preview</strong></h3>
+<ul>
+<li><strong>Real-Time HTML Preview:</strong><ul>
+<li>View a live HTML-rendered preview of your Markdown notes, ensuring that your formatting appears as intended.</li>
+</ul>
+</li>
+</ul>
+<h3 id="e-export-functionality"><strong>e. Export Functionality</strong></h3>
+<ul>
+<li><strong>Multiple Export Formats:</strong><ul>
+<li>Export your notes in both HTML and PDF formats, preserving the formatting and structure of your content.</li>
+</ul>
+</li>
+<li><strong>Customizable Styling:</strong><ul>
+<li>Apply consistent styling to exported documents, including font preferences like Charter or Palatino, to maintain a professional appearance.</li>
+</ul>
+</li>
+</ul>
+<h3 id="f-search-and-filtering"><strong>f. Search and Filtering</strong></h3>
+<ul>
+<li><strong>Intra-Wiki Search:</strong><ul>
+<li>Quickly search for content within the currently selected wiki to find relevant notes efficiently.</li>
+</ul>
+</li>
+<li><strong>Global Search:</strong><ul>
+<li>Perform searches across all wikis to locate notes regardless of their categorization.</li>
+</ul>
+</li>
+<li><strong>Tag-Based Filtering:</strong><ul>
+<li>Filter notes based on selected tags to narrow down your search results and focus on specific topics or categories.</li>
+</ul>
+</li>
+</ul>
+<h3 id="g-backlinks-management"><strong>g. Backlinks Management</strong></h3>
+<ul>
+<li><strong>Link Tracking:</strong><ul>
+<li>Automatically track and display backlinks, showing which notes reference the current note. This feature enhances the interconnectivity of your knowledge base.</li>
+</ul>
+</li>
+</ul>
+<h3 id="h-user-interface-components"><strong>h. User Interface Components</strong></h3>
+<ul>
+<li><strong>Wikis and Notes Lists:</strong><ul>
+<li>Easily navigate through your wikis and their respective notes using intuitive list views.</li>
+</ul>
+</li>
+<li><strong>Tabbed Editor and Preview:</strong><ul>
+<li>Open multiple notes in separate tabs, each containing an editor and its live preview for multitasking and comparison.</li>
+</ul>
+</li>
+<li><strong>Context Menus:</strong><ul>
+<li>Access context-specific actions like deleting notes through right-click menus for streamlined workflows.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="3-keyboard-shortcuts"><strong>3. Keyboard Shortcuts</strong></h2>
+<p>Enhance your productivity by utilizing the following keyboard shortcuts within <strong>Clarity Wiki v1</strong>:</p>
+<ul>
+<li>
+<p><strong>Bold Formatting:</strong>    </p>
+<ul>
+<li><strong>Mac:</strong> <code>Command + B</code> --- <strong>Action:</strong> Wraps the selected text in double asterisks (<code>**</code>) to apply bold formatting.</li>
+</ul>
+</li>
+<li>
+<p><strong>Italic Formatting:</strong></p>
+<ul>
+<li><strong>Mac:</strong> <code>Command + I</code>   --- <strong>Action:</strong> Wraps the selected text in single asterisks (<code>*</code>) to apply italic formatting.</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete Note:</strong>    </p>
+<ul>
+<li><strong>Mac:</strong> <code>Command + D</code> --- <strong>Action:</strong> Deletes the currently open note after confirmation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Create New Note:</strong></p>
+<ul>
+<li><strong>Mac:</strong> <code>Command + N</code>--- <strong>Action:</strong> Opens a dialog to create a new note within the selected wiki.</li>
+</ul>
+</li>
+<li>
+<p><strong>Open Note:</strong>    </p>
+<ul>
+<li><strong>Mac:</strong> <code>Command + O</code> --- <strong>Action:</strong> Opens a file dialog to select and open an existing note.</li>
+</ul>
+</li>
+<li>
+<p><strong>Save Note:</strong>    </p>
+<ul>
+<li><strong>Mac:</strong> <code>Command + S</code>--- <strong>Action:</strong> Saves the current note, including any changes made to tags or content.</li>
+</ul>
+</li>
+<li>
+<p><strong>Export Note:</strong></p>
+<ul>
+<li><strong>Mac:</strong> <code>Command + E</code>--- <strong>Action:</strong> Opens the export dialog to save the current note as HTML or PDF.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> Keyboard shortcuts may vary based on system configurations and updates. Refer to the application's help section for the most accurate and up-to-date shortcuts.</p>
+<hr />
+<h2 id="4-usage-tips"><strong>4. Usage Tips</strong></h2>
+<p>Maximize your efficiency and organization within <strong>Clarity Wiki v1</strong> by following these practical usage tips:</p>
+<h3 id="a-organizing-your-wikis-and-notes"><strong>a. Organizing Your Wikis and Notes</strong></h3>
+<ul>
+<li><strong>Logical Categorization:</strong><ul>
+<li>Create separate wikis for distinct projects, subjects, or areas of interest to keep your notes organized and easily accessible.</li>
+</ul>
+</li>
+<li><strong>Consistent Naming Conventions:</strong><ul>
+<li>Use clear and consistent naming for wikis and notes to facilitate quick searching and navigation.</li>
+</ul>
+</li>
+</ul>
+<h3 id="b-leveraging-tags-for-enhanced-organization"><strong>b. Leveraging Tags for Enhanced Organization</strong></h3>
+<ul>
+<li><strong>Tagging Strategy:</strong><ul>
+<li>Assign relevant tags to your notes to categorize them by themes, priority levels, or any criteria that suit your workflow.</li>
+</ul>
+</li>
+<li><strong>Filter and Search:</strong><ul>
+<li>Utilize the tag filter feature to quickly access notes associated with specific tags, streamlining your workflow and focusing on relevant content.</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-utilizing-markdown-for-rich-formatting"><strong>c. Utilizing Markdown for Rich Formatting</strong></h3>
+<ul>
+<li>Use bold and italic formatting to highlight key points, terms, or important information within your notes.</li>
+<li>Organize information using ordered and unordered lists for clarity and structure.</li>
+<li>Add footnotes to provide additional context, references, or explanations without interrupting the flow of your main content.</li>
+</ul>
+<h3 id="d-navigating-between-notes-efficiently"><strong>d. Navigating Between Notes Efficiently</strong></h3>
+<ul>
+<li><strong>Tab Management:</strong><ul>
+<li>Open multiple notes in separate tabs to compare information, reference related content, or multitask without losing your place.</li>
+</ul>
+</li>
+<li><strong>Backlinks Awareness:</strong><ul>
+<li>Pay attention to backlinks to understand how your notes interrelate, fostering a more interconnected and comprehensive knowledge base.</li>
+</ul>
+</li>
+</ul>
+<h3 id="e-exporting-notes-for-sharing-and-backup"><strong>e. Exporting Notes for Sharing and Backup</strong></h3>
+<ul>
+<li><strong>HTML Exports:</strong><ul>
+<li>Export notes as HTML to create web-friendly versions that can be shared or published online.</li>
+</ul>
+</li>
+<li><strong>PDF Exports:</strong><ul>
+<li>Generate PDF versions of your notes for easy sharing, printing, or archiving, ensuring that your formatting and structure are preserved.</li>
+</ul>
+</li>
+</ul>
+<h3 id="f-maintaining-data-integrity"><strong>f. Maintaining Data Integrity</strong></h3>
+<ul>
+<li><strong>Regular Backups:</strong><ul>
+<li>Periodically back up your <code>Clarity Wiki</code> notes directory to prevent data loss and ensure that your notes are securely stored.</li>
+</ul>
+</li>
+<li><strong>Version Control:</strong><ul>
+<li>Consider using version control systems like Git for tracking changes, especially for critical or collaborative projects.</li>
+</ul>
+</li>
+</ul>
+<h3 id="g-customizing-the-user-interface"><strong>g. Customizing the User Interface</strong></h3>
+<ul>
+<li><strong>Theme Adaptation:</strong><ul>
+<li>Although <strong>Clarity Wiki v1</strong> offers a minimalistic monochrome theme, explore any available customization options to tailor the interface to your preferences.</li>
+</ul>
+</li>
+<li><strong>Font Preferences:</strong><ul>
+<li>Adjust the default font within the editor settings to match your reading and writing comfort, choosing from options like Charter or Palatino.</li>
+</ul>
+</li>
+</ul>
+<h3 id="h-enhancing-productivity-with-shortcuts"><strong>h. Enhancing Productivity with Shortcuts</strong></h3>
+<ul>
+<li><strong>Memorize Key Shortcuts:</strong><ul>
+<li>Familiarize yourself with the essential keyboard shortcuts to perform actions swiftly without relying on mouse navigation.</li>
+</ul>
+</li>
+<li><strong>Customize Shortcuts:</strong><ul>
+<li>If the application allows, customize keyboard shortcuts to align with your workflow and personal preferences.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="5-troubleshooting-and-support"><strong>5. Troubleshooting and Support</strong></h2>
+<p>While <strong>Clarity Wiki v1</strong> is designed for stability and ease of use, you may encounter occasional issues. Below are common problems and their solutions:</p>
+<h3 id="a-application-wont-open-after-installation"><strong>a. Application Won't Open After Installation</strong></h3>
+<ul>
+<li><strong>Gatekeeper Restrictions:</strong><ul>
+<li>Ensure that you have followed the steps to bypass Gatekeeper correctly. Revisit the <strong>Installation Guide</strong> section to confirm.</li>
+</ul>
+</li>
+<li><strong>Corrupted Download:</strong><ul>
+<li>If the application fails to open, try re-downloading the <code>.zip</code> file and reinstalling the application.</li>
+</ul>
+</li>
+</ul>
+<h3 id="b-notes-are-not-saving-properly"><strong>b. Notes Are Not Saving Properly</strong></h3>
+<ul>
+<li><strong>Permissions Issue:</strong><ul>
+<li>Verify that you have the necessary read and write permissions for the <code>Clarity Wiki</code> notes directory located at <code>~/Library/Application Support/ClarityWiki/notes/</code>.</li>
+</ul>
+</li>
+<li><strong>Disk Space:</strong><ul>
+<li>Ensure that your system has sufficient disk space to save and manage your notes.</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-exported-pdfs-lack-proper-formatting"><strong>c. Exported PDFs Lack Proper Formatting</strong></h3>
+<ul>
+<li><strong>Font Availability:</strong><ul>
+<li>Confirm that the fonts specified in the CSS (<code>Charter</code>, <code>Palatino</code>, etc.) are installed on your system. If not, install the required fonts or adjust the CSS to use available fonts.</li>
+</ul>
+</li>
+<li><strong>Incomplete Export:</strong><ul>
+<li>Ensure that the note content is fully loaded before initiating the PDF export. Wait for any loading indicators to complete.</li>
+</ul>
+</li>
+</ul>
+<h3 id="d-search-functionality-not-working-as-expected"><strong>d. Search Functionality Not Working as Expected</strong></h3>
+<ul>
+<li><strong>Indexing Delay:</strong><ul>
+<li>Allow the application some time to index your notes, especially after creating or modifying a large number of notes.</li>
+</ul>
+</li>
+<li><strong>Check Search Query:</strong><ul>
+<li>Ensure that your search query is correctly spelled and matches the content within your notes.</li>
+</ul>
+</li>
+</ul>
+<h3 id="e-application-crashes-or-freezes"><strong>e. Application Crashes or Freezes</strong></h3>
+<ul>
+<li><strong>Update Dependencies:</strong><ul>
+<li>Ensure that all necessary dependencies and libraries are up to date. Consider reinstalling the application if issues persist.</li>
+</ul>
+</li>
+<li><strong>System Compatibility:</strong><ul>
+<li>Verify that your macOS version is compatible with <strong>Clarity Wiki v1</strong>. Refer to the application's system requirements.</li>
+</ul>
+</li>
+</ul>
+<h3 id="f-seeking-further-assistance"><strong>f. Seeking Further Assistance</strong></h3>
+<ul>
+<li><strong>Official Documentation:</strong><ul>
+<li>Refer to the official <strong>Clarity Wiki</strong> documentation for detailed guides and updates.</li>
+</ul>
+</li>
+<li><strong>Community Forums:</strong><ul>
+<li>Engage with the <strong>Clarity Wiki</strong> community through forums or discussion boards to seek advice and share experiences.</li>
+</ul>
+</li>
+<li><strong>Contact Support:</strong><ul>
+<li>Reach out to the support team via the official support channels provided with your download to report bugs or request assistance.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="6-final-notes"><strong>6. Final Notes</strong></h2>
+<p><strong>Clarity Wiki v1</strong> aims to provide a robust and intuitive platform for managing your notes and wikis. By following this user guide, you can ensure a smooth installation process, leverage the application's features effectively, and maintain an organized and productive workflow. Regularly check for updates and participate in the community to stay informed about new features and improvements.</p>
+<p>Thank you for choosing <strong>Clarity Wiki</strong> as your trusted tool for knowledge management. Should you have any questions or require further assistance, please do not hesitate to seek support through the available channels.</p>
+<hr />
+<h1 id="conclusion"><strong>Conclusion</strong></h1>
+<p><strong>Clarity Wiki v1</strong> offers a powerful yet user-friendly environment for organizing and managing your notes across multiple wikis. By following the installation steps, familiarizing yourself with the application's features and shortcuts, and utilizing the provided usage tips, you can maximize your productivity and maintain a well-structured knowledge base. Enjoy your experience with <strong>Clarity Wiki</strong>!</p></body></html>
