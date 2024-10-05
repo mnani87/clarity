@@ -22,6 +22,8 @@ A brief description of each app is as follows:
 
 **Clarity Calendar** is a minimalist, distraction-free calendar application for Mac users, designed to help manage daily events and tasks efficiently. The app features an intuitive interface, allowing users to add, edit, or delete events and tasks, with a focus on simplicity and usability. Events can include reminders, and tasks can be given deadlines and priority levels to ensure timely completion. The calendar widget highlights days with scheduled events, giving a clear overview of upcoming commitments. Clarity Calendar supports desktop notifications for reminders, ensuring users never miss important events. The app also includes import and export functionality, allowing users to back up or transfer their event and task data easily in JSON format. With the option to manage both tasks and events from separate tabs, Clarity Calendar provides users with an organized and clean experience. The app also incorporates keyboard shortcuts for quick actions, such as adding events or tasks, and a system tray feature that checks for reminders every minute. Overall, Clarity Calendar aims to provide a seamless experience for managing daily tasks and events while maintaining a simple, distraction-free environment.
 
+**Clarity TimeKeeper** is a streamlined time tracking and management application for Mac users, designed to help individuals monitor and optimize their daily activities effectively. Embracing the ClarityOne philosophy of simplicity and functionality, TimeKeeper offers a clean interface that allows users to log activities effortlessly within a weekly grid layout. Users can assign specific activities to each two-hour-long block across seven days, providing a clear overview of how time is allocated throughout the week. The app highlights the current day, making it easy to focus on present and upcoming tasks. Customizable activity categories enable users to tailor the app to their unique workflows, while tagging and filtering options facilitate easy organization and retrieval of logged activities. TimeKeeper also features comprehensive reporting tools, allowing users to generate daily, weekly, or monthly summaries of their time usage. These reports include visual charts that help identify productivity patterns and areas for improvement. Data is automatically saved and reports can be generated in app. Data is all stored locally. Designed with both professionals and personal users in mind, Clarity TimeKeeper aims to enhance productivity by providing an intuitive and efficient way to manage time, without the complexity of overly feature-rich applications.
+
 ## Installation
 
 Bundled .app versions are available to download: go to https://mnani87.github.io/mnanihome/clarityone.html
@@ -103,6 +105,15 @@ View and Organize:
     - The calendar highlights dates with events, and tasks are organized by priority.
     - Check reminders with desktop notifications to ensure you stay on track.
 
+*Clarity TimeKeeper*
+
+Launching the Timekeeper: Start by running
+        - python clarity_timekeeper.py
+
+Logging Activities: Click on any time block within the weekly grid to assign an activity. Add custom activities as needed initially, and then choose from a dropdown. Use the "Clear" option to remove an activity from a time block.
+
+Viewing Reports: Click the "View Reports" button to generate daily, weekly, or monthly reports. Reports include visual charts and can be exported in formats like HTML, PDF, and CSV for external analysis.
+
 ## Roadmap for future development 
 
 Planned future enhancements for ClarityOne include:
@@ -134,6 +145,10 @@ Planned future enhancements for ClarityOne include:
 *Clarity Calendar:*
         - Implement recurring events and tasks
         - Provide support for syncing with other calendar services and exporting in compatible formats
+
+*Clarity TimeKeeper:*
+        - Integration with Calendar for a one-stop solution
+        - Data export
 
 ## Contributions for further development
 
