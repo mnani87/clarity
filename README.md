@@ -70,7 +70,7 @@ A simple, distraction-free calendar app for managing events and tasks. It suppor
 
 ### Clarity TimeKeeper
 
-A companion app to Calendar (but which functions as a standalone app), TimeKeeper is time-tracking app that logs activities in a weekly grid layout, allowing users to monitor and optimize their daily activities. It features reporting tools for generating daily, weekly, or monthly summaries. This is meant especially for users to track how well their own time-blocking techniques are working for them.
+You have 168 hours a week: how many do you actually spend doing deep work? Clarity TimeKeeper is a simple and intuitive time management app designed to help you track your deep work sessions. Built with a minimalist philosophy, it allows you to mark specific time blocks dedicated to deep, focused work, add notes with Markdown support, and view detailed statistics of your productivity. With its clean interface and thoughtful design, Clarity TimeKeeper aims to enhance your focus and productivity, providing an efficient way to manage your work week and track your progress over time.
 
 ### Clarity Finances
 
@@ -241,7 +241,7 @@ A [User Guide is available here](https://mnani87.github.io/mnanihome/guide-calen
 
 ### Clarity TimeKeeper
 
-Simple log activities by clicking on a box for the relevant date and time. The 'Manage Activities' button will let you edit the list of activities as per your needs. 
+Simple double click on any one-hour time block in the app interface to log the block as a "deep work" block. Right-click on any block to add/edit notes (in markdown); and single-click a block to see the notes for that block. Statistics about time spent in deep work blocks in the current and past week and month can be readily seen as well.
 
 ### Clarity Finances
 
