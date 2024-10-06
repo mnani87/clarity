@@ -29,9 +29,9 @@ A brief description of each app is as follows:
 
 ## Installation
 
-Bundled .app versions are available to download: go to https://mnani87.github.io/mnanihome/clarityone.html
+Bundled .app versions are available to download for some of the apps: go to https://mnani87.github.io/mnanihome/clarityone.html
 
-For building from source, you can clone the repository. Each app is contained in a single python script. There is a 'requirements' text file for each app.
+For building from source, you can clone the repository. Each app is contained in a single python script. There is a 'requirements' text file for each app. Use the 'clarityone_[appname].py' file if available, else use the 'clarity_[appname].py' scripts. Download requirements.txt for each app (or simply see the necessary imports at the start of the code for the app). Download the script and for easiest workflow, create a folder for each app. Place the downloaded script into the folder. Start a terminal session at the relevant folder. Start a virtual environment with `python3 -m venv venv` and then install dependencies as requirement with `pip install [dependencies]`. Then you can open the app with `python3 [scriptname.py]` - make sure to replace [dependencies] and ]scriptname.py] with the dependencies required to be installed, and with the actual name of the python file. Pyinstaller can be used to create your own .app version, which can be placed in your applications folders too. 
 
 ## Usage
 
