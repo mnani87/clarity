@@ -3,6 +3,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Roadmap for future development](#roadmap-for-future-development)
 - [Contributions for further development](#contributions-for-further-development)
