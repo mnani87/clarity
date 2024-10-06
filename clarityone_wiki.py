@@ -1,3 +1,16 @@
+# Clarity Wiki - A Personal Knowledge Base and note-taking system.
+# ClarityOne: Clear, simple, trying to do one thing well. 
+# Copyright (c) 2024 MCN
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License, version 3, as published by
+# the Free Software Foundation. The full license is available at:
+# https://www.gnu.org/licenses/gpl-3.0.html
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY REPRESENTATION OR WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Indeed, the program may be worse than useless.
+
+# clarityone_wiki.py
+
 import sys
 import os
 import re
