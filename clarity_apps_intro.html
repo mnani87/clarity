@@ -1,0 +1,208 @@
+<html><head>
+            <style>
+                body {
+                    font-family: 'Charter', 'Palatino', serif;
+                    padding: 20px;
+                    background-color: white;
+                    color: black;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #1E90FF;
+                }
+                pre {
+                    background-color: #f0f0f0;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                code {
+                    background-color: #f0f0f0;
+                    padding: 2px 4px;
+                    border-radius: 3px;
+                    font-family: 'Courier New', Courier, monospace;
+                }
+                a {
+                    color: #FF4500;
+                    text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            </head><body><hr />
+<p>tags:
+- clarity-apps</p>
+<hr />
+<h1 id="clarity-apps-project-intro">Clarity Apps - Project Intro</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#app-descriptions">App Descriptions</a><ul>
+<li><a href="#clarity-wiki">Clarity Wiki</a></li>
+<li><a href="#clarity-explorer">Clarity Explorer</a></li>
+<li><a href="#clarity-editor">Clarity Editor</a></li>
+<li><a href="#clarity-clips">Clarity Clips</a></li>
+<li><a href="#clarity-calendar">Clarity Calendar</a></li>
+<li><a href="#clarity-timekeeper">Clarity TimeKeeper</a></li>
+<li><a href="#clarity-finances">Clarity Finances</a></li>
+</ul>
+</li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#download-links">Download links</a>   </li>
+<li><a href="#download-bundled-app-version">Download Bundled App version</a></li>
+<li><a href="#bypassing-macos-gatekeeper-warnings">Bypassing macOS Gatekeeper warnings</a></li>
+<li><a href="#building-from-source">Building from Source</a><ul>
+<li><a href="#download-the-source-code">Download the source code</a></li>
+<li><a href="#set-up-virtual-environment">Set up Virtual Environment</a></li>
+<li><a href="#install-dependencies">Install Dependencies</a></li>
+<li><a href="#running-the-apps">Running the apps</a></li>
+<li><a href="#creating-the-app-version-with-pyinstaller">Creating the .app version with PyInstaller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#clarity-wiki-1">Clarity Wiki</a></li>
+<li><a href="#clarity-explorer-1">Clarity Explorer</a></li>
+<li><a href="#clarity-editor-1">Clarity Editor</a></li>
+<li><a href="#clarity-clips-1">Clarity Clips</a></li>
+<li><a href="#clarity-calendar-1">Clarity Calendar</a></li>
+<li><a href="#clarity-timekeeper-1">Clarity TimeKeeper</a></li>
+<li><a href="#clarity-finances-1">Clarity Finances</a></li>
+</ul>
+</li>
+<li><a href="#roadmap-for-future-development">Roadmap for future development</a><ul>
+<li><a href="#planned-features">Planned features</a></li>
+<li><a href="#contributions-for-future-developments">Contributions for future developments</a></li>
+</ul>
+</li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>ClarityOne is a project focused on developing small, simple, and useful apps with a clear philosophy: <strong>do one thing well</strong>. The aim is to offer polished and efficient tools that address specific user needs without unnecessary complexity.</p>
+<p>While these apps  are labeled as v1, they are still in the prototype stage. The goal is to release refined versions (v2) by the end of this year. </p>
+<p>These apps are intended to be functional <strong><em>only in a macOS environment</em></strong>. Presently, there is no plan to develop Linux or Windows versions nor is any mobile version on the cards, but interested users are welcome to contribute if they would like to do so. The main feature to watch out for is system tray interactions in Clipboard, and also storage locations (presently, the apps use local storage in appropriate folders in ~/Library/Application Support, which is a macOS specific location.
+Each app is designed with simplicity in mind and is described briefly below.</p>
+<h2 id="app-descriptions">App Descriptions</h2>
+<p>Basic descriptions are provided below; more detailed usage guidelines are provided subsequently in this document.</p>
+<h3 id="clarity-wiki">Clarity Wiki</h3>
+<p>A minimalist personal knowledge base and note-taking application. It allows users to create and manage notes in Markdown format, with a live preview. It supports a multi-wiki system for organizing notes, includes a powerful tag management system, and exports notes in HTML or PDF.</p>
+<h3 id="clarity-explorer">Clarity Explorer</h3>
+<p>A file management system that organizes files by project views, regardless of physical file locations. It supports file previews, tag-based file filtering, and project-specific file management. </p>
+<h3 id="clarity-editor">Clarity Editor</h3>
+<p>A distraction-free text editor focused on writing, with essential formatting tools and support for multiple formats (HTML, Markdown, PDF, plain text, etc.). It provides a clean interface for users who value simplicity in their writing environment.</p>
+<h3 id="clarity-clips">Clarity Clips</h3>
+<p>A clipboard manager that records clipboard entries, allowing users to search, tag, and organize clipboard history. It supports exporting the clipboard history for backup or external use.</p>
+<h3 id="clarity-calendar">Clarity Calendar</h3>
+<p>A simple, distraction-free calendar app for managing events and tasks. It supports reminders, priority levels for tasks, and export functionality in JSON format.</p>
+<h3 id="clarity-timekeeper">Clarity TimeKeeper</h3>
+<p>You have 168 hours a week: how many do you actually spend doing deep work? Clarity TimeKeeper is a simple and intuitive time management app designed to help you track your deep work sessions. Built with a minimalist philosophy, it allows you to mark specific time blocks dedicated to deep, focused work, add notes with Markdown support, and view detailed statistics of your productivity.</p>
+<h3 id="clarity-finances">Clarity Finances</h3>
+<p>A financial management app meant for freelancers or small businesses, that helps users track expenses, receipts, and memos. It provides features like customizable categories, yearly summaries, and export options in JSON and CSV formats</p>
+<h2 id="installation">Installation</h2>
+<h3 id="download-links">Download links</h3>
+<p>Specific download lins for each app are below, this downloads a .zip, which you will have to extract to get access to the .app; the .app can be moved to the Applications folder on your system:</p>
+<ul>
+<li>Clarity Wiki: <a href="https://drive.proton.me/urls/HDM470K63R#5bCR9KGyWyNX">zip</a> OR <a href="https://github.com/mnani87/clarity/blob/main/clarityone_wiki.py">source code</a> || <a href="https://github.com/mnani87/clarity/blob/main/icon_wiki.icns">icon file</a> || <a href="https://github.com/mnani87/clarity/blob/main/requirements-wiki.txt">requirements</a></li>
+<li>Clarity Explorer <a href="https://drive.proton.me/urls/WMP0T9HBF8#YvPvp4NDq4Hh">zip</a> OR <a href="https://github.com/mnani87/clarity/blob/main/clarityone_explorer.py">source code</a> || <a href="https://github.com/mnani87/clarity/blob/main/icon_explorer.icns">icon file</a> || <a href="https://github.com/mnani87/clarity/blob/main/requirements-explorer.txt">requirements</a></li>
+<li>Clarity Editor <a href="https://drive.proton.me/urls/DBMV0M2E9C#IfPoDYHeYx7R">zip</a> OR <a href="https://github.com/mnani87/clarity/blob/main/clarityone_editor.py">source code</a> || <a href="https://github.com/mnani87/clarity/blob/main/icon_editor.icns">icon file</a> || <a href="https://github.com/mnani87/clarity/blob/main/requirements-editor.txt">requirements</a></li>
+<li>Clarity Clips <a href="https://drive.proton.me/urls/RQ6JNTREMC#uU8CzQhReFyY">zip</a> OR <a href="https://github.com/mnani87/clarity/blob/main/clarityone_clips.py">source code</a> || <a href="https://github.com/mnani87/clarity/blob/main/icon_clips.icns">icon file</a> || <a href="https://github.com/mnani87/clarity/blob/main/requirements-clips.txt">requirements</a></li>
+<li>Clarity Calendar <a href="https://drive.proton.me/urls/J81HNVDXPC#wDaZlKLkUCor">zip</a> OR <a href="https://github.com/mnani87/clarity/blob/main/clarityone_calendar.py">source code</a> || <a href="https://github.com/mnani87/clarity/blob/main/icon_calendar.icns">icon file</a> || <a href="https://github.com/mnani87/clarity/blob/main/requirements-calendar.txt">requirements</a></li>
+<li>Clarity Timekeeper <a href="https://drive.proton.me/urls/TDPPWKAXM8#kCGA3EXwCmyO">zip</a> OR <a href="https://github.com/mnani87/clarity/blob/main/clarityone_timekeeper.py">source code</a> || <a href="https://github.com/mnani87/clarity/blob/main/icon_timekeeper.icns">icon file</a> || <a href="https://github.com/mnani87/clarity/blob/main/requirements-timekeeper.txt">requirements</a></li>
+<li>Clarity Finances <a href="https://drive.proton.me/urls/6XDVH81ZFW#YJtgiFh57rSJ">zip</a> OR <a href="https://github.com/mnani87/clarity/blob/main/clarityone_finances.py">source code</a> || <a href="https://github.com/mnani87/clarity/blob/main/icon_finances.icns">icon file</a> || <a href="https://github.com/mnani87/clarity/blob/main/requirements-finances.txt">requirements</a></li>
+</ul>
+<h3 id="download-bundled-app-version">Download Bundled App version</h3>
+<p>You can download bundled .app versions for some of the apps directly from the <a href="https://mnani87.github.io/mnanihome/clarityone.html">ClarityOne website</a> or from the zip links above.</p>
+<h3 id="bypassing-macos-gatekeeper-warnings">Bypassing macOS Gatekeeper warnings</h3>
+<p>If you have downloaded the zip and unzipped it to reveal the app, when you try to open the app for the first time, macOS may prevent it from opening because it is from an unidentified developer. </p>
+<p>To open the app, use control-click or right-click, choose open. A warning dialog will pop up stating that the app is from an unidentified developer (me!) but you can open it anyway. </p>
+<p>If this does not work, open System Preferences (by clicking the Apple icon in the top left of your screen and choosing System Preferences). Click on "Security &amp; Privacy", and choose to Allow Apps from Unidentified Developers. If this doesn't work, build from source as described below.</p>
+<h3 id="building-from-source">Building from Source</h3>
+<p>Detailed instructions are given here, but for further guidance you can reach out to me or simply ask ChatGPT or Perplexity. You will need to use the Terminal (Cmd+Space on your Mac will open the Spotlight Search, and if you simply type <code>Terminal</code> in the search box, you will be able to open the Terminal app. You can then navigate to the folder where you want to download these apps by using the <code>cd</code> command in your Terminal. Alternatively, you can create a folder (say, you can create a 'Clarity' folder on your file system; then right-click and select 'New Terminal at Folder' from the menu (if not directly visible, it might be under 'services' after in the menu which opens on right clicking).</p>
+<p>Once you are in the folder, you can make separate folders for all the apps (or the ones you specifically want to download): for example <code>mkdir wiki explorer editor clips calendar timekeeper finances</code> will create all these folders.</p>
+<h4 id="download-the-source-code">Download the source code</h4>
+<p>To build the apps from source, you can clone the repository using the following command: in your terminal</p>
+<pre class="codehilite"><code>    git clone https://github.com/mnani87/clarity.git
+</code></pre>
+
+<p>If you are comfortable with git and github, you will know what to do; but for those who want to build from source without using git or Github, follow the instructions here.</p>
+<p>You can download the source code and icon files as well as the requirements files for each app from the links given above, and then copy the downloaded files from the Downloads folder to the relevant folder where you are building the app. </p>
+<p>Then move to the relevant folder in your terminal with the command <code>cd [directory name]</code>; for instance <code>cd wiki</code> or <code>cd clips</code>.</p>
+<p>The remaining instructions assume, for illustration, that you are building Clarity Clips; but in principle, all  these Clarity apps can be built using the same suggestions by changing the name from clips to whatever app you are building.</p>
+<h4 id="set-up-virtual-environment">Set up Virtual Environment</h4>
+<p>Once you are in the folder of where you are building the app (eg., after runninng <code>cd clips</code> in Terminal) It is recommended to use a Python virtual environment to avoid package conflicts:</p>
+<pre class="codehilite"><code>    python3 -m venv venv
+</code></pre>
+
+<p>Once this command runs, activate the virtual environment with:</p>
+<pre class="codehilite"><code>    source venv/bin/activate
+</code></pre>
+
+<h4 id="install-dependencies">Install Dependencies</h4>
+<p>Check the source code or the relevant requirements file for what all is required to be imported. Install those with:</p>
+<pre class="codehilite"><code>    pip install -r [requirements-appname].txt
+</code></pre>
+
+<p>Replace [requirements-appname] with the actual name of the requirements file; so, for Clips, run:</p>
+<pre class="codehilite"><code>    pip install -r requirements-clips.txt
+</code></pre>
+
+<h4 id="running-the-apps">Running the apps</h4>
+<p>To run any app, execute the following command (replace [appname] with the actual source code file name):</p>
+<pre class="codehilite"><code>    python clarityone_[appname].py
+</code></pre>
+
+<p>So, for running Clarity Clips, you will have to run:</p>
+<pre class="codehilite"><code>    python clarityone_clips.py
+</code></pre>
+
+<h4 id="creating-the-app-version-with-pyinstaller">Creating the .app version with PyInstaller</h4>
+<p>If you want to create a standalone .app version of an app, first install Pyinstaller:</p>
+<pre class="codehilite"><code>    pip install pyinstaller
+</code></pre>
+
+<p>Then you can create an app version, by running:</p>
+<pre class="codehilite"><code>    pyinstaller --onefile --windowed --icon=icon_[appname].icns clarityone_[appname].py
+</code></pre>
+
+<p>Replace <code>[appname]</code> with the actual python file name for the particular app; so, for Clips, you can run:</p>
+<pre class="codehilite"><code>    pyinstaller --onefile --windowed --icon=icon_clips.icns clarityone_clips.py
+</code></pre>
+
+<p>This will then create <code>build</code> and <code>dist</code> sub-folders; and in the <code>dist</code> folder, you will have two files; one of which will be the .app version which you can move to your Applications folder as well.</p>
+<h2 id="usage">Usage</h2>
+<p>You can run the app by simply double clicking the .app file (or the applicaiton from your Applications folder, or by using spotlight search to search for the app and open it. Usage notes for how you can use each app are given below.</p>
+<h3 id="clarity-wiki_1">Clarity Wiki</h3>
+<p>A <a href="https://mnani87.github.io/mnanihome/guide-wiki.html">User Guide is available here</a>, which includes a brief overview of the features, keyboard shortcuts, usage and troubleshooting tips etc.</p>
+<h3 id="clarity-explorer_1">Clarity Explorer</h3>
+<p>A <a href="https://mnani87.github.io/mnanihome/guide-explorer.html">User Guide is available here</a>, which includes a brief overview of the features, keyboard shortcuts, usage and troubleshooting tips etc.</p>
+<h3 id="clarity-editor_1">Clarity Editor</h3>
+<p>A <a href="https://mnani87.github.io/mnanihome/guide-editor.html">User Guide is available here</a>, which includes a brief overview of the features, keyboard shortcuts, usage and troubleshooting tips etc.</p>
+<h3 id="clarity-clips_1">Clarity Clips</h3>
+<p>A <a href="https://mnani87.github.io/mnanihome/guide-clips.html">User Guide is available here</a>, which includes a brief overview of the features, keyboard shortcuts, usage and troubleshooting tips etc.</p>
+<h3 id="clarity-calendar_1">Clarity Calendar</h3>
+<p>A <a href="https://mnani87.github.io/mnanihome/guide-calendar.html">User Guide is available here</a>, which includes a brief overview of the features, keyboard shortcuts, usage and troubleshooting tips etc.</p>
+<h3 id="clarity-timekeeper_1">Clarity TimeKeeper</h3>
+<p>Simple double click on any one-hour time block in the app interface to log the block as a "deep work" block. Right-click on any block to add/edit notes (in markdown); and single-click a block to see the notes for that block. Statistics about time spent in deep work blocks in the current and past week and month can be readily seen as well.</p>
+<h3 id="clarity-finances_1">Clarity Finances</h3>
+<p>The buttons are fairly clear; for editing or deleting an entry you have logged, right click on the entry (known bug - if you right click even if there is no entry, it opens the edit dialog box, but the app will crash - so make sure that there is an entry that you are right-clicking for editing or deleting!). Reports can be exported in json or in csv, and csv can be read by spreadsheet programs such as Excel.</p>
+<h2 id="roadmap-for-future-development">Roadmap for future development</h2>
+<h3 id="planned-features">Planned features</h3>
+<ul>
+<li>Adding a dark mode across all apps.</li>
+<li>Integrating the apps for seamless usage (perhaps through an overarching dashboard or launchpad) while preserving their standalone nature as well.</li>
+<li>Support for drag and drop functionality, especially in Calendar</li>
+<li>Support for more fonts and better rendering and export to pdf, md and html in Editor</li>
+<li>Support for better export in Finances, to ensure easy compatability with accounting software</li>
+<li>Better file previewing in Explorer</li>
+</ul>
+<h3 id="contributions-for-future-developments">Contributions for future developments</h3>
+<p>We welcome contributions! Here's how you can get involved:</p>
+<ul>
+<li><em>Bug Reports:</em> Open an issue on GitHub with steps to reproduce the problem.</li>
+<li><em>Feature Requests:</em> Submit your ideas, ensuring they align with the minimalist philosophy.</li>
+<li><em>Code Contribution:</em> Fork the repository, make changes in a new branch, and submit a pull request.</li>
+<li><em>Testing:</em> Help test beta releases and provide feedback.</li>
+</ul>
+<h2 id="license">License</h2>
+<p>ClarityOne is licensed under the GNU General Public License v3.0. You are free to use, modify, and redistribute the software under this license.
+You can read the full license here: <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3.0</a></p></body></html>
