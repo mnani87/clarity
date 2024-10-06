@@ -1,5 +1,13 @@
 # Clarity One
 
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Roadmap for future development](#roadmap-for-future-development)
+- [Contributions for further development](#contributions-for-further-development)
+- [License](#license)
+
 ## Introduction
 
 **ClarityOne** is a project focussed on develioping small but useful apps. The goal is to have clear and simple apps, which do one thing well. 
@@ -117,7 +125,7 @@ Logging Activities: Click on any time block within the weekly grid to assign an 
 
 Viewing Reports: Click the "View Reports" button to generate daily, weekly, or monthly reports. Reports include visual charts and can be exported in formats like HTML, PDF, and CSV for external analysis.
 
-Clarity Finances
+*Clarity Finances*
 
 Launch the App: Run the app by navigating to the clarity_finances directory and executing the following:
         - python clarity_finances.py
