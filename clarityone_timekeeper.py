@@ -9,7 +9,7 @@
 # but WITHOUT ANY REPRESENTATION OR WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Indeed, the program may be worse than useless.
 
-# clarity_timekeeper.py
+# clarityone_timekeeper.py
 
 import sys
 import os
