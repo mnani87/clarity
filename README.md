@@ -24,6 +24,9 @@ A brief description of each app is as follows:
 
 **Clarity TimeKeeper** is a streamlined time tracking and management application for Mac users, designed to help individuals monitor and optimize their daily activities effectively. Embracing the ClarityOne philosophy of simplicity and functionality, TimeKeeper offers a clean interface that allows users to log activities effortlessly within a weekly grid layout. Users can assign specific activities to each two-hour-long block across seven days, providing a clear overview of how time is allocated throughout the week. The app highlights the current day, making it easy to focus on present and upcoming tasks. Customizable activity categories enable users to tailor the app to their unique workflows, while tagging and filtering options facilitate easy organization and retrieval of logged activities. TimeKeeper also features comprehensive reporting tools, allowing users to generate daily, weekly, or monthly summaries of their time usage. These reports include visual charts that help identify productivity patterns and areas for improvement. Data is automatically saved and reports can be generated in app. Data is all stored locally. Designed with both professionals and personal users in mind, Clarity TimeKeeper aims to enhance productivity by providing an intuitive and efficient way to manage time, without the complexity of overly feature-rich applications.
 
+**Clarity Finances** is a financial management app designed for personal and small office finances. The app allows users to track expenses, receipts, and manage memos or invoices. Users can categorize expenses under default or custom categories such as "Professional Fees Paid," "Salaries," "Rent," and more. Clarity Finances automatically calculates totals for each financial year and allows users to filter and view monthly summaries. The app includes an export feature, enabling users to save their financial data in both JSON and CSV formats. With a simple and intuitive interface, Clarity Finances makes it easy to manage personal or office finances without unnecessary complexity. It is designed to help users stay organized, maintain clear financial records, and generate financial reports at the click of a button.
+
+
 ## Installation
 
 Bundled .app versions are available to download: go to https://mnani87.github.io/mnanihome/clarityone.html
@@ -114,6 +117,19 @@ Logging Activities: Click on any time block within the weekly grid to assign an 
 
 Viewing Reports: Click the "View Reports" button to generate daily, weekly, or monthly reports. Reports include visual charts and can be exported in formats like HTML, PDF, and CSV for external analysis.
 
+Clarity Finances
+
+Launch the App: Run the app by navigating to the clarity_finances directory and executing the following:
+        - python clarity_finances.py
+
+Adding Memos: Add new memos or invoices using the "Add Memo" button. Enter memo details like memo number, date, client name, and amount.
+    
+Managing Receipts and Expenses: Track receipts and expenses, associating them with specific memos if necessary. Use "Add Receipt" or "Add Expense" to input new entries.
+
+Viewing Summaries: View summaries of your financial data by selecting a specific financial year and month. The app automatically calculates totals for memos, receipts, and expenses.
+
+Exporting Data: Export financial data in JSON or CSV format for backup or further analysis.
+
 ## Roadmap for future development 
 
 Planned future enhancements for ClarityOne include:
@@ -149,6 +165,13 @@ Planned future enhancements for ClarityOne include:
 *Clarity TimeKeeper:*
         - Integration with Calendar for a one-stop solution
         - Data export
+
+*Clarity Finances:*
+        - Adding support for tax calculations and return preparation
+        - Support for reminders for forthcoming payments, advance tax payments etc.
+        - Customised receipt and expense heads
+        - Improvement of csv export functionality, to have files ready for import to Tally or other accounting software
+        - Auto-generation of ledger entries and income & expenditure account
 
 ## Contributions for further development
 
