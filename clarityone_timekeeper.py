@@ -9,7 +9,7 @@
 # but WITHOUT ANY REPRESENTATION OR WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Indeed, the program may be worse than useless.
 
-# clarityone_timekeeper.py
+# clarity_timekeeper.py
 
 import sys
 import os
@@ -225,11 +225,20 @@ class TimeKeeperApp(QWidget):
         deep_work_hours = 0
         
         for week in self.data["weeks"]:
-            week_date = datetime.strptime(week, "%Y-%m-%d")
-            if week_date.year == year and week_date.month == month:
-                deep_work_hours += self.calculate_deep_work_hours(week)
+            week_start = datetime.strptime(week, "%Y-%m-%d")
+            
+            # Check if the week spans across months
+            for day in DAYS_OF_WEEK:
+                current_day = week_start + timedelta(days=DAYS_OF_WEEK.index(day))
+                
+                if current_day.year == year and current_day.month == month:
+                    # Only count deep work blocks for the current month
+                    for block in TIME_BLOCKS:
+                        if self.data["weeks"][week][day][block] == "Deep Work":
+                            deep_work_hours += 1
         
         return deep_work_hours
+
     
     def eventFilter(self, obj, event):
         """Handle double-click events to mark a block as deep work."""
@@ -296,6 +305,7 @@ class TimeKeeperApp(QWidget):
                 self.data["weeks"][self.current_monday][f"{day}_{time_block}_note"] = note
                 save_data(self.data)
                 self.refresh_ui()
+                self.display_note_for_button(button)  # Simulate a click to show the added note immediately
     
     def edit_note_for_button(self, button):
         """Edit the note for a selected block with Markdown support."""
@@ -333,6 +343,7 @@ class TimeKeeperApp(QWidget):
                 self.data["weeks"][self.current_monday][f"{day}_{time_block}_note"] = new_note
                 save_data(self.data)
                 self.refresh_ui()
+                self.display_note_for_button(button)  # Simulate a click to show the added note immediately
 
     
     def delete_note_for_button(self, button):
