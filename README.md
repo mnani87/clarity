@@ -70,7 +70,7 @@ A simple, distraction-free calendar app for managing events and tasks. It suppor
 
 ### Clarity TimeKeeper
 
-You have 168 hours a week: how many do you actually spend doing deep work? Clarity TimeKeeper is a simple and intuitive time management app designed to help you track your deep work sessions. Built with a minimalist philosophy, it allows you to mark specific time blocks dedicated to deep, focused work, add notes with Markdown support, and view detailed statistics of your productivity. With its clean interface and thoughtful design, Clarity TimeKeeper aims to enhance your focus and productivity, providing an efficient way to manage your work week and track your progress over time.
+You have 168 hours a week: how many do you actually spend doing deep work? Clarity TimeKeeper is a simple and intuitive time management app designed to help you track your deep work sessions. Built with a minimalist philosophy, it allows you to mark specific time blocks dedicated to deep, focused work, add notes with Markdown support, and view detailed statistics of your productivity.
 
 ### Clarity Finances
 
